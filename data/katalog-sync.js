@@ -1,5 +1,5 @@
 window.LOKAMAIN_LIVE_DATA = {
-  "updatedAt": 1794654724757,
+  "updatedAt": 1794718745372,
   "settings": {
     "storeName": "rnalt_Digital",
     "siteSubtitle": "Pilih game pembelajaran digital, lalu klik tombol WhatsApp di bawahnya untuk memesan.",
@@ -17,6 +17,117 @@ window.LOKAMAIN_LIVE_DATA = {
     "sellerTemplate": "Halo Kak {buyerName}, terima kasih sudah memesan di {storeName}!\n\nBerikut akses game pembelajaran digital pesanan Anda:\nJudul Game: {title} ({code})\nLink Akses Game: {gameUrl}\n\nCara Pakai:\n1. Klik link di atas melalui browser HP, tablet, atau laptop.\n2. Game langsung berjalan tanpa instalasi tambahan.\n3. Simpan link ini untuk digunakan kembali kapan saja.\n\nSelamat bermain dan belajar!"
   },
   "games": [
+    {
+      "id": "LM-DK",
+      "code": "SERI-DK",
+      "title": "Detektif Kelas",
+      "category": "Kuis Misteri 2–4 Tim (Soal Bisa Diubah)",
+      "grade": "✏️ Soal Bisa Diubah",
+      "duration": "15–25 menit",
+      "device": "Smart TV / IFP (layar sentuh), Laptop & Proyektor",
+      "price": 30000,
+      "originalPrice": 40000,
+      "image": "assets/games/game-detektif-kelas.mp4",
+      "coverImage": "assets/games/game-detektif-kelas-cover.jpg",
+      "gameUrl": "games/detektif-kelas/",
+      "levels": [
+        "SMP",
+        "SMA"
+      ],
+      "shortDesc": "Pecahkan kasus misteri di kelas! Setiap jawaban benar membuka amplop petunjuk dan mencoret tersangka yang tidak cocok. Berani menuduh pelaku lebih cepat = hadiah lebih besar, tapi tuduhan salah ada hukumannya. Kasus & tersangka diacak setiap main. (SOAL BISA DIUBAH: tinggal tempel dari Word/WhatsApp atau buat dengan AI gratis)",
+      "howToPlay": [
+        "Bagi kelas menjadi 2–4 tim (anggota menjawab bergiliran). Pengaturan bawaan sudah pas — tinggal klik Mulai.",
+        "Jawab soal dengan benar untuk membuka amplop petunjuk. Tersangka yang tidak cocok dicoret dengan stempel BEBAS. Salah jawab? Tim lain cepat klik tombol timnya untuk merebut soal.",
+        "Sudah yakin? Tuduh pelakunya! Benar = kasus terpecahkan dan poin besar; salah = poin berkurang. Tim dengan poin terbanyak setelah semua kasus menang."
+      ],
+      "learningGoals": [
+        "Mengulang materi sambil melatih berpikir logis dan menarik kesimpulan dari petunjuk.",
+        "Melatih diskusi, ketelitian, dan keberanian mengambil keputusan dalam tim.",
+        "Ganti soal sangat mudah di Mode Guru: tempel soal dari Word/WhatsApp, atau buat otomatis dengan AI gratis (ChatGPT/Gemini). Excel juga bisa."
+      ],
+      "sampleQuestion": "Akar kuadrat dari 144 adalah...",
+      "sampleOptions": [
+        "12",
+        "11",
+        "14",
+        "72"
+      ],
+      "sampleAnswer": 0
+    },
+    {
+      "id": "LM-LJ",
+      "code": "SERI-LJ",
+      "title": "Lelang Juara",
+      "category": "Kuis Lelang 2–4 Tim (Soal Bisa Diubah)",
+      "grade": "✏️ Soal Bisa Diubah",
+      "duration": "15–20 menit",
+      "device": "Smart TV / IFP (layar sentuh), Laptop & Proyektor",
+      "price": 30000,
+      "originalPrice": 40000,
+      "image": "assets/games/game-lelang-juara.mp4",
+      "coverImage": "assets/games/game-lelang-juara-cover.jpg",
+      "gameUrl": "games/lelang-juara/",
+      "levels": [
+        "SMP",
+        "SMA"
+      ],
+      "shortDesc": "Balai lelang di kelas! Tim saling menawar poin untuk merebut hak menjawab soal — makin sulit, makin besar hadiahnya. Ada Kotak Misteri, Kartu Asuransi, Kartu Ganda, Jackpot, dan babak Taruhan Terakhir dengan jawaban rahasia yang menegangkan! (SOAL BISA DIUBAH: tinggal tempel dari Word/WhatsApp atau buat dengan AI gratis)",
+      "howToPlay": [
+        "Bagi kelas menjadi 2–4 tim, masing-masing mulai dengan 1.000 poin. Pengaturan bawaan sudah pas — tinggal klik Mulai.",
+        "Setiap lot dilelang: tekan +50/+100/+200 untuk menawar sebelum palu diketuk. Pemenang lelang menjawab soal — benar = tawaran kembali berlipat, salah = poin masuk Jackpot dan tim lain boleh merebut soal.",
+        "Di babak Taruhan Terakhir, setiap tim memilih taruhan & jawaban secara rahasia lalu dibuka bersamaan. Poin terbanyak menang!"
+      ],
+      "learningGoals": [
+        "Mengulang materi sambil berlatih menimbang risiko dan mengelola poin.",
+        "Melatih kerja sama, strategi, dan sportivitas tim.",
+        "Ganti soal sangat mudah di Mode Guru: tempel soal dari Word/WhatsApp, atau buat otomatis dengan AI gratis (ChatGPT/Gemini). Excel juga bisa."
+      ],
+      "sampleQuestion": "Proses tumbuhan hijau membuat makanan sendiri dengan bantuan cahaya matahari disebut...",
+      "sampleOptions": [
+        "Evaporasi",
+        "Respirasi",
+        "Transpirasi",
+        "Fotosintesis"
+      ],
+      "sampleAnswer": 3
+    },
+    {
+      "id": "LM-PL",
+      "code": "SERI-PL",
+      "title": "Pertempuran Laut",
+      "category": "Kuis Strategi Armada 2–4 Tim (Soal Bisa Diubah)",
+      "grade": "✏️ Soal Bisa Diubah",
+      "duration": "15–25 menit",
+      "device": "Smart TV / IFP (layar sentuh), Laptop & Proyektor",
+      "price": 30000,
+      "originalPrice": 40000,
+      "image": "assets/games/game-pertempuran-laut.mp4",
+      "coverImage": "assets/games/game-pertempuran-laut-cover.jpg",
+      "gameUrl": "games/pertempuran-laut/",
+      "levels": [
+        "SMP",
+        "SMA"
+      ],
+      "shortDesc": "Pertempuran armada Nusantara! Kapal setiap tim tersembunyi di peta laut. Jawab benar untuk menembak laut lawan — kena, ledakan, sampai KAPAL TENGGELAM! Kumpulkan Radar, Meriam Ganda, dan Perisai dari jawaban beruntun. Armada terakhir yang bertahan juara. (SOAL BISA DIUBAH: tinggal tempel dari Word/WhatsApp atau buat dengan AI gratis)",
+      "howToPlay": [
+        "Bagi kelas menjadi 2–4 tim (atau 1 tim melawan komputer). Kapal setiap tim ditempatkan acak dan tersembunyi.",
+        "Jawab soal dengan benar untuk menembak petak di laut lawan. Kena = boleh menembak lagi. Jawaban beruntun memberi Radar, Meriam Ganda, dan Perisai. Salah jawab? Tim lain cepat klik tombol timnya untuk merebut soal.",
+        "Tenggelamkan semua kapal lawan! Jika waktu habis, pemenang ditentukan dari poin."
+      ],
+      "learningGoals": [
+        "Mengulang materi sambil melatih strategi, koordinat, dan pengambilan keputusan.",
+        "Melatih diskusi dan kerja sama tim.",
+        "Ganti soal sangat mudah di Mode Guru: tempel soal dari Word/WhatsApp, atau buat otomatis dengan AI gratis (ChatGPT/Gemini). Excel juga bisa."
+      ],
+      "sampleQuestion": "The past tense of \"go\" is...",
+      "sampleOptions": [
+        "goed",
+        "went",
+        "gone",
+        "going"
+      ],
+      "sampleAnswer": 1
+    },
     {
       "id": "LM-SN",
       "code": "SERI-SN",

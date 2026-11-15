@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detektif Kelas — Kuis Misteri untuk 2–4 Tim</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&family=Special+Elite&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="quiz-core.css?v=20261111">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><span>🔍</span></div>
+        <div>
+          <h1>DETEKTIF <span>KELAS</span></h1>
+          <p>KUIS MISTERI • PECAHKAN KASUSNYA!</p>
+        </div>
+      </div>
+      <div class="hud">
+        <div class="h-item"><small>KASUS</small><b><span id="caseNo">1</span><em id="caseMax">/3</em></b></div>
+        <div class="h-item"><small>PETUNJUK</small><b><span id="clueNo">0</span><em id="clueMax">/4</em></b></div>
+        <div class="h-item sus"><small>TERSANGKA</small><b id="susNo">6</b></div>
+        <div class="h-item prize"><small>HADIAH</small><b id="prizeNo">100</b></div>
+        <div class="h-item"><small>WAKTU</small><b id="clockNo">00:00</b></div>
+      </div>
+      <nav class="tools">
+        <button class="tbtn wide" id="btnNotes" title="Buku Catatan detektif (N)">📒<span>Catatan</span></button>
+        <button class="tbtn" data-qc="sound" title="Suara"></button>
+        <button class="tbtn" data-qc="fullscreen" title="Layar penuh">⛶</button>
+        <button class="tbtn" id="btnRules" title="Peraturan">📜</button>
+        <button class="tbtn" id="btnSetup" title="Pengaturan / ubah tim">⚙️</button>
+        <button class="tbtn wide" data-qc="teacher" title="Mode Guru (kelola soal)">🔐<span>Guru</span></button>
+      </nav>
+    </header>
+
+    <div class="play" id="play">
+      <main class="board" id="board">
+        <section class="casehead">
+          <div class="folder-tab">📁 KASUS #<b id="caseTabNo">1</b> <span class="secret">RAHASIA</span></div>
+          <div class="ch-main">
+            <div class="ch-icon" id="caseIcon" aria-hidden="true">🏆</div>
+            <div class="ch-text">
+              <h2 id="caseTitle">Detektif Kelas</h2>
+              <p id="caseStory">Siapkan kaca pembesar kalian…</p>
+            </div>
+          </div>
+        </section>
+        <section class="lineup" id="lineup" aria-label="Para tersangka"></section>
+        <section class="clues">
+          <h3>✉️ Amplop Petunjuk <small id="clueHelp">Jawab soal dengan benar untuk membuka amplop</small></h3>
+          <div class="envs" id="envs"></div>
+        </section>
+      </main>
+      <aside class="side" id="side">
+        <div class="actbox" id="actbox">
+          <div class="turnchip" id="turnChip"></div>
+          <div class="hint" id="hint" role="status" aria-live="polite"></div>
+          <button class="bigbtn" id="btnMain">❓ JAWAB SOAL<small>SPASI</small></button>
+        </div>
+        <div class="teams" id="teams"></div>
+        <section class="logbox">
+          <h3>🗒️ Jejak Penyelidikan</h3>
+          <ol class="log" id="log"></ol>
+        </section>
+      </aside>
+    </div>
+  </div>
+  <div class="brief" id="brief" hidden></div>
+  <div class="reveal" id="reveal" hidden></div>
+
+<script src="questions-default.js"></script>
+<script src="quiz-core.js?v=20261111"></script>
+<script src="game.js?v=1"></script>
+<script src="../lokamain-license.js?v=20261109"></script>
+</body>
+</html>
