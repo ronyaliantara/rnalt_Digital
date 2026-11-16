@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="preload" href="assets/fonts/poppins-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/page.css?v=20261111b">
+  <link rel="stylesheet" href="css/page.css?v=20261117a">
 
   <script type="application/ld+json">
   {
@@ -83,6 +83,7 @@
 
       <nav class="main-nav" id="hamburger-menu" aria-label="Menu utama">
         <a href="#katalog" class="nav-link">Katalog</a>
+        <a href="#modul-ajar" class="nav-link" id="nav-modul" hidden>Modul Ajar</a>
         <a href="#testimoni" class="nav-link" id="nav-testimoni" hidden>Testimoni</a>
         <a href="#cara-order" class="nav-link">Cara Order</a>
         <a href="#ubah-soal" class="nav-link">Ubah Soal</a>
@@ -139,6 +140,20 @@
           <div class="skeleton" aria-hidden="true"></div>
           <noscript><p class="empty-state">Aktifkan JavaScript di browser untuk melihat katalog game.</p></noscript>
         </div>
+      </div>
+    </section>
+
+    <!-- Modul Ajar Digital (produk modul ajar dipisah dari katalog game; tersembunyi bila belum ada) -->
+    <section id="modul-ajar" class="section modul-section" aria-labelledby="modul-title" hidden>
+      <div class="container">
+        <div class="section-head">
+          <div class="catalog-meta">
+            <p class="modul-kicker">📘 Untuk administrasi &amp; pembelajaran</p>
+            <h2 id="modul-title">Modul Ajar Digital Kurikulum Merdeka</h2>
+          </div>
+          <p>Modul ajar siap pakai dalam satu link: <strong>dokumen modul ajar lengkap</strong> (bisa dicetak / PDF), materi interaktif untuk ditayangkan, kuis, game, dan LKPD.</p>
+        </div>
+        <div id="modul-grid" class="game-grid" aria-live="polite"></div>
       </div>
     </section>
 
@@ -455,6 +470,6 @@ Pembahasan: Jakarta adalah ibu kota Indonesia.</pre>
   <script src="js/vendor/qrcode.js"></script>
   <script src="js/qris-helper.js"></script>
   <script src="js/store.js?v=20261111a"></script>
-  <script src="js/catalog.js?v=20261117a"></script>
+  <script src="js/catalog.js?v=20261117b"></script>
 </body>
 </html>

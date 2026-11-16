@@ -302,15 +302,29 @@
     return list.map((g, i) => ({ g, i })).sort((a, b) => levelRank(a.g) - levelRank(b.g) || a.i - b.i).map((x) => x.g);
   }
 
+  // Modul ajar ditampilkan di bagian sendiri, terpisah dari katalog game
+  const isModul = (g) => g && (g.kind === 'modul' || /^modul ajar/i.test(String(g.category || '')));
+  const onlyGames = (store) => ({ ...store, games: store.games.filter((g) => !isModul(g)) });
+
+  function renderModules(store) {
+    const sec = $('modul-ajar'); const grid = $('modul-grid'); const nav = $('nav-modul');
+    if (!sec || !grid) return;
+    const mods = store.games.filter(isModul);
+    sec.hidden = !mods.length; if (nav) nav.hidden = !mods.length;
+    grid.innerHTML = mods.map(cardHtml).join('');
+  }
+
   function renderGrid(store) {
     const grid = $('game-grid');
+    renderModules(store);
+    store = onlyGames(store);
     renderLevelTabs(store);
     const games = visibleGames(store);
     grid.innerHTML = games.length
       ? games.map(cardHtml).join('')
       : '<div class="empty-state"><h3>Belum ada game untuk jenjang ini</h3><p>Pilih jenjang lain atau tanyakan lewat WhatsApp.</p></div>';
     grid.setAttribute('aria-busy', 'false');
-    setupMedia(grid);
+    setupMedia(document.getElementById('main') || document.body); // kartu game + kartu modul
   }
 
   function cardHtml(game, index) {
@@ -412,7 +426,7 @@
   function renderHero(store) {
     const box = $('hero-visual');
     const badge = $('hero-badge-text');
-    const games = store.games;
+    const games = store.games.filter((g) => !isModul(g));
     if (badge) badge.textContent = games.length ? `${games.length} game siap pakai` : 'Game pembelajaran digital';
     if (!box) return;
 

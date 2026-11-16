@@ -1,5 +1,5 @@
 window.LOKAMAIN_LIVE_DATA = {
-  "updatedAt": 1794834312209,
+  "updatedAt": 1794835674194,
   "settings": {
     "storeName": "rnalt_Digital",
     "siteSubtitle": "Pilih game pembelajaran digital, lalu klik tombol WhatsApp di bawahnya untuk memesan.",
@@ -52,7 +52,8 @@ window.LOKAMAIN_LIVE_DATA = {
         "Merkurius – Bumi – Venus – Mars",
         "Mars – Bumi – Venus – Merkurius"
       ],
-      "sampleAnswer": 0
+      "sampleAnswer": 0,
+      "kind": "modul"
     },
     {
       "id": "LM-DK",

@@ -2123,3 +2123,7 @@ a {
     padding: 12px;
   }
 }
+
+/* Bagian Modul Ajar (terpisah dari katalog game) */
+.modul-section { background: linear-gradient(180deg, #eef2ff 0%, #f6f8ff 100%); border-top: 2px solid var(--line); border-bottom: 2px solid var(--line); }
+.modul-kicker { display: inline-block; margin: 0 0 8px; padding: 4px 12px; border: 2px solid var(--ink); border-radius: 999px; background: var(--amber-tint); font-weight: 700; font-size: 13px; color: var(--ink); }
