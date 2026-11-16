@@ -1,5 +1,5 @@
 window.LOKAMAIN_LIVE_DATA = {
-  "updatedAt": 1794828853140,
+  "updatedAt": 1794834312209,
   "settings": {
     "storeName": "rnalt_Digital",
     "siteSubtitle": "Pilih game pembelajaran digital, lalu klik tombol WhatsApp di bawahnya untuk memesan.",
@@ -17,6 +17,43 @@ window.LOKAMAIN_LIVE_DATA = {
     "sellerTemplate": "Halo Kak {buyerName}, terima kasih sudah memesan di {storeName}!\n\nBerikut akses game pembelajaran digital pesanan Anda:\nJudul Game: {title} ({code})\nLink Akses Game: {gameUrl}\n\nCara Pakai:\n1. Klik link di atas melalui browser HP, tablet, atau laptop.\n2. Game langsung berjalan tanpa instalasi tambahan.\n3. Simpan link ini untuk digunakan kembali kapan saja.\n\nSelamat bermain dan belajar!"
   },
   "games": [
+    {
+      "id": "LM-MTS",
+      "code": "MODUL-TS",
+      "title": "Modul Ajar Digital IPA Kelas VII – Sistem Tata Surya",
+      "category": "Modul Ajar Digital Kurikulum Merdeka (Fase D)",
+      "grade": "📘 Modul Ajar Lengkap + PDF",
+      "duration": "2 pertemuan (6 JP)",
+      "device": "Smart TV / IFP (layar sentuh), Laptop & Proyektor",
+      "price": 40000,
+      "originalPrice": 50000,
+      "editableQuestions": false,
+      "image": "assets/games/game-modul-tata-surya.mp4",
+      "coverImage": "assets/games/game-modul-tata-surya-cover.jpg",
+      "gameUrl": "games/modul-tata-surya/",
+      "levels": [
+        "SMP"
+      ],
+      "shortDesc": "Modul ajar digital siap pakai untuk IPA Kelas VII Kurikulum Merdeka: dokumen modul ajar lengkap (bisa dicetak/PDF), materi interaktif Tata Surya (planet bisa diklik, fase Bulan, gerhana, rotasi & revolusi), kuis formatif 20 soal dengan pembahasan, 2 game (Susun Tata Surya & Tebak Benda Langit), serta LKPD siap cetak.",
+      "howToPlay": [
+        "Buka link di Smart TV/IFP atau laptop. Menu: Beranda, Modul Ajar, Materi, Kuis, Game, LKPD & Lampiran.",
+        "Tayangkan Materi interaktif saat pembelajaran, lalu ajak siswa mengerjakan Kuis dan bermain Game (bisa per tim).",
+        "Isi identitas penyusun di menu Modul Ajar, lalu klik \"Cetak / Simpan PDF\" untuk dokumen administrasi. Mode Guru (PIN 1234) menampilkan kunci jawaban dan rubrik."
+      ],
+      "learningGoals": [
+        "Lengkap sesuai komponen modul ajar Kurikulum Merdeka: informasi umum, komponen inti (CP, TP, kegiatan, asesmen), dan lampiran.",
+        "Siswa memahami susunan tata surya, karakteristik planet, rotasi & revolusi Bumi, fase Bulan, dan gerhana secara visual dan interaktif.",
+        "Hemat waktu guru: materi, kuis, game, LKPD, dan dokumen PDF dalam satu link."
+      ],
+      "sampleQuestion": "Urutan empat planet terdekat dengan Matahari yang benar adalah …",
+      "sampleOptions": [
+        "Merkurius – Venus – Bumi – Mars",
+        "Venus – Merkurius – Bumi – Mars",
+        "Merkurius – Bumi – Venus – Mars",
+        "Mars – Bumi – Venus – Merkurius"
+      ],
+      "sampleAnswer": 0
+    },
     {
       "id": "LM-DK",
       "code": "SERI-DK",

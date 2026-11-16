@@ -94,6 +94,9 @@
 
     $('order-title').textContent = game.title;
     $('order-price').textContent = `Rp ${formatIdr(game.price)}`;
+    // Produk dengan soal tetap (mis. modul ajar) tidak menampilkan panduan "Soal bisa Anda ganti sendiri"
+    const soalNote = document.querySelector('#order-dialog .order-soal-note');
+    if (soalNote) soalNote.style.display = game.editableQuestions === false ? 'none' : '';
     const promoEl = $('order-promo'); const promo = promoOf(game);
     if (promoEl) {
       promoEl.hidden = !promo;

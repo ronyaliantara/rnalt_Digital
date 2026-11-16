@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modul Ajar Digital — IPA Kelas VII: Sistem Tata Surya</title>
+  <meta name="description" content="Modul Ajar Digital IPA SMP Kelas VII Fase D Kurikulum Merdeka: Sistem Tata Surya. Dokumen modul ajar siap cetak, materi interaktif, kuis formatif, dan game kelas.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%90%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css?v=1">
+  <link rel="stylesheet" href="css/print.css?v=1" media="print">
+</head>
+<body>
+<div class="sky" aria-hidden="true"><div class="stars s1"></div><div class="stars s2"></div></div>
+
+<header class="topbar" id="topbar">
+  <button class="brand" data-go="beranda" title="Kembali ke Beranda">
+    <span class="brand-logo" aria-hidden="true">
+      <svg viewBox="0 0 40 40"><defs><radialGradient id="lg" cx=".4" cy=".35"><stop offset="0" stop-color="#fff3c4"/><stop offset=".6" stop-color="#ffb938"/><stop offset="1" stop-color="#f07a1a"/></radialGradient></defs><circle cx="20" cy="20" r="8" fill="url(#lg)"/><ellipse cx="20" cy="20" rx="17" ry="6.5" fill="none" stroke="#8fd3ff" stroke-width="1.6" transform="rotate(-20 20 20)"/><circle cx="35.5" cy="14.6" r="2.4" fill="#8fd3ff"/></svg>
+    </span>
+    <span class="brand-txt"><b>Modul Ajar Digital</b><small>IPA Kelas VII · Sistem Tata Surya</small></span>
+  </button>
+  <nav class="nav" id="nav" aria-label="Navigasi utama">
+    <button data-go="beranda"><span aria-hidden="true">🏠</span>Beranda</button>
+    <button data-go="modul"><span aria-hidden="true">📘</span>Modul Ajar</button>
+    <button data-go="materi"><span aria-hidden="true">🪐</span>Materi</button>
+    <button data-go="kuis"><span aria-hidden="true">📝</span>Kuis</button>
+    <button data-go="game"><span aria-hidden="true">🎮</span>Game</button>
+    <button data-go="lampiran"><span aria-hidden="true">📎</span>LKPD &amp; Lampiran</button>
+  </nav>
+  <div class="tools">
+    <button class="tbtn" id="btnAnim" title="Animasi hidup/mati" aria-pressed="true"><span aria-hidden="true">✨</span><em>Animasi</em></button>
+    <button class="tbtn" id="btnFull" title="Layar penuh"><span aria-hidden="true">⛶</span><em>Layar penuh</em></button>
+    <button class="tbtn guru" id="btnGuru" title="Mode Guru (PIN)"><span aria-hidden="true">🔒</span><em>Mode Guru</em></button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ======================================================= BERANDA -->
+<section class="sec" id="sec-beranda" data-sec="beranda">
+  <div class="cover">
+    <div class="cover-text">
+      <p class="eyebrow">Modul Ajar Digital · Kurikulum Merdeka</p>
+      <h1 class="cover-title">Sistem <span>Tata Surya</span></h1>
+      <p class="cover-sub">Menjelajahi Matahari, planet, Bumi, dan Bulan — dari keteraturan orbit hingga fase Bulan dan gerhana.</p>
+      <ul class="badges">
+        <li>Ilmu Pengetahuan Alam</li><li>Kelas VII</li><li>Fase D</li><li>SMP/MTs</li><li>2 × 3 JP</li>
+      </ul>
+      <div class="cover-cta">
+        <button class="btn primary big" data-go="materi">🚀 Mulai Jelajah Materi</button>
+        <button class="btn ghost big" data-go="modul">📘 Buka Dokumen Modul Ajar</button>
+      </div>
+    </div>
+    <div class="cover-art" aria-hidden="true">
+      <svg viewBox="-200 -200 400 400" class="mini-ss">
+        <defs>
+          <radialGradient id="cvSun" cx=".42" cy=".38"><stop offset="0" stop-color="#fff6d0"/><stop offset=".55" stop-color="#ffc23d"/><stop offset="1" stop-color="#f26b12"/></radialGradient>
+          <radialGradient id="cvGlow"><stop offset="0" stop-color="#ffb43a" stop-opacity=".55"/><stop offset="1" stop-color="#ffb43a" stop-opacity="0"/></radialGradient>
+        </defs>
+        <circle r="120" fill="url(#cvGlow)"/>
+        <circle r="62" fill="none" class="orbit-line"/><circle r="100" fill="none" class="orbit-line"/><circle r="140" fill="none" class="orbit-line"/><circle r="182" fill="none" class="orbit-line"/>
+        <circle r="34" fill="url(#cvSun)"/>
+        <g class="spin" style="--d:16s"><circle cx="62" r="6" fill="#7fc8ff"/></g>
+        <g class="spin" style="--d:26s"><circle cx="-100" r="5" fill="#ff8a5b"/></g>
+        <g class="spin" style="--d:44s"><circle cy="140" r="13" fill="#e9c191"/></g>
+        <g class="spin" style="--d:70s"><g transform="translate(0 -182)"><ellipse rx="20" ry="6" fill="none" stroke="#e8d5a3" stroke-width="3"/><circle r="10" fill="#f0dca6"/></g></g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="home-grid">
+    <button class="home-card" data-go="modul"><span class="hc-ico">📘</span><b>Dokumen Modul Ajar</b><small>Informasi umum, komponen inti, asesmen, rubrik — siap cetak A4/PDF.</small></button>
+    <button class="home-card" data-go="materi"><span class="hc-ico">🪐</span><b>Materi Interaktif</b><small>Model tata surya, kartu planet, skala ukuran, musim, fase Bulan, gerhana.</small></button>
+    <button class="home-card" data-go="kuis"><span class="hc-ico">📝</span><b>Kuis Formatif</b><small>20 soal pilihan ganda (C1–C5) dengan umpan balik dan pembahasan.</small></button>
+    <button class="home-card" data-go="game"><span class="hc-ico">🎮</span><b>Game Kelas</b><small>“Susun Tata Surya” dan “Tebak Benda Langit” untuk tim.</small></button>
+    <button class="home-card" data-go="lampiran"><span class="hc-ico">📎</span><b>LKPD &amp; Lampiran</b><small>LKPD siap cetak, bahan bacaan, glosarium, daftar pustaka.</small></button>
+    <button class="home-card" id="homeGuru"><span class="hc-ico">🧑‍🏫</span><b>Mode Guru</b><small>Buka kunci jawaban, rubrik, dan catatan guru (PIN).</small></button>
+  </div>
+  <p class="home-foot">Disusun untuk dipakai di laptop, proyektor, Smart TV, dan papan interaktif (IFP). Data planet merujuk NASA; Capaian Pembelajaran merujuk Keputusan Kepala BSKAP No. 032/H/KR/2024.</p>
+</section>
+
+<!-- ======================================================= MODUL AJAR -->
+<section class="sec" id="sec-modul" data-sec="modul">
+  <div class="doc-toolbar no-print">
+    <div>
+      <h2 class="sec-title">📘 Dokumen Modul Ajar</h2>
+      <p class="muted">Kolom bertanda garis putus-putus dapat diisi langsung dan tersimpan otomatis di perangkat ini.</p>
+    </div>
+    <div class="doc-actions">
+      <button class="btn primary" id="btnPrint">🖨️ Cetak / Simpan PDF</button>
+      <button class="btn ghost" id="btnPrintLkpd2">🖨️ Cetak LKPD saja</button>
+    </div>
+  </div>
+  <p class="guru-hint no-print" id="guruHint">🔒 Rubrik penilaian dan kunci jawaban hanya tampil di <b>Mode Guru</b>. Aktifkan Mode Guru sebelum mencetak versi lengkap untuk guru.</p>
+
+  <article class="doc" id="docModul">
+    <header class="doc-head">
+      <p class="doc-kicker">MODUL AJAR KURIKULUM MERDEKA</p>
+      <h1>Sistem Tata Surya</h1>
+      <p class="doc-subtitle">Ilmu Pengetahuan Alam (IPA) · SMP/MTs Kelas VII · Fase D</p>
+    </header>
+
+    <h2 class="part">A. Informasi Umum</h2>
+
+    <h3>1. Identitas Modul</h3>
+    <table class="tbl kv">
+      <tbody>
+        <tr><th>Nama penyusun</th><td><span class="fill" contenteditable="true" data-key="penyusun" data-ph="(isi nama guru penyusun)" spellcheck="false"></span></td></tr>
+        <tr><th>NIP</th><td><span class="fill" contenteditable="true" data-key="nip" data-ph="(opsional)" spellcheck="false"></span></td></tr>
+        <tr><th>Satuan pendidikan</th><td><span class="fill" contenteditable="true" data-key="sekolah" data-ph="(isi nama sekolah)" spellcheck="false"></span></td></tr>
+        <tr><th>Tahun pelajaran</th><td><span class="fill" contenteditable="true" data-key="tahun" data-ph="(misal 2026/2027)" spellcheck="false"></span></td></tr>
+        <tr><th>Mata pelajaran</th><td>Ilmu Pengetahuan Alam (IPA)</td></tr>
+        <tr><th>Fase / Kelas / Semester</th><td>D / VII / <span class="fill" contenteditable="true" data-key="semester" data-ph="(Genap)" spellcheck="false"></span></td></tr>
+        <tr><th>Elemen / Topik</th><td>Pemahaman IPA dan Keterampilan Proses · Bumi dan Antariksa: Sistem Tata Surya</td></tr>
+        <tr><th>Alokasi waktu</th><td>6 JP = 2 pertemuan × 3 JP (1 JP = 40 menit)</td></tr>
+        <tr><th>Moda pembelajaran</th><td>Tatap muka (luring) dengan media digital interaktif</td></tr>
+      </tbody>
+    </table>
+
+    <h3>2. Kompetensi Awal</h3>
+    <ul>
+      <li>Peserta didik telah mengenal Matahari, Bumi, dan Bulan secara sederhana dari pembelajaran IPAS di sekolah dasar.</li>
+      <li>Peserta didik memahami arah mata angin serta pengertian siang dan malam dalam kehidupan sehari-hari.</li>
+      <li>Peserta didik mengetahui bahwa cahaya merambat lurus dan benda tak tembus cahaya membentuk bayangan.</li>
+      <li>Peserta didik mampu membaca tabel data sederhana dan melakukan perkalian/pembagian desimal.</li>
+    </ul>
+
+    <h3>3. Profil Pelajar Pancasila dan Dimensi Profil Lulusan</h3>
+    <p>Modul ini mengembangkan dimensi Profil Pelajar Pancasila berikut. Bagi satuan pendidikan yang menerapkan pendekatan <i>Pembelajaran Mendalam</i>, padanannya dengan dimensi profil lulusan (8 dimensi: keimanan dan ketakwaan terhadap Tuhan Yang Maha Esa, kewargaan, penalaran kritis, kreativitas, kolaborasi, kemandirian, kesehatan, dan komunikasi) ditunjukkan pada kolom kedua.</p>
+    <table class="tbl">
+      <thead><tr><th style="width:27%">Profil Pelajar Pancasila</th><th style="width:25%">Dimensi profil lulusan</th><th>Wujud dalam pembelajaran</th></tr></thead>
+      <tbody>
+        <tr><td>Beriman, bertakwa kepada Tuhan YME, dan berakhlak mulia</td><td>Keimanan dan ketakwaan</td><td>Mengagumi keteraturan alam semesta sebagai ciptaan Tuhan; berdoa sebelum dan sesudah belajar.</td></tr>
+        <tr><td>Bernalar kritis</td><td>Penalaran kritis</td><td>Menganalisis data planet, membedakan fakta dan miskonsepsi (misalnya penyebab musim), menarik kesimpulan dari simulasi.</td></tr>
+        <tr><td>Bergotong royong</td><td>Kolaborasi</td><td>Bekerja dalam kelompok membuat model skala jarak dan simulasi fase Bulan.</td></tr>
+        <tr><td>Kreatif</td><td>Kreativitas</td><td>Merancang produk (infografis/poster/model) tentang tata surya.</td></tr>
+        <tr><td>Mandiri</td><td>Kemandirian · Komunikasi</td><td>Mengatur proses belajar, merefleksikan pemahaman, dan mempresentasikan hasil kerja.</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Catatan: dimensi profil lulusan merujuk Permendikdasmen Nomor 10 Tahun 2025 tentang Standar Kompetensi Lulusan. Sesuaikan dengan kebijakan kurikulum satuan pendidikan.</p>
+
+    <h3>4. Sarana dan Prasarana</h3>
+    <ul class="cols2">
+      <li>Laptop + proyektor / Smart TV / papan interaktif (IFP)</li>
+      <li>Modul Ajar Digital ini (berjalan di peramban, tanpa instal)</li>
+      <li>LKPD cetak (Lampiran 1)</li>
+      <li>Buku Siswa IPA SMP Kelas VII (Kemendikbudristek, 2021)</li>
+      <li>Senter atau lampu meja (tanpa kap) sebagai “Matahari”</li>
+      <li>Bola plastik/styrofoam bertangkai sebagai “Bulan”</li>
+      <li>Kertas gulung/pita kertas ± 3,5 m, meteran, spidol, selotip</li>
+      <li>Ruang kelas yang dapat digelapkan (untuk simulasi fase Bulan)</li>
+    </ul>
+
+    <h3>5. Target Peserta Didik</h3>
+    <ul>
+      <li><b>Peserta didik reguler/umum</b> — tidak mengalami kesulitan berarti dalam memahami materi.</li>
+      <li><b>Peserta didik yang memerlukan pendampingan</b> — mengalami kesulitan konsentrasi atau memahami konsep abstrak; dibantu model konkret, visual, dan tabel yang sebagian terisi.</li>
+      <li><b>Peserta didik dengan pencapaian tinggi</b> — cepat memahami; diberi tantangan analisis data dan tugas pengayaan.</li>
+    </ul>
+
+    <h3>6. Model dan Metode Pembelajaran</h3>
+    <table class="tbl kv">
+      <tbody>
+        <tr><th>Pendekatan</th><td>Saintifik, berdiferensiasi, berprinsip pembelajaran yang berkesadaran, bermakna, dan menggembirakan</td></tr>
+        <tr><th>Model</th><td>Pertemuan 1: <i>Discovery Learning</i> · Pertemuan 2: Inkuiri Terbimbing (<i>Guided Inquiry</i>)</td></tr>
+        <tr><th>Metode</th><td>Demonstrasi, simulasi interaktif, diskusi kelompok, eksperimen sederhana (model), presentasi, permainan edukatif</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="part pb">B. Komponen Inti</h2>
+
+    <h3>1. Capaian Pembelajaran (CP)</h3>
+    <div class="cp-box">
+      <p class="cp-label">Ringkasan CP IPA Fase D — bukan kutipan resmi</p>
+      <p><b>Elemen Pemahaman IPA (topik Bumi dan antariksa):</b> Pada akhir Fase D, peserta didik mampu mendeskripsikan sistem tata surya serta menjelaskan posisi relatif Bumi, Bulan, dan Matahari dalam sistem tata surya, dan menggunakannya untuk menjelaskan fenomena alam yang berkaitan, seperti siang dan malam, pergantian musim, fase Bulan, dan gerhana.</p>
+      <p><b>Elemen Keterampilan Proses:</b> mengamati; mempertanyakan dan memprediksi; merencanakan dan melakukan penyelidikan; memproses, menganalisis data dan informasi; mengevaluasi dan refleksi; serta mengomunikasikan hasil.</p>
+      <p class="cp-src">Ringkasan/parafrase disusun berdasarkan CP IPA Fase D pada Keputusan Kepala Badan Standar, Kurikulum, dan Asesmen Pendidikan Nomor 032/H/KR/2024. Untuk redaksi lengkap, rujuk naskah resmi keputusan tersebut.</p>
+    </div>
+
+    <h3>2. Tujuan Pembelajaran</h3>
+    <p class="muted-doc">Dirumuskan dengan format ABCD — <b>A</b> (<i>Audience</i>: peserta didik), <b>B</b> (<i>Behavior</i>: kata kerja operasional), <b>C</b> (<i>Condition</i>: kondisi/kegiatan), <b>D</b> (<i>Degree</i>: kriteria ketercapaian).</p>
+    <table class="tbl">
+      <thead><tr><th style="width:9%">Kode</th><th>Tujuan pembelajaran</th><th style="width:13%">Pertemuan</th></tr></thead>
+      <tbody>
+        <tr><td>TP 1</td><td>Melalui pengamatan model tata surya interaktif (C), peserta didik (A) dapat <b>mengurutkan</b> delapan planet berdasarkan jaraknya dari Matahari (B) dengan benar tanpa kesalahan (D).</td><td>1</td></tr>
+        <tr><td>TP 2</td><td>Setelah menelaah kartu data planet (C), peserta didik (A) dapat <b>membandingkan</b> karakteristik planet dalam dan planet luar (B) sekurang-kurangnya tiga perbedaan dengan tepat (D).</td><td>1</td></tr>
+        <tr><td>TP 3</td><td>Melalui diskusi kelompok (C), peserta didik (A) dapat <b>membedakan</b> planet, planet kerdil, asteroid, komet, meteoroid, meteor, dan meteorit (B) berdasarkan ciri-cirinya dengan tepat (D).</td><td>1</td></tr>
+        <tr><td>TP 4</td><td>Melalui demonstrasi dan simulasi interaktif (C), peserta didik (A) dapat <b>menjelaskan</b> akibat rotasi dan revolusi Bumi (B) sekurang-kurangnya dua akibat masing-masing secara benar (D).</td><td>2</td></tr>
+        <tr><td>TP 5</td><td>Melalui percobaan bola dan senter (C), peserta didik (A) dapat <b>menggambarkan dan mengurutkan</b> fase-fase Bulan dalam satu siklus (B) dengan urutan yang benar (D).</td><td>2</td></tr>
+        <tr><td>TP 6</td><td>Dengan menganalisis diagram posisi Matahari, Bumi, dan Bulan (C), peserta didik (A) dapat <b>menjelaskan</b> proses terjadinya gerhana Matahari dan gerhana Bulan beserta jenisnya (B) secara tepat dan runtut (D).</td><td>2</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3. Pemahaman Bermakna</h3>
+    <ul>
+      <li>Tata surya adalah sistem yang teratur: Matahari sebagai pusat, dan planet beserta benda langit lain beredar mengelilinginya karena gaya gravitasi.</li>
+      <li>Gerak rotasi dan revolusi Bumi menjelaskan peristiwa yang kita alami setiap hari, seperti siang–malam, perbedaan waktu WIB–WITA–WIT, dan pergantian musim.</li>
+      <li>Posisi Matahari, Bumi, dan Bulan menjelaskan fase Bulan dan gerhana — pengetahuan yang juga dipakai dalam penentuan kalender dan penanggalan.</li>
+    </ul>
+
+    <h3>4. Pertanyaan Pemantik</h3>
+    <ol>
+      <li>Matahari adalah bintang. Mengapa Matahari tampak jauh lebih besar dan terang daripada bintang lain di langit malam?</li>
+      <li>Mengapa di Jayapura Matahari terbit lebih dahulu daripada di Jakarta?</li>
+      <li>Bentuk Bulan tetap bulat. Mengapa setiap malam Bulan tampak berubah bentuk?</li>
+      <li>Dahulu Pluto disebut planet ke-9. Mengapa sekarang tidak lagi?</li>
+    </ol>
+
+    <h3 class="pb-soft">5. Kegiatan Pembelajaran</h3>
+
+    <h4>Pertemuan 1 (3 JP · 120 menit) — Anggota Tata Surya dan Karakteristik Planet</h4>
+    <p class="muted-doc">Model: <i>Discovery Learning</i> · TP 1, TP 2, TP 3</p>
+    <table class="tbl keg">
+      <thead><tr><th style="width:15%">Tahap</th><th>Kegiatan</th><th style="width:10%">Waktu</th></tr></thead>
+      <tbody>
+        <tr><td><b>Pendahuluan</b></td><td>
+          <ol>
+            <li>Guru membuka dengan salam, mengajak berdoa, memeriksa kehadiran dan kesiapan belajar.</li>
+            <li>Apersepsi: “Pernahkah kalian melihat ‘bintang’ paling terang di langit senja atau fajar? Sebenarnya itu adalah planet Venus.”</li>
+            <li>Asesmen diagnostik kognitif singkat (5 pernyataan benar/salah, lihat bagian Asesmen) dengan angkat tangan atau kartu B/S.</li>
+            <li>Guru menyampaikan pertanyaan pemantik nomor 1 dan 4, tujuan pembelajaran, serta alur kegiatan.</li>
+          </ol></td><td>15 menit</td></tr>
+        <tr><td><b>Inti</b></td><td>
+          <ol>
+            <li><b>Pemberian rangsangan:</b> guru menayangkan menu <i>Materi → Mengenal Tata Surya</i>. Peserta didik mengamati gerak planet mengelilingi Matahari. (10 menit)</li>
+            <li><b>Identifikasi masalah:</b> setiap kelompok (4–5 orang) menuliskan dua pertanyaan tentang hal yang diamati, misalnya “Mengapa planet jauh bergerak lebih lambat?” (10 menit)</li>
+            <li><b>Pengumpulan data:</b> kelompok membuka kartu data planet (ketuk planet pada model) dan bahan bacaan, lalu mengerjakan <b>LKPD Kegiatan 1</b>: model skala jarak tata surya pada pita kertas (1 SA = 10 cm). (35 menit)
+              <div class="diff"><b>Diferensiasi proses:</b>
+                <ul>
+                  <li><i>Perlu pendampingan:</i> tabel LKPD sebagian sudah terisi; guru mendampingi pengukuran.</li>
+                  <li><i>Reguler:</i> mengerjakan LKPD secara utuh.</li>
+                  <li><i>Pencapaian tinggi:</i> tambahan tantangan menghitung waktu tempuh cahaya Matahari ke tiap planet (cahaya ± 8,3 menit per 1 SA).</li>
+                </ul></div></li>
+            <li><b>Pengolahan data:</b> kelompok menjawab pertanyaan analisis LKPD, membandingkan planet dalam dan planet luar, serta membedakan planet kerdil, asteroid, komet, dan meteoroid. (15 menit)</li>
+            <li><b>Pembuktian:</b> perwakilan kelompok menyajikan hasil; guru memverifikasi dengan menu <i>Perbandingan Ukuran</i> dan <i>Planet Kerdil &amp; Benda Kecil</i>. (10 menit)</li>
+            <li><b>Menarik kesimpulan:</b> peserta didik bersama guru merumuskan ciri planet dalam, planet luar, dan benda-benda kecil tata surya. (10 menit)</li>
+          </ol></td><td>90 menit</td></tr>
+        <tr><td><b>Penutup</b></td><td>
+          <ol>
+            <li>Permainan singkat “Susun Tata Surya” (menu Game) sebagai penguatan TP 1.</li>
+            <li>Refleksi <i>3-2-1</i>: 3 hal baru yang dipelajari, 2 hal menarik, 1 pertanyaan yang masih ada.</li>
+            <li>Guru memberi umpan balik, menyampaikan topik pertemuan berikutnya, dan menutup dengan doa.</li>
+          </ol></td><td>15 menit</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Pertemuan 2 (3 JP · 120 menit) — Gerak Bumi dan Bulan: Rotasi, Revolusi, Fase Bulan, dan Gerhana</h4>
+    <p class="muted-doc">Model: Inkuiri Terbimbing · TP 4, TP 5, TP 6</p>
+    <table class="tbl keg">
+      <thead><tr><th style="width:15%">Tahap</th><th>Kegiatan</th><th style="width:10%">Waktu</th></tr></thead>
+      <tbody>
+        <tr><td><b>Pendahuluan</b></td><td>
+          <ol>
+            <li>Salam, doa, presensi, dan pengecekan kesiapan belajar.</li>
+            <li>Mengulas pertemuan 1 melalui tanya jawab singkat.</li>
+            <li>Pertanyaan pemantik nomor 2 dan 3; guru menyampaikan tujuan pembelajaran.</li>
+          </ol></td><td>15 menit</td></tr>
+        <tr><td><b>Inti</b></td><td>
+          <ol>
+            <li><b>Orientasi masalah:</b> guru menayangkan menu <i>Rotasi &amp; Revolusi</i>: simulasi jam WIB–WITA–WIT dan simulasi musim. (10 menit)</li>
+            <li><b>Merumuskan hipotesis:</b> kelompok menuliskan dugaan “Apa penyebab pergantian musim?” Guru mencatat semua dugaan di papan tanpa langsung menilai benar/salah. (10 menit)</li>
+            <li><b>Mengumpulkan data:</b> <b>LKPD Kegiatan 2</b> — simulasi fase Bulan: lampu sebagai Matahari, bola sebagai Bulan, kepala peserta didik sebagai Bumi. Peserta didik menggambar bentuk Bulan pada 8 posisi. (35 menit)
+              <div class="diff"><b>Diferensiasi konten &amp; proses:</b>
+                <ul>
+                  <li><i>Visual:</i> mengamati demo interaktif <i>Fase Bulan</i> di layar sambil melakukan simulasi.</li>
+                  <li><i>Kinestetik:</i> berperan langsung memegang bola dan berputar.</li>
+                  <li><i>Pencapaian tinggi:</i> memprediksi posisi Bulan ketika gerhana Matahari dan gerhana Bulan dapat terjadi, lalu mengujinya dengan demo <i>Gerhana</i>.</li>
+                </ul></div></li>
+            <li><b>Menguji hipotesis dan menganalisis:</b> guru menunjukkan data bahwa Bumi paling dekat dengan Matahari sekitar awal Januari; peserta didik menilai kembali hipotesis penyebab musim. Peserta didik mengamati demo <i>Gerhana</i> dan menjelaskan peran umbra dan penumbra. (15 menit)</li>
+            <li><b>Menyimpulkan dan mengomunikasikan:</b> kelompok menyajikan hasil dalam bentuk pilihan (<i>diferensiasi produk</i>): poster/infografis, diagram berlabel, atau penjelasan lisan dengan model. Dilakukan dengan metode <i>gallery walk</i>. (20 menit)</li>
+          </ol></td><td>90 menit</td></tr>
+        <tr><td><b>Penutup</b></td><td>
+          <ol>
+            <li>Kuis formatif interaktif (menu Kuis) secara klasikal atau berkelompok.</li>
+            <li>Refleksi peserta didik (lihat bagian Refleksi) dan umpan balik guru.</li>
+            <li>Tindak lanjut: mengamati bentuk Bulan selama satu minggu dan mencatatnya; menutup dengan doa.</li>
+          </ol></td><td>15 menit</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="pb-soft">6. Asesmen</h3>
+    <table class="tbl">
+      <thead><tr><th style="width:17%">Jenis</th><th style="width:30%">Teknik &amp; instrumen</th><th>Keterangan</th></tr></thead>
+      <tbody>
+        <tr><td><b>Diagnostik</b></td><td>Non-kognitif: angket singkat minat dan cara belajar yang disukai. Kognitif: 5 pernyataan benar/salah.</td><td>Hasilnya dipakai untuk mengelompokkan peserta didik (perlu pendampingan, reguler, pencapaian tinggi).</td></tr>
+        <tr><td><b>Formatif</b></td><td>Observasi keterampilan proses dan kerja kelompok; LKPD; kuis interaktif 20 soal.</td><td>Umpan balik langsung selama pembelajaran; dasar penentuan remedial dan pengayaan.</td></tr>
+        <tr><td><b>Sumatif</b></td><td>Tes tertulis (pilihan ganda dan uraian) dan produk (infografis/model tata surya).</td><td>Dilaksanakan di akhir lingkup materi. Nilai = (skor perolehan ÷ skor maksimum) × 100.</td></tr>
+      </tbody>
+    </table>
+
+    <h4>a. Asesmen diagnostik kognitif (jawab Benar/Salah)</h4>
+    <table class="tbl">
+      <thead><tr><th style="width:7%">No</th><th>Pernyataan</th><th style="width:16%" class="guru-only">Kunci</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Matahari mengelilingi Bumi sehingga terjadi siang dan malam.</td><td class="guru-only">Salah (karena rotasi Bumi)</td></tr>
+        <tr><td>2</td><td>Matahari adalah sebuah bintang.</td><td class="guru-only">Benar</td></tr>
+        <tr><td>3</td><td>Bulan memancarkan cahayanya sendiri.</td><td class="guru-only">Salah (memantulkan)</td></tr>
+        <tr><td>4</td><td>Bumi adalah planet ketiga dari Matahari.</td><td class="guru-only">Benar</td></tr>
+        <tr><td>5</td><td>Musim panas terjadi karena Bumi sedang paling dekat dengan Matahari.</td><td class="guru-only">Salah (karena kemiringan sumbu)</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Interpretasi: benar 0–2 → kelompok perlu pendampingan; 3–4 → reguler; 5 → pencapaian tinggi (perkuat dengan hasil observasi guru).</p>
+
+    <h4>b. Rubrik observasi keterampilan proses (formatif)</h4>
+    <div class="guru-only">
+    <table class="tbl rubrik">
+      <thead><tr><th>Aspek</th><th>4 · Sangat baik</th><th>3 · Baik</th><th>2 · Cukup</th><th>1 · Perlu bimbingan</th></tr></thead>
+      <tbody>
+        <tr><td><b>Mengamati &amp; mencatat data</b></td><td>Data lengkap, akurat, dan rapi</td><td>Data lengkap, ada 1–2 kekeliruan kecil</td><td>Data kurang lengkap</td><td>Data tidak dicatat atau banyak salah</td></tr>
+        <tr><td><b>Menganalisis &amp; menyimpulkan</b></td><td>Kesimpulan tepat dan didukung data</td><td>Kesimpulan tepat, dukungan data kurang</td><td>Kesimpulan sebagian tepat</td><td>Kesimpulan tidak sesuai data</td></tr>
+        <tr><td><b>Kolaborasi</b></td><td>Aktif, membantu teman, menghargai pendapat</td><td>Aktif dan menghargai pendapat</td><td>Kadang-kadang terlibat</td><td>Pasif atau mengganggu kelompok</td></tr>
+        <tr><td><b>Mengomunikasikan</b></td><td>Jelas, runtut, memakai istilah ilmiah dengan benar</td><td>Jelas dan runtut</td><td>Kurang runtut</td><td>Sulit dipahami</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Nilai = (jumlah skor ÷ 16) × 100.</p>
+    </div>
+    <p class="guru-lock">🔒 Rubrik tersedia di Mode Guru.</p>
+
+    <h4>c. Rubrik produk sumatif: infografis/model tata surya</h4>
+    <div class="guru-only">
+    <table class="tbl rubrik">
+      <thead><tr><th>Kriteria</th><th>4 · Sangat baik</th><th>3 · Baik</th><th>2 · Cukup</th><th>1 · Perlu bimbingan</th></tr></thead>
+      <tbody>
+        <tr><td><b>Ketepatan konsep</b></td><td>Urutan 8 planet, pengelompokan, dan semua fakta benar</td><td>1–2 kesalahan kecil</td><td>3–4 kesalahan</td><td>Lebih dari 4 kesalahan</td></tr>
+        <tr><td><b>Kelengkapan isi</b></td><td>Memuat Matahari, 8 planet, sabuk asteroid, planet kerdil, dan benda kecil</td><td>Memuat Matahari dan 8 planet serta salah satu benda lain</td><td>Hanya Matahari dan planet</td><td>Tidak lengkap</td></tr>
+        <tr><td><b>Penyajian &amp; kreativitas</b></td><td>Menarik, orisinal, terbaca jelas, ada keterangan skala</td><td>Menarik dan terbaca jelas</td><td>Cukup jelas</td><td>Sulit dibaca</td></tr>
+        <tr><td><b>Presentasi</b></td><td>Menjelaskan dengan percaya diri dan menjawab pertanyaan dengan tepat</td><td>Menjelaskan dengan jelas</td><td>Menjelaskan dengan bantuan</td><td>Belum mampu menjelaskan</td></tr>
+      </tbody>
+    </table>
+    <p class="note">Nilai = (jumlah skor ÷ 16) × 100. Kriteria Ketercapaian Tujuan Pembelajaran (KKTP) ditetapkan satuan pendidikan, misalnya skor rata-rata ≥ 3 (“Baik”).</p>
+    </div>
+    <p class="guru-lock">🔒 Rubrik tersedia di Mode Guru.</p>
+
+    <h4>d. Kisi-kisi dan kunci kuis formatif interaktif</h4>
+    <div class="guru-only" id="kunciKuis"></div>
+    <p class="guru-lock">🔒 Kunci kuis tersedia di Mode Guru.</p>
+
+    <h3>7. Pengayaan dan Remedial</h3>
+    <table class="tbl">
+      <tbody>
+        <tr><th style="width:18%">Pengayaan</th><td>Untuk peserta didik yang telah mencapai tujuan pembelajaran:
+          <ul>
+            <li>Menghitung waktu tempuh cahaya Matahari ke tiap planet menggunakan data jarak (SA).</li>
+            <li>Mengamati planet yang tampak di langit malam (misalnya Venus, Jupiter, Saturnus) dengan bantuan aplikasi peta langit, lalu membuat catatan pengamatan.</li>
+            <li>Membuat infografis tentang misi penjelajahan antariksa (misalnya wahana Voyager atau New Horizons) dari sumber NASA.</li>
+          </ul></td></tr>
+        <tr><th>Remedial</th><td>Untuk peserta didik yang belum mencapai tujuan pembelajaran:
+          <ul>
+            <li>Pembelajaran ulang dengan model konkret (bola dan senter) dan materi interaktif secara bertahap.</li>
+            <li>Tutor sebaya oleh peserta didik yang sudah tuntas.</li>
+            <li>Penilaian ulang dengan soal setara (misalnya mengulang kuis interaktif dengan fokus pada TP yang belum tercapai).</li>
+          </ul></td></tr>
+      </tbody>
+    </table>
+
+    <h3>8. Refleksi</h3>
+    <div class="two">
+      <div>
+        <h4>Refleksi guru</h4>
+        <ol>
+          <li>Apakah seluruh tujuan pembelajaran tercapai? Bagian mana yang paling sulit bagi peserta didik?</li>
+          <li>Apakah kegiatan berdiferensiasi sudah melayani kebutuhan setiap kelompok?</li>
+          <li>Miskonsepsi apa yang masih muncul (misalnya penyebab musim, penyebab fase Bulan)?</li>
+          <li>Apa yang perlu diperbaiki pada pertemuan berikutnya?</li>
+        </ol>
+      </div>
+      <div>
+        <h4>Refleksi peserta didik</h4>
+        <ol>
+          <li>Hal baru apa yang paling menarik dari pelajaran hari ini?</li>
+          <li>Bagian mana yang masih membingungkan bagiku?</li>
+          <li>Bagaimana peranku dalam kerja kelompok hari ini?</li>
+          <li>Apa yang membuatku makin kagum pada keteraturan alam semesta?</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="sign">
+      <div><p>Mengetahui,<br>Kepala Sekolah</p><p class="sign-name"><span class="fill" contenteditable="true" data-key="kepsek" data-ph="(nama kepala sekolah)" spellcheck="false"></span></p></div>
+      <div><p><span class="fill" contenteditable="true" data-key="kota" data-ph="(kota)" spellcheck="false"></span>, <span class="fill" contenteditable="true" data-key="tanggal" data-ph="(tanggal)" spellcheck="false"></span><br>Guru Mata Pelajaran</p><p class="sign-name"><span class="mirror" data-mirror="penyusun"></span></p></div>
+    </div>
+  </article>
+</section>
+
+<!-- ======================================================= MATERI -->
+<section class="sec" id="sec-materi" data-sec="materi">
+  <div class="sub-nav" id="subnav" role="tablist">
+    <button data-mt="tatasurya" role="tab">🪐 Mengenal Tata Surya</button>
+    <button data-mt="kelompok" role="tab">🧭 Planet Dalam &amp; Luar</button>
+    <button data-mt="ukuran" role="tab">📏 Perbandingan Ukuran</button>
+    <button data-mt="kecil" role="tab">☄️ Planet Kerdil &amp; Benda Kecil</button>
+    <button data-mt="bumi" role="tab">🌍 Rotasi &amp; Revolusi</button>
+    <button data-mt="bulan" role="tab">🌓 Fase Bulan</button>
+    <button data-mt="gerhana" role="tab">🌑 Gerhana</button>
+  </div>
+
+  <!-- 1. Tata surya -->
+  <div class="mpanel" data-panel="tatasurya">
+    <div class="ss-wrap">
+      <div class="mhead ss-head">
+        <h2>Mengenal Tata Surya</h2>
+        <p>Tata surya terdiri atas <b>Matahari</b> sebagai pusat, <b>8 planet</b>, planet kerdil, satelit, asteroid, komet, dan meteoroid yang terikat oleh gravitasi Matahari. <span class="tap-hint">Ketuk planet untuk membuka kartu datanya.</span></p>
+      </div>
+      <div class="ss-stage" id="ssStage"></div>
+      <div class="ss-side">
+        <div class="chip-list" id="planetChips"></div>
+        <div class="ss-ctrl">
+          <button class="btn small" id="btnOrbit">⏸ Jeda orbit</button>
+          <label class="chk"><input type="checkbox" id="chkLabel" checked> Nama planet</label>
+        </div>
+        <p class="note-sm">Ukuran dan jarak pada model ini <b>tidak berskala</b>. Semua planet berevolusi berlawanan arah jarum jam bila dilihat dari atas kutub utara Bumi.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Kelompok -->
+  <div class="mpanel" data-panel="kelompok">
+    <div class="mhead">
+      <h2>Planet Dalam dan Planet Luar</h2>
+      <p><b>Sabuk asteroid</b> di antara orbit Mars dan Jupiter menjadi batas kedua kelompok planet.</p>
+    </div>
+    <div class="belt-diagram" id="beltDiagram"></div>
+    <div class="compare">
+      <div class="cmp inner">
+        <h3>Planet Dalam <small>(terestrial)</small></h3>
+        <p class="cmp-list">Merkurius · Venus · Bumi · Mars</p>
+        <ul>
+          <li>Tersusun atas batuan dan logam; permukaannya padat</li>
+          <li>Ukuran relatif kecil, massa jenis besar</li>
+          <li>Satelit sedikit atau tidak ada (0–2)</li>
+          <li>Tidak memiliki cincin</li>
+          <li>Periode revolusi singkat (88–687 hari)</li>
+        </ul>
+      </div>
+      <div class="cmp outer">
+        <h3>Planet Luar <small>(raksasa/jovian)</small></h3>
+        <p class="cmp-list">Jupiter · Saturnus · Uranus · Neptunus</p>
+        <ul>
+          <li>Raksasa gas (Jupiter, Saturnus) dan raksasa es (Uranus, Neptunus); tidak memiliki permukaan padat seperti Bumi</li>
+          <li>Ukuran sangat besar, massa jenis kecil</li>
+          <li>Satelit banyak (puluhan hingga ratusan)</li>
+          <li>Semuanya memiliki cincin</li>
+          <li>Periode revolusi lama (± 12–165 tahun)</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note-box">💡 <b>Jangan tertukar:</b> istilah <i>planet inferior</i> (orbitnya di dalam orbit Bumi: Merkurius dan Venus) dan <i>planet superior</i> (orbitnya di luar orbit Bumi: Mars sampai Neptunus) adalah pengelompokan yang berbeda, karena patokannya orbit Bumi, bukan sabuk asteroid.</p>
+  </div>
+
+  <!-- 3. Ukuran -->
+  <div class="mpanel" data-panel="ukuran">
+    <div class="mhead">
+      <h2>Perbandingan Ukuran dan Jarak</h2>
+      <p>Diameter digambar <b>sesuai perbandingan sebenarnya</b> (data NASA). Geser untuk membandingkan, atau tampilkan Matahari.</p>
+    </div>
+    <div class="size-ctrl">
+      <div class="seg" id="sizeMode">
+        <button data-m="planet" class="on">8 planet</button>
+        <button data-m="matahari">Dengan Matahari</button>
+        <button data-m="jarak">Skala jarak</button>
+      </div>
+      <p class="size-note" id="sizeNote"></p>
+    </div>
+    <div class="size-stage" id="sizeStage"></div>
+  </div>
+
+  <!-- 4. Benda kecil -->
+  <div class="mpanel" data-panel="kecil">
+    <div class="mhead">
+      <h2>Planet Kerdil dan Benda Kecil Tata Surya</h2>
+    </div>
+    <div class="iau">
+      <h3>Definisi planet menurut IAU (Praha, 24 Agustus 2006)</h3>
+      <div class="iau-grid">
+        <div class="iau-c"><span>1</span>Mengorbit Matahari</div>
+        <div class="iau-c"><span>2</span>Massanya cukup besar sehingga bentuknya hampir bulat</div>
+        <div class="iau-c"><span>3</span>Telah “membersihkan” lingkungan di sekitar orbitnya</div>
+      </div>
+      <p><b>Planet kerdil</b> memenuhi syarat 1 dan 2, <b>tidak</b> memenuhi syarat 3, dan bukan satelit. Pluto berbagi wilayah orbit dengan banyak benda es di Sabuk Kuiper, sehingga sejak 2006 digolongkan sebagai planet kerdil.</p>
+    </div>
+    <div class="dwarf-list" id="dwarfList"></div>
+    <h3 class="mini-h">Asteroid, komet, meteoroid, meteor, dan meteorit</h3>
+    <div class="meteo">
+      <div class="meteo-svg" id="meteoSvg"></div>
+      <div class="meteo-cards" id="meteoCards">
+        <button class="mc" data-k="asteroid"><b>Asteroid</b><span>Batuan/logam yang mengorbit Matahari, sebagian besar di sabuk asteroid antara Mars dan Jupiter.</span></button>
+        <button class="mc" data-k="komet"><b>Komet</b><span>“Bola salju kotor” dari es, debu, dan batuan. Orbitnya sangat lonjong. Dekat Matahari esnya menguap membentuk koma dan ekor yang selalu <b>menjauhi Matahari</b>. Contoh: komet Halley (± 76 tahun sekali).</span></button>
+        <button class="mc" data-k="meteoroid"><b>Meteoroid</b><span>Pecahan batuan atau logam kecil yang melayang di antariksa.</span></button>
+        <button class="mc" data-k="meteor"><b>Meteor</b><span>Jejak cahaya ketika meteoroid masuk atmosfer dan terbakar akibat gesekan — sering disebut “bintang jatuh”, padahal bukan bintang.</span></button>
+        <button class="mc" data-k="meteorit"><b>Meteorit</b><span>Sisa meteoroid yang tidak habis terbakar dan sampai ke permukaan Bumi.</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Bumi -->
+  <div class="mpanel" data-panel="bumi">
+    <div class="mhead">
+      <h2>Rotasi dan Revolusi Bumi</h2>
+    </div>
+    <div class="seg big" id="bumiMode">
+      <button data-m="rotasi" class="on">🔄 Rotasi (± 24 jam)</button>
+      <button data-m="revolusi">🌞 Revolusi (± 365¼ hari)</button>
+    </div>
+    <div class="bumi-pane" data-bm="rotasi">
+      <div class="demo-grid">
+        <div class="demo-svg" id="rotSvg"></div>
+        <div class="demo-info">
+          <label class="range-l">Waktu di Jakarta: <b id="rotJam">12.00 WIB</b>
+            <input type="range" id="rotRange" min="0" max="23.5" step="0.5" value="12"></label>
+          <div class="zones" id="rotZones"></div>
+          <ul class="facts">
+            <li>Bumi berotasi dari <b>barat ke timur</b> sekali dalam ± 24 jam (tepatnya 23 jam 56 menit terhadap bintang).</li>
+            <li><b>Akibat rotasi:</b> siang dan malam, gerak semu harian Matahari (terbit di timur, terbenam di barat), perbedaan waktu (setiap 15° bujur = 1 jam), dan pembelokan arah angin.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bumi-pane" data-bm="revolusi" hidden>
+      <div class="demo-grid">
+        <div class="demo-svg" id="revSvg"></div>
+        <div class="demo-info">
+          <label class="range-l">Tanggal: <b id="revTgl">21 Juni</b>
+            <input type="range" id="revRange" min="0" max="364" step="1" value="171"></label>
+          <div class="quick" id="revQuick">
+            <button data-d="79">21 Mar</button><button data-d="171">21 Jun</button><button data-d="265">23 Sep</button><button data-d="355">22 Des</button>
+          </div>
+          <div class="season" id="revInfo"></div>
+          <ul class="facts">
+            <li>Sumbu Bumi miring ± 23,5° dari garis tegak lurus bidang orbit, dan arahnya tetap selama revolusi.</li>
+            <li><b>Akibat revolusi:</b> pergantian musim, gerak semu tahunan Matahari (23,5° LU – 23,5° LS), perbedaan lama siang dan malam, serta rasi bintang yang tampak berubah sepanjang tahun.</li>
+            <li class="warn">Musim <b>bukan</b> disebabkan jarak Bumi–Matahari. Bumi justru paling dekat dengan Matahari sekitar awal Januari!</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Bulan -->
+  <div class="mpanel" data-panel="bulan">
+    <div class="mhead">
+      <h2>Fase Bulan</h2>
+      <p>Bulan tidak bercahaya sendiri. Separuh Bulan selalu disinari Matahari; yang berubah adalah <b>seberapa banyak bagian terang itu terlihat dari Bumi</b>.</p>
+    </div>
+    <div class="demo-grid">
+      <div class="demo-svg" id="moonOrbitSvg"></div>
+      <div class="demo-info">
+        <div class="moon-view"><div id="moonViewSvg"></div><div><p class="mv-label">Tampak dari Bumi</p><p class="mv-name" id="moonName">Purnama</p><p class="mv-day" id="moonDay"></p></div></div>
+        <label class="range-l">Geser untuk mengubah hari dalam satu siklus (± 29,5 hari)
+          <input type="range" id="moonRange" min="0" max="29.5" step="0.5" value="14.5"></label>
+        <div class="quick" id="moonQuick"></div>
+        <p class="note-sm">Bentuk sabit di sini digambar seperti yang tampak dari belahan Bumi utara. Di Indonesia (dekat khatulistiwa), sabit tampak lebih “rebah”. Bulan berotasi dan berevolusi dalam waktu yang sama (± 27,3 hari), sehingga sisi Bulan yang menghadap Bumi selalu sama.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Gerhana -->
+  <div class="mpanel" data-panel="gerhana">
+    <div class="mhead">
+      <h2>Gerhana Matahari dan Gerhana Bulan</h2>
+      <p>Gerhana terjadi ketika Matahari, Bumi, dan Bulan berada pada satu garis. Geser posisi Bulan dan amati bayangannya.</p>
+    </div>
+    <div class="seg big" id="ecMode">
+      <button data-m="matahari" class="on">🌞 Gerhana Matahari</button>
+      <button data-m="bulan">🌕 Gerhana Bulan</button>
+    </div>
+    <div class="ec-stage" id="ecSvg"></div>
+    <div class="ec-ctrl">
+      <label class="range-l">Posisi Bulan (di atas / di bawah bidang orbit Bumi)
+        <input type="range" id="ecRange" min="-100" max="100" step="1" value="40"></label>
+      <label class="chk" id="ecFarWrap"><input type="checkbox" id="ecFar"> Bulan di titik terjauh dari Bumi</label>
+    </div>
+    <div class="ec-status" id="ecStatus"></div>
+    <p class="note-sm">Ukuran dan jarak tidak berskala. Bidang orbit Bulan miring ± 5° terhadap bidang orbit Bumi, sehingga gerhana tidak terjadi setiap bulan. <b>Jangan pernah menatap Matahari langsung</b>, termasuk saat gerhana; gunakan kacamata gerhana bersertifikat atau proyeksi lubang jarum.</p>
+  </div>
+</section>
+
+<!-- ======================================================= KUIS -->
+<section class="sec" id="sec-kuis" data-sec="kuis">
+  <div class="quiz" id="quiz"></div>
+</section>
+
+<!-- ======================================================= GAME -->
+<section class="sec" id="sec-game" data-sec="game">
+  <div class="game-menu" id="gameMenu">
+    <h2 class="sec-title center">🎮 Game Kelas</h2>
+    <div class="gm-grid">
+      <button class="gm-card" data-game="susun"><span class="gm-ico">🪐</span><b>Susun Tata Surya</b><small>Tempatkan 8 planet pada orbit yang benar secepat mungkin. Raih 3 bintang!</small></button>
+      <button class="gm-card" data-game="tebak"><span class="gm-ico">🕵️</span><b>Tebak Benda Langit</b><small>2–4 tim bergiliran menebak dari petunjuk. Makin sedikit petunjuk, makin besar poin.</small></button>
+    </div>
+  </div>
+  <div class="game-wrap" id="gameSusun" hidden></div>
+  <div class="game-wrap" id="gameTebak" hidden></div>
+</section>
+
+<!-- ======================================================= LAMPIRAN -->
+<section class="sec" id="sec-lampiran" data-sec="lampiran">
+  <div class="doc-toolbar no-print">
+    <div>
+      <h2 class="sec-title">📎 LKPD &amp; Lampiran</h2>
+      <p class="muted">Lampiran ini ikut tercetak bersama Dokumen Modul Ajar.</p>
+    </div>
+    <div class="doc-actions">
+      <button class="btn primary" id="btnPrintLkpd">🖨️ Cetak LKPD saja</button>
+      <button class="btn ghost" id="btnPrint2">🖨️ Cetak modul lengkap</button>
+    </div>
+  </div>
+
+  <article class="doc" id="docLkpd">
+    <header class="doc-head lkpd-head">
+      <p class="doc-kicker">LAMPIRAN 1 · LEMBAR KERJA PESERTA DIDIK (LKPD)</p>
+      <h1>Menjelajah Tata Surya</h1>
+      <p class="doc-subtitle">IPA Kelas VII · Fase D</p>
+    </header>
+    <table class="tbl kv lkpd-id">
+      <tbody>
+        <tr><th>Nama kelompok</th><td class="blank"></td><th>Kelas</th><td class="blank"></td></tr>
+        <tr><th>Anggota</th><td class="blank" colspan="3">1. ……………………… 2. ……………………… 3. ………………………<br>4. ……………………… 5. ………………………</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Kegiatan 1 — Model Skala Jarak Tata Surya (Pertemuan 1)</h3>
+    <p><b>Tujuan:</b> membuat model jarak planet dari Matahari dengan skala, lalu membandingkan jarak planet dalam dan planet luar.</p>
+    <p><b>Alat dan bahan:</b> pita/gulungan kertas ± 3,5 m, meteran, spidol, selotip.</p>
+    <p><b>Langkah kerja:</b></p>
+    <ol>
+      <li>Rentangkan pita kertas di lantai. Beri tanda “Matahari” di salah satu ujung.</li>
+      <li>Gunakan skala <b>1 SA = 10 cm</b> (1 SA = jarak rata-rata Bumi–Matahari ± 149,6 juta km).</li>
+      <li>Hitung jarak setiap planet pada model, lalu tuliskan pada tabel.</li>
+      <li>Ukur dari tanda Matahari dan beri titik serta nama setiap planet.</li>
+    </ol>
+    <table class="tbl lk">
+      <thead><tr><th>Planet</th><th>Jarak rata-rata (SA)</th><th>Jarak pada model (cm)</th><th class="guru-only">Kunci (cm)</th></tr></thead>
+      <tbody id="lkpdTbl"></tbody>
+    </table>
+    <p><b>Pertanyaan analisis:</b></p>
+    <ol class="answer-lines">
+      <li>Planet-planet mana yang letaknya berdekatan pada model? Termasuk kelompok planet apa?<span class="lines"></span></li>
+      <li>Berapa kali lebih jauh Neptunus dibandingkan Bumi dari Matahari?<span class="lines"></span></li>
+      <li>Jika diameter planet juga digambar dengan skala yang sama, apakah planet akan terlihat? Mengapa gambar tata surya di buku biasanya tidak berskala?<span class="lines"></span></li>
+    </ol>
+    <div class="guru-only kunci-box">
+      <b>Kunci Kegiatan 1:</b> (1) Merkurius, Venus, Bumi, Mars — planet dalam. (2) 30,2 SA ÷ 1 SA ≈ 30 kali. (3) Tidak terlihat; dengan skala 1 SA = 10 cm, diameter Bumi hanya ± 0,0009 mm. Gambar di buku dibuat tidak berskala agar ukuran dan jarak planet dapat ditampilkan dalam satu halaman.
+    </div>
+
+    <h3 class="pb">Kegiatan 2 — Simulasi Fase Bulan (Pertemuan 2)</h3>
+    <p><b>Tujuan:</b> menjelaskan mengapa bentuk Bulan yang tampak dari Bumi berubah-ubah.</p>
+    <p><b>Alat dan bahan:</b> lampu meja/senter (Matahari), bola bertangkai (Bulan), kepala kalian (Bumi), ruangan gelap.</p>
+    <p><b>Langkah kerja:</b></p>
+    <ol>
+      <li>Nyalakan lampu di satu sisi ruangan. Satu anak memegang bola sejajar dengan kepala, lengan lurus ke depan.</li>
+      <li>Mulai dengan bola menghadap lampu (posisi 1 = Bulan baru). Putar badan perlahan berlawanan arah jarum jam (ke kiri) setiap 45°.</li>
+      <li>Pada setiap posisi, amati bagian bola yang terang, lalu gambarkan dan beri nama fasenya.</li>
+    </ol>
+    <table class="tbl lk fase">
+      <thead><tr><th>Posisi</th><th>Gambar bagian bola yang terang</th><th>Nama fase</th><th class="guru-only">Kunci</th></tr></thead>
+      <tbody id="lkpdFase"></tbody>
+    </table>
+    <p><b>Pertanyaan analisis:</b></p>
+    <ol class="answer-lines">
+      <li>Pada posisi berapa bola tampak terang seluruhnya? Di mana letak bola terhadap lampu dan kepala saat itu?<span class="lines"></span></li>
+      <li>Mengapa bentuk bola yang terlihat berubah, padahal bola selalu disinari separuhnya?<span class="lines"></span></li>
+      <li>Pada posisi berapa dapat terjadi gerhana Matahari dan gerhana Bulan? Jelaskan.<span class="lines"></span></li>
+    </ol>
+    <p><b>Kesimpulan:</b></p>
+    <span class="lines tall"></span>
+    <div class="guru-only kunci-box">
+      <b>Kunci Kegiatan 2:</b> (1) Posisi 5 — bola berada di belakang kepala, membelakangi lampu (purnama; Bumi di antara Matahari dan Bulan). (2) Separuh bola selalu tersinari, tetapi bagian terang yang menghadap pengamat berubah sesuai posisi bola terhadap lampu. (3) Gerhana Matahari pada posisi 1 (Bulan baru: Matahari–Bulan–Bumi segaris); gerhana Bulan pada posisi 5 (purnama: Matahari–Bumi–Bulan segaris), hanya bila ketiganya benar-benar segaris.
+    </div>
+  </article>
+
+  <article class="doc" id="docBacaan">
+    <header class="doc-head small">
+      <p class="doc-kicker">LAMPIRAN 2</p>
+      <h1>Bahan Bacaan Peserta Didik</h1>
+    </header>
+    <h3>Tata Surya Kita</h3>
+    <p>Tata surya adalah kumpulan benda langit yang terdiri atas Matahari sebagai pusat dan semua benda yang terikat oleh gravitasinya. Matahari adalah sebuah bintang — bola gas raksasa yang memancarkan cahaya dan panas sendiri. Matahari tampak jauh lebih besar dan terang daripada bintang lain karena letaknya paling dekat dengan Bumi.</p>
+    <p>Ada delapan planet yang mengelilingi Matahari. Urutannya dari yang terdekat: <b>Merkurius, Venus, Bumi, Mars, Jupiter, Saturnus, Uranus, Neptunus</b>. Planet tidak memancarkan cahaya sendiri; planet tampak bersinar karena memantulkan cahaya Matahari.</p>
+    <div class="doc-wide"><table class="tbl small" id="tblPlanetDoc"></table></div>
+    <p class="note">Sumber data: NASA Planetary Fact Sheet dan NASA Science. Jumlah satelit planet raksasa terus bertambah seiring penemuan baru.</p>
+    <h3>Benda-Benda Kecil</h3>
+    <p>Selain planet, tata surya berisi planet kerdil (Ceres, Pluto, Haumea, Makemake, Eris), satelit, asteroid, komet, dan meteoroid. Sebagian besar asteroid berada di sabuk asteroid antara Mars dan Jupiter. Komet berasal dari wilayah yang jauh (Sabuk Kuiper dan Awan Oort) dan memiliki orbit yang sangat lonjong. Meteoroid yang masuk atmosfer dan terbakar disebut meteor; sisanya yang mencapai permukaan Bumi disebut meteorit.</p>
+    <h3>Gerak Bumi</h3>
+    <p><b>Rotasi</b> adalah perputaran Bumi pada porosnya dari barat ke timur selama ± 24 jam. Akibatnya terjadi siang dan malam, Matahari tampak terbit di timur dan terbenam di barat, serta adanya perbedaan waktu. Indonesia memiliki tiga zona waktu: WIB (UTC+7), WITA (UTC+8), dan WIT (UTC+9).</p>
+    <p><b>Revolusi</b> adalah gerak Bumi mengelilingi Matahari selama ± 365¼ hari. Karena sumbu Bumi miring ± 23,5°, Matahari tampak bergeser antara 23,5° LU dan 23,5° LS (gerak semu tahunan). Akibatnya terjadi pergantian musim di daerah lintang sedang dan perbedaan lama siang dan malam. Di Indonesia, gerak semu tahunan Matahari memengaruhi pola angin muson yang berkaitan dengan musim hujan dan musim kemarau.</p>
+    <h3>Bulan, Fase Bulan, dan Gerhana</h3>
+    <p>Bulan adalah satelit alami Bumi yang berjarak rata-rata ± 384.400 km. Bulan beredar mengelilingi Bumi sekali dalam ± 27,3 hari, tetapi satu siklus fase Bulan (dari Bulan baru ke Bulan baru berikutnya) memerlukan ± 29,5 hari karena Bumi juga bergerak mengelilingi Matahari. Urutan fase Bulan: Bulan baru → sabit awal → kuartal pertama → cembung awal → purnama → cembung akhir → kuartal ketiga → sabit akhir.</p>
+    <p><b>Gerhana Matahari</b> terjadi saat Bulan berada di antara Matahari dan Bumi (fase Bulan baru). Daerah yang terkena umbra mengalami gerhana total, daerah penumbra mengalami gerhana sebagian, dan bila Bulan sedang jauh dari Bumi dapat terjadi gerhana cincin. <b>Gerhana Bulan</b> terjadi saat Bumi berada di antara Matahari dan Bulan (fase purnama). Saat gerhana Bulan total, Bulan tampak kemerahan karena cahaya Matahari dibiaskan atmosfer Bumi.</p>
+  </article>
+
+  <article class="doc" id="docGuru">
+    <header class="doc-head small">
+      <p class="doc-kicker">LAMPIRAN 3</p>
+      <h1>Bahan Bacaan Guru: Miskonsepsi yang Sering Muncul</h1>
+    </header>
+    <table class="tbl">
+      <thead><tr><th style="width:36%">Miskonsepsi</th><th>Konsep yang benar dan cara meluruskan</th></tr></thead>
+      <tbody>
+        <tr><td>Musim panas terjadi saat Bumi paling dekat dengan Matahari.</td><td>Musim disebabkan kemiringan sumbu Bumi. Bumi di perihelion sekitar awal Januari, saat belahan utara musim dingin. Tunjukkan dengan menu <i>Rotasi &amp; Revolusi</i>.</td></tr>
+        <tr><td>Fase Bulan disebabkan bayangan Bumi.</td><td>Fase terjadi karena sudut pandang terhadap bagian Bulan yang disinari. Bayangan Bumi hanya mengenai Bulan saat gerhana Bulan.</td></tr>
+        <tr><td>Gerhana terjadi setiap Bulan baru dan purnama.</td><td>Orbit Bulan miring ± 5° terhadap ekliptika, sehingga gerhana hanya terjadi bila Bulan baru/purnama berada di dekat titik simpul orbit.</td></tr>
+        <tr><td>Bintang jatuh adalah bintang yang jatuh.</td><td>“Bintang jatuh” adalah meteor, yaitu meteoroid yang terbakar di atmosfer.</td></tr>
+        <tr><td>Ekor komet selalu di belakang arah geraknya.</td><td>Ekor komet selalu menjauhi Matahari karena didorong angin surya dan tekanan radiasi.</td></tr>
+        <tr><td>Planet-planet berjajar dan saling berdekatan seperti di gambar buku.</td><td>Jarak antarplanet sangat jauh dan makin renggang ke arah luar. Gunakan LKPD Kegiatan 1 dan menu <i>Skala jarak</i>.</td></tr>
+        <tr><td>Sisi Bulan yang tidak pernah terlihat dari Bumi selalu gelap.</td><td>Sisi jauh Bulan juga mendapat sinar Matahari (misalnya saat Bulan baru); hanya saja tidak pernah menghadap Bumi karena rotasi sinkron.</td></tr>
+      </tbody>
+    </table>
+    <h3>Tips penggunaan modul digital di kelas</h3>
+    <ul>
+      <li>Gunakan tombol <b>⛶ Layar penuh</b> saat menayangkan di proyektor/IFP. Semua tombol dapat diketuk langsung pada layar sentuh.</li>
+      <li>Jika perangkat terasa berat, matikan <b>✨ Animasi</b> atau buka modul dengan alamat berakhiran <code>?ringan=1</code>.</li>
+      <li>Kuis dapat dikerjakan klasikal: peserta didik menjawab dengan kartu A/B/C/D, lalu guru mengetuk jawaban terbanyak.</li>
+      <li>Mode Guru menampilkan kunci jawaban, rubrik, dan opsi “Tampilkan kunci” pada kuis. Mode Guru otomatis nonaktif saat peramban ditutup.<span class="guru-only"> PIN bawaan: <b>1234</b>.</span></li>
+    </ul>
+  </article>
+
+  <article class="doc" id="docGlos">
+    <header class="doc-head small">
+      <p class="doc-kicker">LAMPIRAN 4</p>
+      <h1>Glosarium</h1>
+    </header>
+    <dl class="glos" id="glosList"></dl>
+  </article>
+
+  <article class="doc" id="docPustaka">
+    <header class="doc-head small">
+      <p class="doc-kicker">LAMPIRAN 5</p>
+      <h1>Daftar Pustaka</h1>
+    </header>
+    <ol class="pustaka">
+      <li>Badan Standar, Kurikulum, dan Asesmen Pendidikan. (2024). <i>Keputusan Kepala Badan Standar, Kurikulum, dan Asesmen Pendidikan Nomor 032/H/KR/2024 tentang Capaian Pembelajaran pada Pendidikan Anak Usia Dini, Jenjang Pendidikan Dasar, dan Jenjang Pendidikan Menengah pada Kurikulum Merdeka</i>. Jakarta: Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi.</li>
+      <li>Inabuy, V., Sutia, C., Maryana, O. F. T., Hardanie, B. D., &amp; Lestari, S. H. (2021). <i>Ilmu Pengetahuan Alam untuk SMP Kelas VII</i> (Buku Siswa, Kurikulum Merdeka). Jakarta: Pusat Kurikulum dan Perbukuan, Badan Standar, Kurikulum, dan Asesmen Pendidikan, Kemendikbudristek.</li>
+      <li>Badan Standar, Kurikulum, dan Asesmen Pendidikan. (2024). <i>Panduan Pembelajaran dan Asesmen Pendidikan Anak Usia Dini, Pendidikan Dasar, dan Menengah</i> (Edisi Revisi). Jakarta: Kemendikbudristek.</li>
+      <li>Kementerian Pendidikan Dasar dan Menengah. (2025). <i>Peraturan Menteri Pendidikan Dasar dan Menengah Nomor 10 Tahun 2025 tentang Standar Kompetensi Lulusan pada Pendidikan Anak Usia Dini, Jenjang Pendidikan Dasar, dan Jenjang Pendidikan Menengah</i>. Jakarta: Kemendikdasmen.</li>
+      <li>International Astronomical Union. (2006). <i>Resolution B5: Definition of a Planet in the Solar System</i>. Sidang Umum IAU ke-26, Praha. Tersedia di situs resmi IAU (iau.org).</li>
+      <li>NASA Space Science Data Coordinated Archive. <i>Planetary Fact Sheet</i>. https://nssdc.gsfc.nasa.gov/planetary/factsheet/</li>
+      <li>NASA Science. <i>Solar System</i>. https://science.nasa.gov/solar-system/</li>
+      <li>NASA Goddard Space Flight Center. <i>NASA Eclipse Web Site</i>. https://eclipse.gsfc.nasa.gov/</li>
+      <li>Badan Riset dan Inovasi Nasional (BRIN), Pusat Riset Antariksa (dahulu LAPAN). Informasi dan edukasi keantariksaan. https://www.brin.go.id/</li>
+    </ol>
+    <p class="note">Gambar dan ilustrasi dalam modul ini dibuat sendiri (SVG) dan tidak berskala kecuali disebutkan.</p>
+  </article>
+</section>
+
+</main>
+
+<!-- ======================================================= OVERLAYS -->
+<div class="modal" id="planetModal" hidden role="dialog" aria-modal="true" aria-labelledby="pcName">
+  <div class="modal-back" data-close></div>
+  <div class="pcard" id="pcard">
+    <button class="x" data-close aria-label="Tutup">✕</button>
+    <div class="pc-top">
+      <div class="pc-art" id="pcArt"></div>
+      <div>
+        <p class="pc-no" id="pcNo"></p>
+        <h2 id="pcName"></h2>
+        <p class="pc-type" id="pcType"></p>
+      </div>
+    </div>
+    <dl class="pc-grid" id="pcGrid"></dl>
+    <p class="pc-fact" id="pcFact"></p>
+    <div class="pc-nav"><button class="btn small" id="pcPrev">◀ Sebelumnya</button><button class="btn small" id="pcNext">Berikutnya ▶</button></div>
+  </div>
+</div>
+
+<div class="modal" id="pinModal" hidden role="dialog" aria-modal="true" aria-labelledby="pinTitle">
+  <div class="modal-back" data-close></div>
+  <form class="pin-box" id="pinForm" autocomplete="off">
+    <button type="button" class="x" data-close aria-label="Tutup">✕</button>
+    <h2 id="pinTitle">🔒 Mode Guru</h2>
+    <p>Masukkan PIN untuk menampilkan kunci jawaban, rubrik, dan catatan guru.</p>
+    <input type="password" inputmode="numeric" maxlength="8" id="pinInput" aria-label="PIN" placeholder="• • • •">
+    <div class="pinpad" id="pinPad"></div>
+    <p class="pin-err" id="pinErr" aria-live="polite"></p>
+    <button type="submit" class="btn primary wide">Buka</button>
+  </form>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/data.js?v=2"></script>
+<script src="js/app.js?v=1"></script>
+<script src="js/materi.js?v=1"></script>
+<script src="js/kuis.js?v=1"></script>
+<script src="js/game.js?v=1"></script>
+<script src="../lokamain-license.js?v=20261109"></script>
+</body>
+</html>

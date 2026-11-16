@@ -1,0 +1,71 @@
+/* =========================================================================
+   Stylesheet cetak — dokumen A4 yang bersih (tanpa latar gelap)
+   body.print-modul  : Modul Ajar + seluruh Lampiran (bawaan)
+   body.print-lkpd   : hanya LKPD
+   ========================================================================= */
+@page {
+  size: A4;
+  margin: 16mm 15mm 17mm 18mm;
+  @bottom-right { content: "Halaman " counter(page) " / " counter(pages); font: 8.5pt 'Plus Jakarta Sans', Arial, sans-serif; color: #555; }
+  @bottom-left { content: "Modul Ajar IPA Kelas VII · Sistem Tata Surya"; font: 8.5pt 'Plus Jakarta Sans', Arial, sans-serif; color: #555; }
+}
+
+:root { color-scheme: light !important; }
+html { font-size: 10.5pt !important; }
+html, body { background: #fff !important; color: #111 !important; }
+body { background-image: none !important; min-height: 0; }
+*, *::before, *::after { animation: none !important; transition: none !important; box-shadow: none !important; text-shadow: none !important; }
+
+.sky, .topbar, .toast, .modal, .no-print, .guru-hint, .sub-nav { display: none !important; }
+main { padding: 0 !important; max-width: none !important; margin: 0 !important; }
+.sec { display: none !important; }
+body.print-modul #sec-modul, body.print-modul #sec-lampiran { display: block !important; }
+body.print-lkpd #sec-lampiran { display: block !important; }
+body.print-lkpd #sec-lampiran .doc:not(#docLkpd) { display: none !important; }
+/* tanpa kelas khusus (Ctrl+P biasa): cetak modul lengkap */
+body:not(.print-lkpd):not(.print-modul) #sec-modul,
+body:not(.print-lkpd):not(.print-modul) #sec-lampiran { display: block !important; }
+
+.doc {
+  max-width: none !important; margin: 0 !important; padding: 0 !important; border-radius: 0 !important;
+  font-size: 10.5pt; line-height: 1.45; color: #111 !important; background: #fff !important;
+}
+#sec-lampiran .doc { break-before: page; }
+body.print-lkpd #docLkpd { break-before: auto; }
+.doc-head { margin-bottom: 10pt; }
+.doc h1 { font-size: 19pt; }
+.doc-head.small h1 { font-size: 15pt; }
+.doc h2.part { font-size: 13pt; background: #233279 !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; break-after: avoid; }
+.doc h3 { font-size: 11.5pt; break-after: avoid; }
+.doc h4 { font-size: 10.5pt; break-after: avoid; }
+.doc .pb { break-before: page; }
+.doc .pb-soft { break-before: auto; }
+.tbl { font-size: 9.5pt; }
+.tbl thead { display: table-header-group; }
+.tbl tr, .cp-box, .diff, .kunci-box, .sign, .two > div { break-inside: avoid; }
+.tbl thead th, .tbl.kv th, .tbl td.guru-only, .tbl th.guru-only, .cp-label, .cp-box, .diff, .kunci-box {
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.fill { border-bottom: 1px dotted #777 !important; color: #111 !important; }
+.fill:empty::before { content: '..............................'; color: #999 !important; font-style: normal; }
+.fill:focus { background: none !important; }
+
+.guru-lock { color: #555 !important; }
+a { color: #111 !important; text-decoration: none; }
+.two { gap: 14pt; }
+.glos { gap: 3pt 12pt; }
+.doc .cols2 { columns: 2; }
+.doc-wide { overflow: visible !important; }
+.doc-wide .tbl { min-width: 0 !important; }
+/* LKPD ringkas: Kegiatan 1 dan Kegiatan 2 masing-masing satu halaman */
+#docLkpd { font-size: 10pt; line-height: 1.38; }
+#docLkpd .doc-head { padding-bottom: 6pt; margin-bottom: 8pt; }
+#docLkpd h3 { margin: 8pt 0 4pt; }
+#docLkpd p { margin: 2pt 0 3pt; }
+#docLkpd ol { margin: 2pt 0 4pt; }
+#docLkpd .tbl { margin: 3pt 0 5pt; }
+#docLkpd .tbl.lk td { height: 15pt; padding: 2pt 5pt; }
+#docLkpd .tbl.fase td { height: 34pt; padding: 2pt 5pt; }
+#docLkpd .lines { height: 40pt; margin: 0 0 4pt; }
+#docLkpd .lines::before { top: 13pt; }
+#docLkpd .lines::after { top: 26pt; }
