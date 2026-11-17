@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laskar Kebun Nusantara — Kuis Pertahanan Kebun untuk 1–4 Tim</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B6%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="quiz-core.css?v=20261111">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">🌶️</div>
+        <div>
+          <h1>LASKAR <span>KEBUN</span></h1>
+          <p>NUSANTARA • JAGA SAWAH DARI HAMA KABUT</p>
+        </div>
+      </div>
+      <div class="mission">
+        <div class="m-item"><small>GELOMBANG</small><b><span id="waveNo">1</span><em id="waveMax"></em></b></div>
+        <div class="m-item phase" id="phaseBox"><small>FASE</small><b id="phaseNo">Siap</b></div>
+        <div class="m-item"><small>HAMA</small><b id="foeNo">0</b></div>
+        <div class="m-item"><small>WAKTU</small><b id="clockNo">00:00</b></div>
+      </div>
+      <nav class="tools">
+        <button class="tbtn" data-qc="sound" title="Suara"></button>
+        <button class="tbtn" data-qc="fullscreen" title="Layar penuh">⛶</button>
+        <button class="tbtn" id="btnRules" title="Peraturan & daftar penjaga">📜</button>
+        <button class="tbtn" id="btnSetup" title="Pengaturan / ubah tim">⚙️</button>
+        <button class="tbtn wide guru" data-qc="teacher" title="Mode Guru (kelola soal)">🔐<span>Guru</span></button>
+      </nav>
+    </header>
+
+    <main class="stage" id="stage">
+      <aside class="owners" id="owners"></aside>
+      <section class="field" id="field">
+        <canvas id="cv" aria-label="Medan kebun: lajur-lajur sawah yang dijaga tiap tim"></canvas>
+        <div class="fmsg" id="fmsg" hidden></div>
+        <div class="cpop" id="cpop" hidden></div>
+      </section>
+      <div class="brief" id="brief" hidden></div>
+    </main>
+
+    <footer class="shop" id="shop">
+      <div class="sh-owner" id="shOwner"></div>
+      <div class="sh-cards" id="shCards"></div>
+      <div class="sh-tools" id="shTools"></div>
+      <div class="sh-acts" id="shActs"></div>
+      <div class="hint" id="hint" role="status" aria-live="polite"></div>
+    </footer>
+  </div>
+
+<script src="questions-default.js"></script>
+<script src="quiz-core.js?v=20261111"></script>
+<script src="game.js?v=2"></script>
+<script src="../lokamain-license.js?v=20261109"></script>
+</body>
+</html>

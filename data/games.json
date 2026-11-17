@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1794902811357,
+  "updatedAt": 1794904861549,
   "settings": {
     "storeName": "rnalt_Digital",
     "siteSubtitle": "Pilih game pembelajaran digital, lalu klik tombol WhatsApp di bawahnya untuk memesan.",
@@ -17,6 +17,43 @@
     "sellerTemplate": "Halo Kak {buyerName}, terima kasih sudah memesan di {storeName}!\n\nBerikut akses game pembelajaran digital pesanan Anda:\nJudul Game: {title} ({code})\nLink Akses Game: {gameUrl}\n\nCara Pakai:\n1. Klik link di atas melalui browser HP, tablet, atau laptop.\n2. Game langsung berjalan tanpa instalasi tambahan.\n3. Simpan link ini untuk digunakan kembali kapan saja.\n\nSelamat bermain dan belajar!"
   },
   "games": [
+    {
+      "id": "LM-LK",
+      "code": "SERI-LK",
+      "title": "Laskar Kebun Nusantara",
+      "category": "Kuis Pertahanan Kebun 2–4 Tim (Soal Bisa Diubah)",
+      "grade": "✏️ Soal Bisa Diubah",
+      "duration": "15–20 menit",
+      "device": "Smart TV / IFP (layar sentuh), Laptop & Proyektor",
+      "price": 30000,
+      "originalPrice": 40000,
+      "image": "assets/games/game-laskar-kebun.mp4",
+      "coverImage": "assets/games/game-laskar-kebun-cover.jpg",
+      "gameUrl": "games/laskar-kebun/",
+      "levels": [
+        "SMP",
+        "SMA"
+      ],
+      "shortDesc": "Pertahankan sawah dari serbuan Pasukan Hama Kabut! Setiap tim menjaga 2 jalur (4 tim = 8 jalur). Jawab benar = poin bertambah, salah = berkurang. Poin dipakai menanam pasukan kebun: Cabai Penembak, Jagung Berondong, Tombak Tebu, Meriam Bambu, Kendi Embun, Tembok Kelapa, Bom Durian, dan Lumbung. Tahan gelombang hama sampai Raja Kabut Hama! (SOAL BISA DIUBAH: tinggal tempel dari Word/WhatsApp atau buat dengan AI gratis)",
+      "howToPlay": [
+        "Bagi kelas menjadi 2–4 tim (atau 1 tim + Robo Tani). Setiap tim menjaga 2 jalur sawah di depan rumahnya.",
+        "Fase Jawab & Tanam: tim bergiliran menjawab soal — benar +50 poin, salah −25. Pakai poin untuk menanam pasukan kebun di jalur sendiri. Salah jawab? Tim lain boleh merebut soal.",
+        "Fase Serbuan: hama datang dari kanan. Hama yang sampai ke rumah mengurangi nyawa pemilik jalur. Bertahan sampai gelombang terakhir & kalahkan Raja Kabut Hama!"
+      ],
+      "learningGoals": [
+        "Mengulang materi sambil melatih strategi dan pengelolaan sumber daya.",
+        "Melatih tanggung jawab dan kerja sama: setiap tim menjaga jalurnya, kelas menang bersama.",
+        "Ganti soal sangat mudah di Mode Guru: tempel soal dari Word/WhatsApp, atau buat otomatis dengan AI gratis (ChatGPT/Gemini). Excel juga bisa."
+      ],
+      "sampleQuestion": "Rata-rata dari data 4, 6, 8, dan 10 adalah...",
+      "sampleOptions": [
+        "6",
+        "8",
+        "7",
+        "28"
+      ],
+      "sampleAnswer": 2
+    },
     {
       "id": "LM-PN",
       "code": "SERI-PN",
