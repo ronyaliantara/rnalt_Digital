@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pendaki Nekat — Kuis Panjat Gunung untuk 2–4 Tim</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9B%B0%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&family=Titan+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="quiz-core.css?v=20261111">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <div class="app w-cerah" id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">⛰️</div>
+        <div>
+          <h1>PENDAKI <span>NEKAT</span></h1>
+          <p>KUIS PANJAT GUNUNG BERANI</p>
+        </div>
+      </div>
+      <div class="mission">
+        <div class="m-item"><small>RONDE</small><b><span id="roundNo">1</span><em id="roundMax"></em></b></div>
+        <button class="m-item wx" id="wxBtn" title="Cuaca ronde ini (klik untuk info)"><small>CUACA</small><b id="wxNo">☀️</b></button>
+        <div class="m-item"><small id="clockLbl">WAKTU</small><b id="clockNo">00:00</b></div>
+      </div>
+      <nav class="tools">
+        <button class="tbtn" data-qc="sound" title="Suara"></button>
+        <button class="tbtn" data-qc="fullscreen" title="Layar penuh">⛶</button>
+        <button class="tbtn" id="btnRules" title="Peraturan">📜</button>
+        <button class="tbtn" id="btnSetup" title="Pengaturan / ubah tim">⚙️</button>
+        <button class="tbtn wide guru" data-qc="teacher" title="Mode Guru (kelola soal)">🔐<span>Guru</span></button>
+      </nav>
+    </header>
+
+    <main class="stage" id="stage">
+      <aside class="teams" id="teams"></aside>
+      <section class="scene" id="scene">
+        <div class="sky" aria-hidden="true">
+          <div class="sun"></div>
+          <div class="clouds c1"></div>
+          <div class="clouds c2"></div>
+        </div>
+        <svg class="mtn" id="mtn" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax meet" aria-label="Gunung pendakian"></svg>
+        <div class="wxfx" aria-hidden="true"><div class="rain"></div><div class="fog f1"></div><div class="fog f2"></div><div class="wind"></div></div>
+        <div class="decide" id="decide" hidden></div>
+        <div class="cpop" id="cpop" hidden></div>
+      </section>
+      <div class="brief" id="brief" hidden></div>
+    </main>
+
+    <footer class="cmd" id="cmd">
+      <div class="turnchip" id="turnChip"></div>
+      <div class="hint" id="hint" role="status" aria-live="polite"></div>
+      <div class="acts" id="acts"></div>
+    </footer>
+  </div>
+
+<script src="questions-default.js"></script>
+<script src="quiz-core.js?v=20261111"></script>
+<script src="game.js?v=1"></script>
+<script src="../lokamain-license.js?v=20261109"></script>
+</body>
+</html>
