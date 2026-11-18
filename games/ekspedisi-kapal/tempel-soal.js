@@ -259,7 +259,7 @@ A. Jakarta
 B. Bandung
 Jawaban: A</pre></div>
             <textarea class="ts-ta" data-ta placeholder="Tempel soal di sini... (Ctrl+V / tekan lama lalu Tempel)"></textarea>
-            <label class="ts-lbl">Materi / kategori (opsional, untuk semua soal yang ditempel)<input class="ts-in" data-cat placeholder="Contoh: IPA Bab 2"></label>
+            <label class="ts-lbl">Materi / kategori (opsional, untuk semua soal yang ditempel)<input class="ts-in" data-cat placeholder="Contoh: Bab 2 Ekosistem"></label>
           </div>
           <div class="ts-col">
             <div class="ts-sum" data-sum></div>

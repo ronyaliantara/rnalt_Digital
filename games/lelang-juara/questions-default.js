@@ -2,7 +2,7 @@
 window.DEFAULT_QUESTIONS = [
   {
     "id": 1,
-    "category": "Sejarah",
+    "category": "Tokoh & Peristiwa",
     "question": "Teks Proklamasi Kemerdekaan Indonesia dibacakan pada tanggal...",
     "optionA": "28 Oktober 1928",
     "optionB": "17 Agustus 1945",
@@ -13,7 +13,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 2,
-    "category": "Sejarah",
+    "category": "Tokoh & Peristiwa",
     "question": "Sumpah Pemuda diikrarkan pada tahun...",
     "optionA": "1928",
     "optionB": "1908",
@@ -24,7 +24,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 3,
-    "category": "Sejarah",
+    "category": "Tokoh & Peristiwa",
     "question": "Kerajaan Hindu tertua di Indonesia adalah Kerajaan...",
     "optionA": "Mataram Kuno",
     "optionB": "Majapahit",
@@ -35,7 +35,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 4,
-    "category": "Sejarah",
+    "category": "Tokoh & Peristiwa",
     "question": "Golongan muda membawa Soekarno dan Hatta ke Rengasdengklok pada tanggal...",
     "optionA": "15 Agustus 1945",
     "optionB": "18 Agustus 1945",
@@ -46,7 +46,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 5,
-    "category": "Sejarah",
+    "category": "Tokoh & Peristiwa",
     "question": "Revolusi Industri pertama dimulai di negara...",
     "optionA": "Prancis",
     "optionB": "Inggris",
@@ -57,7 +57,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 6,
-    "category": "Sejarah",
+    "category": "Tokoh & Peristiwa",
     "question": "Perang Dunia II berakhir pada tahun...",
     "optionA": "1945",
     "optionB": "1939",
@@ -68,7 +68,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 7,
-    "category": "Sejarah",
+    "category": "Tokoh & Peristiwa",
     "question": "Organisasi Budi Utomo berdiri pada tanggal 20 Mei 1908, yang kini diperingati sebagai Hari...",
     "optionA": "Pendidikan Nasional",
     "optionB": "Pahlawan",
@@ -79,7 +79,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 8,
-    "category": "Geografi",
+    "category": "Bumi & Peta",
     "question": "Gunung tertinggi di Indonesia adalah...",
     "optionA": "Gunung Semeru",
     "optionB": "Gunung Kerinci",
@@ -90,7 +90,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 9,
-    "category": "Geografi",
+    "category": "Bumi & Peta",
     "question": "Sungai terpanjang di Indonesia adalah Sungai...",
     "optionA": "Mahakam",
     "optionB": "Kapuas",
@@ -101,7 +101,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 10,
-    "category": "Geografi",
+    "category": "Bumi & Peta",
     "question": "Lapisan atmosfer tempat terjadinya cuaca (hujan, awan, angin) adalah...",
     "optionA": "Troposfer",
     "optionB": "Mesosfer",
@@ -112,7 +112,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 11,
-    "category": "Geografi",
+    "category": "Bumi & Peta",
     "question": "Garis khayal yang membagi bumi menjadi belahan utara dan selatan disebut...",
     "optionA": "Garis bujur 0°",
     "optionB": "Garis tanggal internasional",
@@ -123,7 +123,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 12,
-    "category": "Geografi",
+    "category": "Bumi & Peta",
     "question": "Benua terkecil di dunia adalah...",
     "optionA": "Eropa",
     "optionB": "Antarktika",
@@ -134,7 +134,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 13,
-    "category": "Geografi",
+    "category": "Bumi & Peta",
     "question": "Candi Borobudur terletak di provinsi...",
     "optionA": "Jawa Timur",
     "optionB": "Jawa Tengah",
@@ -145,7 +145,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 14,
-    "category": "Sains",
+    "category": "Alam Sekitar",
     "question": "Rumus kimia air adalah...",
     "optionA": "H₂O",
     "optionB": "CO₂",
@@ -156,7 +156,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 15,
-    "category": "Sains",
+    "category": "Alam Sekitar",
     "question": "Organel sel yang berfungsi sebagai tempat respirasi sel untuk menghasilkan energi adalah...",
     "optionA": "Ribosom",
     "optionB": "Nukleus",
@@ -167,7 +167,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 16,
-    "category": "Sains",
+    "category": "Alam Sekitar",
     "question": "Satuan gaya dalam Sistem Internasional (SI) adalah...",
     "optionA": "Joule",
     "optionB": "Watt",
@@ -178,7 +178,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 17,
-    "category": "Sains",
+    "category": "Alam Sekitar",
     "question": "Planet terbesar di tata surya kita adalah...",
     "optionA": "Saturnus",
     "optionB": "Jupiter",
@@ -189,7 +189,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 18,
-    "category": "Sains",
+    "category": "Alam Sekitar",
     "question": "Gas yang paling banyak terdapat di atmosfer bumi adalah...",
     "optionA": "Nitrogen",
     "optionB": "Oksigen",
@@ -200,7 +200,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 19,
-    "category": "Sains",
+    "category": "Alam Sekitar",
     "question": "Proses tumbuhan hijau membuat makanan sendiri dengan bantuan cahaya matahari disebut...",
     "optionA": "Evaporasi",
     "optionB": "Respirasi",
@@ -211,7 +211,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 20,
-    "category": "Sains",
+    "category": "Alam Sekitar",
     "question": "Pernyataan \"setiap aksi menimbulkan reaksi yang sama besar dan berlawanan arah\" adalah bunyi...",
     "optionA": "Hukum I Newton",
     "optionB": "Hukum II Newton",
@@ -222,7 +222,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 21,
-    "category": "Sains",
+    "category": "Alam Sekitar",
     "question": "Larutan yang bersifat netral memiliki pH...",
     "optionA": "0",
     "optionB": "7",
@@ -233,7 +233,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 22,
-    "category": "Sains",
+    "category": "Alam Sekitar",
     "question": "Golongan darah yang dikenal sebagai donor universal adalah...",
     "optionA": "O",
     "optionB": "B",
@@ -244,7 +244,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 23,
-    "category": "Sains",
+    "category": "Alam Sekitar",
     "question": "Kecepatan cahaya di ruang hampa kira-kira...",
     "optionA": "3.000.000 km/detik",
     "optionB": "3.000 km/detik",
@@ -255,7 +255,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 24,
-    "category": "Matematika",
+    "category": "Berhitung",
     "question": "Berapakah 15% dari 200?",
     "optionA": "15",
     "optionB": "20",
@@ -266,7 +266,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 25,
-    "category": "Matematika",
+    "category": "Berhitung",
     "question": "Jika 3x + 5 = 20, maka nilai x adalah...",
     "optionA": "3",
     "optionB": "5",
@@ -277,7 +277,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 26,
-    "category": "Matematika",
+    "category": "Berhitung",
     "question": "Akar kuadrat dari 144 adalah...",
     "optionA": "12",
     "optionB": "11",
@@ -288,7 +288,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 27,
-    "category": "Matematika",
+    "category": "Berhitung",
     "question": "Jumlah ketiga sudut dalam sebuah segitiga adalah...",
     "optionA": "90°",
     "optionB": "360°",
@@ -299,7 +299,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 28,
-    "category": "Matematika",
+    "category": "Berhitung",
     "question": "Rumus luas lingkaran dengan jari-jari r adalah...",
     "optionA": "2πr",
     "optionB": "πd",
@@ -310,7 +310,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 29,
-    "category": "Matematika",
+    "category": "Berhitung",
     "question": "Hasil dari 2⁵ adalah...",
     "optionA": "10",
     "optionB": "32",
@@ -321,7 +321,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 30,
-    "category": "Matematika",
+    "category": "Berhitung",
     "question": "Manakah yang merupakan bilangan prima?",
     "optionA": "23",
     "optionB": "21",
@@ -332,7 +332,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 31,
-    "category": "Matematika",
+    "category": "Berhitung",
     "question": "Keliling persegi dengan panjang sisi 8 cm adalah...",
     "optionA": "16 cm",
     "optionB": "24 cm",
@@ -343,7 +343,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 32,
-    "category": "Matematika",
+    "category": "Berhitung",
     "question": "Rata-rata dari data 4, 6, 8, dan 10 adalah...",
     "optionA": "6",
     "optionB": "8",
@@ -354,7 +354,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 33,
-    "category": "Bahasa Inggris",
+    "category": "Kosakata Asing",
     "question": "The past tense of \"go\" is...",
     "optionA": "goed",
     "optionB": "went",
@@ -365,7 +365,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 34,
-    "category": "Bahasa Inggris",
+    "category": "Kosakata Asing",
     "question": "Kata \"library\" dalam bahasa Indonesia berarti...",
     "optionA": "Perpustakaan",
     "optionB": "Toko buku",
@@ -376,7 +376,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 35,
-    "category": "Bahasa Inggris",
+    "category": "Kosakata Asing",
     "question": "The opposite of \"difficult\" is...",
     "optionA": "hard",
     "optionB": "busy",
@@ -387,7 +387,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 36,
-    "category": "Bahasa Inggris",
+    "category": "Kosakata Asing",
     "question": "She ___ to school every day.",
     "optionA": "go",
     "optionB": "going",
@@ -398,7 +398,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 37,
-    "category": "Bahasa Inggris",
+    "category": "Kosakata Asing",
     "question": "A synonym of \"big\" is...",
     "optionA": "small",
     "optionB": "large",
@@ -409,7 +409,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 38,
-    "category": "Bahasa",
+    "category": "Kata & Kalimat",
     "question": "Majas yang membandingkan dua hal memakai kata \"seperti\", \"bagai\", atau \"laksana\" adalah majas...",
     "optionA": "Perumpamaan (asosiasi)",
     "optionB": "Hiperbola",
@@ -420,7 +420,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 39,
-    "category": "Bahasa",
+    "category": "Kata & Kalimat",
     "question": "Lawan kata (antonim) dari \"optimis\" adalah...",
     "optionA": "Dinamis",
     "optionB": "Realistis",
@@ -431,7 +431,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 40,
-    "category": "Kewarganegaraan",
+    "category": "Hidup Bernegara",
     "question": "Dasar negara Republik Indonesia adalah...",
     "optionA": "UUD 1945",
     "optionB": "Bhinneka Tunggal Ika",
@@ -442,7 +442,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 41,
-    "category": "Kewarganegaraan",
+    "category": "Hidup Bernegara",
     "question": "Lembaga negara yang berwenang mengubah dan menetapkan UUD 1945 adalah...",
     "optionA": "DPR",
     "optionB": "MPR",
@@ -453,7 +453,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 42,
-    "category": "Kewarganegaraan",
+    "category": "Hidup Bernegara",
     "question": "Semboyan \"Bhinneka Tunggal Ika\" berasal dari kitab...",
     "optionA": "Sutasoma",
     "optionB": "Negarakertagama",
@@ -464,7 +464,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 43,
-    "category": "Ekonomi",
+    "category": "Uang & Usaha",
     "question": "Kegiatan menghasilkan atau menambah nilai guna barang dan jasa disebut...",
     "optionA": "Konsumsi",
     "optionB": "Distribusi",
@@ -475,7 +475,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 44,
-    "category": "Ekonomi",
+    "category": "Uang & Usaha",
     "question": "Menurut hukum permintaan, jika harga suatu barang naik maka jumlah barang yang diminta akan...",
     "optionA": "Naik",
     "optionB": "Tetap",
@@ -486,7 +486,7 @@ window.DEFAULT_QUESTIONS = [
   },
   {
     "id": 45,
-    "category": "Ekonomi",
+    "category": "Uang & Usaha",
     "question": "Badan usaha yang modalnya sebagian besar dimiliki negara disebut...",
     "optionA": "BUMS",
     "optionB": "BUMN",

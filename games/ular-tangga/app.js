@@ -20,7 +20,7 @@ function escapeHtml(value) {
 const DEFAULT_QUESTIONS = [
   {
     "id": 1,
-    "category": "Geografi Indonesia",
+    "category": "Bumi Nusantara",
     "question": "Berdasarkan letak astronomisnya, wilayah Indonesia terletak di antara...",
     "optionA": "6° LU - 11° LS dan 95° BT - 141° BT",
     "optionB": "11° LU - 6° LS dan 90° BT - 135° BT",
@@ -29,7 +29,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 2,
-    "category": "Geografi Indonesia",
+    "category": "Bumi Nusantara",
     "question": "Secara geografis, kepulauan Indonesia berada di antara dua benua, yaitu...",
     "optionA": "Benua Eropa dan Benua Afrika",
     "optionB": "Benua Asia dan Benua Australia",
@@ -38,7 +38,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 3,
-    "category": "Geografi Indonesia",
+    "category": "Bumi Nusantara",
     "question": "Indonesia beriklim tropis karena dilalui garis khatulistiwa. Dua musim di Indonesia adalah musim...",
     "optionA": "Kemarau dan Penghujan",
     "optionB": "Panas dan Musim Dingin Berbatu",
@@ -47,7 +47,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 4,
-    "category": "Geografi Indonesia",
+    "category": "Bumi Nusantara",
     "question": "Garis khayal yang memisahkan persebaran fauna Asiatis (barat) dengan fauna Peralihan (tengah) adalah...",
     "optionA": "Garis Weber",
     "optionB": "Garis Wallace",
@@ -56,7 +56,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 5,
-    "category": "Geografi Indonesia",
+    "category": "Bumi Nusantara",
     "question": "Garis khayal yang memisahkan daerah fauna tipe Peralihan dengan tipe Australis (Papua & Maluku) adalah...",
     "optionA": "Garis Weber",
     "optionB": "Garis Khatulistiwa",
@@ -65,7 +65,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 6,
-    "category": "Geografi Indonesia",
+    "category": "Bumi Nusantara",
     "question": "Hewan reptil purba endemik Indonesia yang hanya hidup di kawasan Kepulauan Nusa Tenggara adalah...",
     "optionA": "Bekantan",
     "optionB": "Komodo",
@@ -74,7 +74,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 7,
-    "category": "Geografi Dunia",
+    "category": "Dunia Kita",
     "question": "Benua terluas di dunia yang juga memiliki jumlah penduduk terbanyak adalah Benua...",
     "optionA": "Benua Asia",
     "optionB": "Benua Amerika",
@@ -83,7 +83,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 8,
-    "category": "Geografi Dunia",
+    "category": "Dunia Kita",
     "question": "Samudera terluas di permukaan bumi yang menutupi sepertiga luas dunia adalah Samudera...",
     "optionA": "Samudera Atlantik",
     "optionB": "Samudera Pasifik",
@@ -92,7 +92,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 9,
-    "category": "Geografi Indonesia",
+    "category": "Bumi Nusantara",
     "question": "Daratan sempit yang menjorok masuk ke arah laut disebut...",
     "optionA": "Tanjung",
     "optionB": "Teluk",
@@ -155,7 +155,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 16,
-    "category": "Sejarah Indonesia",
+    "category": "Kisah Nusantara",
     "question": "Zaman kehidupan manusia sebelum mengenal tulisan dan aksara dinamakan zaman...",
     "optionA": "Megalitikum Modern",
     "optionB": "Praaksara",
@@ -164,7 +164,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 17,
-    "category": "Sejarah Hindu-Buddha",
+    "category": "Kerajaan Hindu-Buddha",
     "question": "Kerajaan Hindu tertua di Indonesia yang dibuktikan dengan adanya tujuh prasasti Yupa adalah...",
     "optionA": "Kerajaan Kutai Martadipura",
     "optionB": "Kerajaan Majapahit",
@@ -173,7 +173,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 18,
-    "category": "Sejarah Hindu-Buddha",
+    "category": "Kerajaan Hindu-Buddha",
     "question": "Kerajaan maritim bercorak Buddha yang menjadi pusat pembelajaran agama Buddha internasional adalah...",
     "optionA": "Kerajaan Singasari",
     "optionB": "Kerajaan Sriwijaya",
@@ -182,7 +182,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 19,
-    "category": "Sejarah Hindu-Buddha",
+    "category": "Kerajaan Hindu-Buddha",
     "question": "Kemegahan Candi Borobudur dibangun pada abad ke-8 Masehi oleh Kerajaan Mataram Kuno di bawah Dinasti...",
     "optionA": "Dinasti Syailendra",
     "optionB": "Dinasti Sanjaya",
@@ -191,7 +191,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 20,
-    "category": "Sejarah Hindu-Buddha",
+    "category": "Kerajaan Hindu-Buddha",
     "question": "Sumpah sakral yang diucapkan Patih Gajah Mada untuk mempersatukan wilayah Nusantara bernama...",
     "optionA": "Piagam Jakarta",
     "optionB": "Sumpah Palapa",
@@ -200,7 +200,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 21,
-    "category": "Sejarah Islam",
+    "category": "Kerajaan Islam",
     "question": "Kerajaan bercorak Islam pertama di Indonesia yang berada di wilayah pesisir timur Aceh adalah...",
     "optionA": "Samudera Pasai",
     "optionB": "Kesultanan Banten",
@@ -209,7 +209,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 22,
-    "category": "Sejarah Kolonial",
+    "category": "Masa Penjajahan",
     "question": "Bangsa Barat pertama yang berhasil menaklukkan Malaka pada tahun 1511 demi rempah-rempah adalah...",
     "optionA": "Bangsa Inggris",
     "optionB": "Bangsa Portugis",
@@ -290,7 +290,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 31,
-    "category": "Sosiologi SMP",
+    "category": "Kehidupan Sosial",
     "question": "Hubungan timbal balik yang dinamis antara individu dengan individu, atau kelompok masyarakat disebut...",
     "optionA": "Interaksi Sosial",
     "optionB": "Pengendalian Sosial",
@@ -299,7 +299,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 32,
-    "category": "Sosiologi SMP",
+    "category": "Kehidupan Sosial",
     "question": "Interaksi sosial yang bersifat mempererat hubungan, persatuan, dan kebersamaan dinamakan proses...",
     "optionA": "Disosiatif",
     "optionB": "Asosiatif",
@@ -308,7 +308,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 33,
-    "category": "Sosiologi SMP",
+    "category": "Kehidupan Sosial",
     "question": "Proses interaksi sosial yang mengarah pada pertentangan, perselisihan, atau perpecahan disebut proses...",
     "optionA": "Disosiatif",
     "optionB": "Integratif",
@@ -317,7 +317,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 34,
-    "category": "Sosiologi SMP",
+    "category": "Kehidupan Sosial",
     "question": "Aturan bertindak yang bersumber dari bisikan hati nurani manusia mengenai hal terpuji dan tercela adalah norma...",
     "optionA": "Kesopanan",
     "optionB": "Kesusilaan",
@@ -326,7 +326,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 35,
-    "category": "Sosiologi SMP",
+    "category": "Kehidupan Sosial",
     "question": "Norma dalam masyarakat yang memiliki sanksi paling tegas, mengikat, dan dipaksakan oleh penegak hukum adalah...",
     "optionA": "Norma Hukum",
     "optionB": "Norma Adat Istiadat",
@@ -335,7 +335,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 36,
-    "category": "Sosiologi SMP",
+    "category": "Kehidupan Sosial",
     "question": "Lembaga sosial pertama dan utama yang menjalankan sosialisasi primer dalam membentuk akhlak anak adalah...",
     "optionA": "Lembaga Ekonomi",
     "optionB": "Lembaga Keluarga",
@@ -344,7 +344,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 37,
-    "category": "Sosiologi SMP",
+    "category": "Kehidupan Sosial",
     "question": "Perpindahan kedudukan sosial seseorang ke lapisan sosial yang lebih tinggi dalam masyarakat disebut mobilitas...",
     "optionA": "Vertikal Naik (Social Climbing)",
     "optionB": "Horizontal Sejajar",
@@ -371,7 +371,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 40,
-    "category": "Sosiologi SMP",
+    "category": "Kehidupan Sosial",
     "question": "Sikap saling menghormati dan menghargai keragaman suku, agama, dan adat di Indonesia mencerminkan sikap...",
     "optionA": "Primordialisme Negatif",
     "optionB": "Toleransi",
@@ -380,7 +380,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 41,
-    "category": "Ekonomi SMP",
+    "category": "Kebutuhan & Usaha",
     "question": "Kebutuhan manusia yang mutlak harus dipenuhi agar dapat bertahan hidup (makanan, pakaian, rumah) disebut...",
     "optionA": "Kebutuhan Primer",
     "optionB": "Kebutuhan Tersier",
@@ -389,7 +389,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 42,
-    "category": "Ekonomi SMP",
+    "category": "Kebutuhan & Usaha",
     "question": "Kondisi di mana kebutuhan manusia tak terbatas namun barang dan jasa yang tersedia jumlahnya terbatas disebut...",
     "optionA": "Kemakmuran Berlebih",
     "optionB": "Kelangkaan (Scarcity)",
@@ -398,7 +398,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 43,
-    "category": "Ekonomi SMP",
+    "category": "Kebutuhan & Usaha",
     "question": "Dorongan atau alasan dalam diri seseorang untuk melakukan tindakan ekonomi tertentu disebut...",
     "optionA": "Motif Ekonomi",
     "optionB": "Politik Fiskal",
@@ -407,7 +407,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 44,
-    "category": "Ekonomi SMP",
+    "category": "Kebutuhan & Usaha",
     "question": "Pedoman bertindak secara rasional untuk mendapatkan hasil maksimal dengan pengorbanan tertentu dinamakan...",
     "optionA": "Biaya Peluang Semu",
     "optionB": "Prinsip Ekonomi",
@@ -416,7 +416,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 45,
-    "category": "Ekonomi SMP",
+    "category": "Kebutuhan & Usaha",
     "question": "Jumlah barang atau jasa yang ingin dibeli oleh konsumen pada berbagai tingkat harga tertentu disebut...",
     "optionA": "Permintaan (Demand)",
     "optionB": "Penawaran (Supply)",
@@ -425,7 +425,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 46,
-    "category": "Ekonomi SMP",
+    "category": "Kebutuhan & Usaha",
     "question": "Sesuai hukum permintaan, jika harga suatu barang mengalami lonjakan kenaikan, maka jumlah permintaan akan...",
     "optionA": "Meningkat Drastis",
     "optionB": "Menurun / Berkurang",
@@ -434,7 +434,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 47,
-    "category": "Ekonomi SMP",
+    "category": "Kebutuhan & Usaha",
     "question": "Sesuai hukum penawaran, apabila harga jual suatu barang naik, maka jumlah barang yang ditawarkan pedagang akan...",
     "optionA": "Meningkat / Bertambah",
     "optionB": "Menurun Menjadi Nol",
@@ -443,7 +443,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 48,
-    "category": "Ekonomi SMP",
+    "category": "Kebutuhan & Usaha",
     "question": "Kegiatan menjual komoditas atau produk olahan dari dalam negeri ke pasar mancanegara disebut kegiatan...",
     "optionA": "Impor",
     "optionB": "Ekspor",
@@ -452,7 +452,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 49,
-    "category": "Ekonomi SMP",
+    "category": "Kebutuhan & Usaha",
     "question": "Pelaku ekonomi yang bertugas mengonsumsi produk sekaligus menyewakan faktor produksi (tenaga kerja, tanah) adalah...",
     "optionA": "Rumah Tangga Konsumen (RTK)",
     "optionB": "Rumah Tangga Produsen (RTP)",
@@ -461,7 +461,7 @@ const DEFAULT_QUESTIONS = [
   },
   {
     "id": 50,
-    "category": "Ekonomi SMP",
+    "category": "Kebutuhan & Usaha",
     "question": "Uang tunai fisik berupa uang kertas dan uang logam resmi yang diterbitkan Bank Indonesia disebut...",
     "optionA": "Uang Giral",
     "optionB": "Uang Kartal",
@@ -2616,7 +2616,7 @@ class SnakeAndLaddersGame {
     const templateRows = [
       {
         'No': 1,
-        'Kategori': 'Geografi Indonesia',
+        'Kategori': 'Bumi Nusantara',
         'Pertanyaan': 'Indonesia beriklim tropis karena dilalui oleh garis...',
         'Pilihan A': 'Khatulistiwa (Ekuator)',
         'Pilihan B': 'Bujur Nol Derajat',
@@ -2625,7 +2625,7 @@ class SnakeAndLaddersGame {
       },
       {
         'No': 2,
-        'Kategori': 'Sejarah Kemerdekaan',
+        'Kategori': 'Kemerdekaan RI',
         'Pertanyaan': 'Teks proklamasi kemerdekaan Indonesia dibacakan pada tanggal...',
         'Pilihan A': '28 Oktober 1928',
         'Pilihan B': '17 Agustus 1945',

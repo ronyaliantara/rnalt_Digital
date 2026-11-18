@@ -25,5 +25,5 @@ window.DEFAULT_QUESTIONS = [
   ['Cerita', 'Cerita tentang hewan yang berperilaku seperti manusia disebut …', ['Fabel', 'Legenda', 'Mite', 'Biografi']],
   ['Paragraf', 'Gagasan utama sebuah paragraf disebut …', ['Ide pokok', 'Judul', 'Kesimpulan', 'Kalimat penjelas']],
   ['Puisi', 'Puisi tersusun atas …', ['Bait dan baris', 'Paragraf', 'Bab', 'Dialog']],
-  ['Bahasa', 'Bahasa resmi negara Indonesia adalah …', ['Bahasa Indonesia', 'Bahasa Jawa', 'Bahasa Inggris', 'Bahasa Sunda']]
+  ['Kata & Kalimat', 'Bahasa resmi negara Indonesia adalah …', ['Bahasa Indonesia', 'Bahasa Jawa', 'Bahasa Inggris', 'Bahasa Sunda']]
 ].map((r, i) => ({ id: i + 1, category: r[0], question: r[1], optionA: r[2][0], optionB: r[2][1], optionC: r[2][2] || '', optionD: r[2][3] || '', correct: 'A', explanation: r[3] || '' }));
