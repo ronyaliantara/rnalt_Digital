@@ -1,6 +1,6 @@
 /* Hitung Hewan — ketuk untuk menghitung */
 :root { --kg-a: #c2410c; }
-.sky { position: absolute; inset: 0; background: linear-gradient(#7dd3fc, #e0f7ff); }
+.sky { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(#7dd3fc, #e0f7ff); }
 .sun { position: absolute; left: 3%; top: 24%; font-size: 11vh; animation: kgFloat 4s ease-in-out infinite; }
 .cloud { position: absolute; left: 0; font-size: 9vh; animation: kgDrift 50s linear infinite; }
 .hills { position: absolute; left: -5%; right: -5%; bottom: 52%; height: 18%; border-radius: 50% 50% 0 0; background: #a3d977; }

@@ -1,6 +1,6 @@
 /* Basket Juara — jawab lalu tembak dengan timing */
 :root { --kg-a: #ea580c; }
-.wall { position: absolute; inset: 0; background: linear-gradient(#1e3a8a, #1e40af 55%, #312e81); }
+.wall { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(#1e3a8a, #1e40af 55%, #312e81); }
 .crowd { position: absolute; left: 0; right: 0; top: 12%; height: 22%; opacity: .45;
   background: radial-gradient(circle at 50% 35%, #fde68a 0 24%, transparent 26%) 0 0 / 5vh 6vh, radial-gradient(circle at 50% 35%, #fca5a5 0 24%, transparent 26%) 2.5vh 3vh / 5vh 6vh; animation: crowd 1.2s steps(2) infinite; }
 @keyframes crowd { 50% { transform: translateY(-.6vh); } }

@@ -67,7 +67,7 @@ kbd { font-family: var(--num); font-size: .72em; font-weight: 800; padding: 0 6p
 .m-item em { font-style: normal; font-size: .62em; color: var(--muted); }
 .tools { display: flex; gap: 6px; }
 .tbtn { position: relative; min-width: 50px; height: 50px; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line); background: rgba(8, 30, 52, .92); font-size: 21px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: background .2s, border-color .2s, transform .12s, opacity .2s; }
-.tbtn::before { content: ''; position: absolute; inset: -3px; }
+.tbtn::before { content: ''; position: absolute; top: -3px; right: -3px; bottom: -3px; left: -3px; }
 .tbtn span { font: 800 13px var(--body); }
 .tbtn:hover { border-color: var(--gold); background: rgba(251, 191, 36, .12); }
 .tbtn:active { transform: scale(.94); }
@@ -76,7 +76,7 @@ kbd { font-family: var(--num); font-size: .72em; font-weight: 800; padding: 0 6p
 
 /* ---------- Panggung ---------- */
 .stage { position: relative; z-index: 1; flex: 1 1 auto; min-height: 0; overflow: hidden; }
-#cv { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; touch-action: manipulation; cursor: default; }
+#cv { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; z-index: 0; display: block; touch-action: manipulation; cursor: default; }
 #cv.hot { cursor: pointer; }
 
 /* HUD atas: giliran + petunjuk */
@@ -145,7 +145,7 @@ kbd { font-family: var(--num); font-size: .72em; font-weight: 800; padding: 0 6p
 @keyframes nextIn { from { transform: translateY(20px) scale(.8); opacity: 0; } }
 
 /* Briefing */
-.brief { position: absolute; inset: 0; z-index: 6; display: grid; place-items: center; padding: 14px; background: radial-gradient(circle at 50% 45%, rgba(6, 34, 58, .45), rgba(2, 12, 24, .8)); }
+.brief { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 6; display: grid; place-items: center; padding: 14px; background: radial-gradient(circle at 50% 45%, rgba(6, 34, 58, .45), rgba(2, 12, 24, .8)); }
 .brief-card { position: relative; width: min(820px, 96%); max-height: 100%; overflow: auto; padding: clamp(14px, 2.2vh, 30px) clamp(18px, 2vw, 36px); border-radius: 24px; text-align: center;
   background: linear-gradient(170deg, #fdf3d7, #f1dfae); color: #3b2508; border: 4px solid #b45309; box-shadow: 0 0 0 6px rgba(251, 191, 36, .25), 0 30px 70px rgba(0, 0, 0, .6); animation: briefIn .6s cubic-bezier(.2, .9, .3, 1.25); }
 @keyframes briefIn { from { transform: scale(.85) translateY(20px) rotate(-1deg); opacity: 0; } }
@@ -192,7 +192,7 @@ kbd { font-family: var(--num); font-size: .72em; font-weight: 800; padding: 0 6p
 /* ---------- Layar pendek / sedang ---------- */
 @media (max-height: 700px) and (min-width: 761px) {
   .tbtn { height: 44px; min-width: 44px; }
-  .tbtn::before { inset: -6px; }
+  .tbtn::before { top: -6px; right: -6px; bottom: -6px; left: -6px; }
   .brand p { display: none; }
   .t-row { display: none; }
 }
@@ -217,7 +217,7 @@ kbd { font-family: var(--num); font-size: .72em; font-weight: 800; padding: 0 6p
   .m-item { flex: 1; min-width: 0; padding: 2px 4px; }
   .tools { flex-wrap: wrap; justify-content: flex-end; gap: 4px; }
   .tbtn { min-width: 42px; height: 42px; padding: 0 6px; font-size: 18px; }
-  .tbtn::before { inset: -2px; }
+  .tbtn::before { top: -2px; right: -2px; bottom: -2px; left: -2px; }
   .stage { flex: 0 0 auto; height: clamp(540px, 90vh, 860px); }
   .hud { flex-direction: column; align-items: stretch; height: auto; gap: 4px; }
   .turn { max-width: 100%; }

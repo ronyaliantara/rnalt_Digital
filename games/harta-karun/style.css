@@ -38,7 +38,7 @@ body {
 button { font-family: inherit; }
 
 /* Laut bergelombang di latar (CSS murni, ringan) */
-.ocean { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5;
+.ocean { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 0; pointer-events: none; opacity: .5;
   background-image:
     radial-gradient(14px 6px at 50% 100%, transparent 70%, rgba(125, 211, 252, .16) 72%, transparent 92%),
     radial-gradient(18px 7px at 50% 100%, transparent 70%, rgba(186, 230, 253, .09) 72%, transparent 92%);
@@ -107,7 +107,7 @@ button { font-family: inherit; }
   background: radial-gradient(ellipse at 50% 45%, #2fa9d2 0%, #167cab 52%, #0b456e 100%);
   border: 6px solid #c9a46a; box-shadow: 0 0 0 2px #6b4420, inset 0 0 40px rgba(2, 30, 50, .55), 0 14px 34px rgba(0, 0, 0, .45);
 }
-.map::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .55;
+.map::before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none; opacity: .55;
   background-image: radial-gradient(12px 5px at 50% 100%, transparent 70%, rgba(255, 255, 255, .28) 74%, transparent 95%);
   background-size: 34px 22px; animation: ocean 30s linear infinite; }
 .island { position: absolute; left: 2%; top: 2.5%; width: 96%; height: 95%; filter: drop-shadow(0 6px 10px rgba(3, 40, 70, .45)); }
@@ -132,12 +132,12 @@ button { font-family: inherit; }
 .tile { position: relative; padding: 0; border: none; background: none; perspective: 700px; cursor: default; min-width: 0; min-height: 0; transition: transform .2s; }
 .tile .in { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.3, 1.35, .5, 1); }
 .tile.open .in { transform: rotateY(180deg); }
-.face { position: absolute; inset: 0; border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; overflow: hidden; }
+.face { position: absolute; top: 0; right: 0; bottom: 0; left: 0; border-radius: 12px; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; overflow: hidden; }
 .front {
   background: radial-gradient(circle at 35% 30%, #fbecc0, #e6c47f 60%, #c99d55);
   border: 2px solid #a87b3e; box-shadow: inset 0 -4px 0 rgba(120, 80, 30, .35), 0 4px 8px rgba(0, 0, 0, .28); transition: box-shadow .2s, transform .2s;
 }
-.front::after { content: ''; position: absolute; inset: 5px; border-radius: 8px; border: 1.5px dashed rgba(124, 74, 30, .35); }
+.front::after { content: ''; position: absolute; top: 5px; right: 5px; bottom: 5px; left: 5px; border-radius: 8px; border: 1.5px dashed rgba(124, 74, 30, .35); }
 .xmark { width: 44%; height: 44%; fill: none; stroke: #b91c1c; stroke-width: 3.6; stroke-linecap: round; opacity: .85; filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .5)); }
 .co { position: absolute; left: 7px; top: 5px; font-size: clamp(.55rem, 1.2vh, .78rem); font-weight: 800; color: #7c5427; }
 .back { transform: rotateY(180deg); background: linear-gradient(#fbf3dc, #ecd7a6); border: 2px solid #b08850; box-shadow: inset 0 -4px 0 rgba(120, 80, 30, .25); }
@@ -160,7 +160,7 @@ button { font-family: inherit; }
 .tile.scan .front { box-shadow: 0 0 0 4px #fff, 0 0 26px var(--pc, #fff); animation: none; }
 .tile.dig .in { animation: dig .45s ease-in-out; }
 @keyframes dig { 20% { transform: rotate(-7deg) scale(1.05); } 40% { transform: rotate(6deg) scale(1.08); } 60% { transform: rotate(-4deg); } 80% { transform: rotate(3deg); } }
-.tile.shine::before { content: ''; position: absolute; inset: -45%; z-index: -1; pointer-events: none; border-radius: 50%;
+.tile.shine::before { content: ''; position: absolute; top: -45%; right: -45%; bottom: -45%; left: -45%; z-index: -1; pointer-events: none; border-radius: 50%;
   background: repeating-conic-gradient(rgba(253, 224, 71, .55) 0 12deg, transparent 12deg 30deg);
   -webkit-mask: radial-gradient(circle, #000 25%, transparent 70%); mask: radial-gradient(circle, #000 25%, transparent 70%);
   animation: spinSlow 6s linear infinite; }
@@ -234,7 +234,7 @@ button { font-family: inherit; }
 .q-timer.hurry .t-fg { stroke: #dc2626; }
 .q-timer.hurry { animation: pulse .5s ease-in-out infinite alternate; }
 @keyframes pulse { to { transform: scale(1.1); } }
-.q-timer b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1rem; font-weight: 800; }
+.q-timer b { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: grid; place-items: center; font-size: 1rem; font-weight: 800; }
 .q-body { flex: 0 0 auto; max-height: 34vh; overflow-x: hidden; overflow-y: auto; padding: 2px 6px 4px; margin: 0 -6px; }
 .q-text { font-size: clamp(1.1rem, 3.1vh, 2.5rem); font-weight: 800; line-height: 1.3; text-align: center; max-width: 1400px; margin: 0 auto; }
 .q-text.in { animation: textIn .5s cubic-bezier(.2, .9, .3, 1.2); }
@@ -263,7 +263,7 @@ button { font-family: inherit; }
 .next-btn small { font-size: .62rem; font-weight: 700; opacity: .8; letter-spacing: .02em; }
 .next-btn:hover { transform: translateY(-2px); }
 .next-btn[hidden] { display: none; }
-.countdown { position: absolute; inset: 0; display: none; place-items: center; background: rgba(42, 24, 6, .86); backdrop-filter: blur(4px); font: 400 5rem 'Pirata One', cursive; color: #fde68a; text-shadow: 0 0 30px rgba(245, 196, 81, .8); }
+.countdown { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: none; place-items: center; background: rgba(42, 24, 6, .86); backdrop-filter: blur(4px); font: 400 5rem 'Pirata One', cursive; color: #fde68a; text-shadow: 0 0 30px rgba(245, 196, 81, .8); }
 .countdown.on { display: grid; }
 .countdown span { animation: cd .9s ease-out forwards; }
 @keyframes cd { from { transform: scale(2.4); opacity: 0; } 30% { transform: scale(1); opacity: 1; } to { transform: scale(.7); opacity: 0; } }
@@ -288,7 +288,7 @@ button { font-family: inherit; }
 .pb:disabled { cursor: default; filter: grayscale(.85) brightness(.55); }
 .pad.picked .pb:disabled.mine { filter: none; box-shadow: 0 0 0 3px #fff, inset 0 -4px 0 rgba(0, 0, 0, .25); }
 .pad-state {
-  position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
   background: rgba(4, 20, 34, .86); backdrop-filter: blur(3px); opacity: 0; pointer-events: none; transition: opacity .25s;
 }
 .pad-state.on { opacity: 1; }

@@ -35,8 +35,8 @@ kbd { font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: .9em; 
 .tt-rules ul { padding-left: 20px; margin: 6px 0; }
 .tt-rules li { margin: 4px 0; }
 
-.game { position: fixed; inset: 0; overflow: hidden; }
-#cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.game { position: fixed; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; }
+#cv { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; display: block; }
 
 /* ------------------------------ HUD atas ------------------------------ */
 .top { position: absolute; top: 8px; left: 10px; right: 10px; z-index: 6; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); grid-template-areas: "a m b"; gap: 10px; align-items: start; pointer-events: none; }
@@ -135,7 +135,7 @@ kbd { font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: .9em; 
 #pad1 .pnm { text-align: right; }
 .pkeys { flex: none; font-size: 12px; font-weight: 800; color: #3b3766; background: #fff; border: 2px solid #c9d2f5; padding: 0 8px; border-radius: 8px; white-space: nowrap; word-spacing: .25em; letter-spacing: .04em; }
 .pad-body { position: relative; flex: 1; min-height: 0; }
-.pad-ans { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(var(--k, 4), 1fr); gap: 8px; }
+.pad-ans { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: repeat(var(--k, 4), 1fr); gap: 8px; }
 .ab { position: relative; min-height: 56px; min-width: 56px; padding: 0; border-radius: 16px; border: 3px solid var(--ink); background: var(--oc); color: #fff; box-shadow: 0 5px 0 var(--ink); cursor: pointer; touch-action: none;
   display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Lilita One', sans-serif; transition: transform .08s, box-shadow .08s, filter .2s, opacity .2s; }
 .ab b { font-weight: 400; font-size: clamp(30px, 3.6vw, 60px); line-height: 1; text-shadow: 0 3px 0 rgba(0, 0, 0, .25); }
@@ -144,10 +144,10 @@ kbd { font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: .9em; 
 .ab:hover { filter: brightness(1.08); }
 .ab.press, .ab:active { transform: translateY(4px); box-shadow: 0 1px 0 var(--ink); }
 .pad.off .ab { filter: grayscale(.75) brightness(.9); opacity: .65; cursor: default; }
-.pull { position: absolute; inset: 0; padding: 0; overflow: hidden; border-radius: 18px; border: 4px solid var(--ink); cursor: pointer; touch-action: none;
+.pull { position: absolute; top: 0; right: 0; bottom: 0; left: 0; padding: 0; overflow: hidden; border-radius: 18px; border: 4px solid var(--ink); cursor: pointer; touch-action: none;
   background: linear-gradient(180deg, color-mix(in srgb, var(--tc) 72%, #fff), var(--tc) 55%, color-mix(in srgb, var(--tc) 80%, #000)); color: #fff; box-shadow: 0 6px 0 var(--ink);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: 'Lilita One', sans-serif; transition: filter .2s; }
-.pull .pl-fill { position: absolute; inset: 0; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, rgba(255, 224, 102, .15), rgba(255, 224, 102, .6)); pointer-events: none; }
+.pull .pl-fill { position: absolute; top: 0; right: 0; bottom: 0; left: 0; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, rgba(255, 224, 102, .15), rgba(255, 224, 102, .6)); pointer-events: none; }
 #pull1 .pl-fill { transform-origin: right; background: linear-gradient(270deg, rgba(255, 224, 102, .15), rgba(255, 224, 102, .6)); }
 .pull .pl-beat { position: absolute; left: 50%; top: 50%; width: 70%; aspect-ratio: 1; border-radius: 50%; border: 5px solid rgba(255, 255, 255, .9); transform: translate(-50%, -50%) scale(.2); opacity: 0; pointer-events: none; }
 .pull .pl-main { position: relative; font-size: clamp(32px, 4.1vw, 70px); line-height: 1; text-shadow: 0 4px 0 rgba(0, 0, 0, .3); letter-spacing: .02em; }
@@ -156,7 +156,7 @@ kbd { font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: .9em; 
 .pull.go { animation: pullGlow .5s infinite alternate; }
 @keyframes pullGlow { to { box-shadow: 0 6px 0 var(--ink), 0 0 0 6px rgba(255, 224, 102, .55); } }
 .pull.bot { cursor: default; }
-.pad-msg { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 6px; border-radius: 16px; text-align: center;
+.pad-msg { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 6px; border-radius: 16px; text-align: center;
   background: rgba(255, 255, 255, .9); border: 3px dashed color-mix(in srgb, var(--tc) 70%, #000); animation: msgIn .3s cubic-bezier(.2, .9, .3, 1.4); }
 .pad-msg:empty { display: none; }
 @keyframes msgIn { from { opacity: 0; transform: scale(.85); } }
@@ -175,7 +175,7 @@ kbd { font-family: 'Lilita One', sans-serif; font-weight: 400; font-size: .9em; 
 @keyframes padBad { 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
 
 /* ------------------------------ Pesan tengah ------------------------------ */
-.center { position: absolute; inset: 0; z-index: 7; display: flex; align-items: center; justify-content: center; padding: 16px; pointer-events: none; }
+.center { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 7; display: flex; align-items: center; justify-content: center; padding: 16px; pointer-events: none; }
 .card { pointer-events: auto; max-width: min(760px, 94vw); text-align: center; padding: 18px 26px 20px; border-radius: 26px; background: var(--paper); border: 4px solid var(--ink); box-shadow: 0 8px 0 var(--ink), 0 30px 60px rgba(20, 20, 60, .35); animation: cardIn .45s cubic-bezier(.2, .9, .3, 1.4); }
 @keyframes cardIn { from { opacity: 0; transform: translateY(24px) scale(.92); } }
 .card h2 { margin: 0; font: 400 clamp(30px, 4.4vw, 60px)/1.05 'Lilita One'; color: #ef4444; text-shadow: 0 4px 0 var(--sun); }

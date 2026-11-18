@@ -37,8 +37,8 @@ input, select { font: inherit; }
 :focus-visible { outline: 3px solid var(--acc2); outline-offset: 2px; }
 
 /* ---------- langit berbintang (statis + kerlip opacity yang lembut) ---------- */
-.sky { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-.stars { position: absolute; inset: -10%; background-repeat: repeat; }
+.sky { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.stars { position: absolute; top: -10%; right: -10%; bottom: -10%; left: -10%; background-repeat: repeat; }
 .stars.s1 {
   background-image:
     radial-gradient(1.2px 1.2px at 20px 30px, #fff 50%, transparent 51%),
@@ -271,8 +271,8 @@ body.guru .guru-lock { display: none; }
 .ss-ctrl { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin-top: .8rem; }
 
 /* kartu planet */
-.modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px; }
-.modal-back { position: absolute; inset: 0; background: rgba(3, 6, 18, .72); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.modal { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 100; display: grid; place-items: center; padding: 16px; }
+.modal-back { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: rgba(3, 6, 18, .72); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .pcard, .pin-box {
   position: relative; width: min(760px, 100%); max-height: calc(100vh - 32px); overflow: auto;
   background: linear-gradient(160deg, #18235a, #0d1438); border: 1px solid rgba(150, 175, 255, .35);

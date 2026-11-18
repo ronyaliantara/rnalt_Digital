@@ -95,7 +95,7 @@ button { font-family: inherit; color: inherit; }
 /* ------------------------------ Layout ------------------------------ */
 .game { position: relative; z-index: 1; flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) var(--ldw); gap: 10px; padding: 10px; }
 .stage { position: relative; min-width: 0; min-height: 0; display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; background: #0b0522; border: 1px solid var(--line); box-shadow: 0 20px 50px rgba(0, 0, 0, .5), inset 0 0 0 1px rgba(255, 255, 255, .04); }
-#cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+#cv { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; display: block; z-index: 0; }
 
 /* ------------------------------ Kartu tim ------------------------------ */
 .teams { position: relative; z-index: 2; flex: 0 0 auto; display: grid; grid-template-columns: repeat(var(--n, 3), minmax(0, 1fr)); gap: 8px; padding: 10px 10px 0; transition: opacity .5s; }
@@ -134,7 +134,7 @@ button { font-family: inherit; color: inherit; }
     linear-gradient(180deg, #120734, #0a0420);
   box-shadow: 0 0 0 2px rgba(0, 0, 0, .6), 0 0 34px color-mix(in srgb, var(--tier) 35%, transparent), inset 0 0 30px rgba(0, 0, 0, .7);
 }
-.led::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, transparent 0, rgba(255, 255, 255, .07) 50%, transparent 100%) 0 0 / 100% 40%; background-repeat: no-repeat; animation: scan 3.6s linear infinite; }
+.led::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none; background: linear-gradient(180deg, transparent 0, rgba(255, 255, 255, .07) 50%, transparent 100%) 0 0 / 100% 40%; background-repeat: no-repeat; animation: scan 3.6s linear infinite; }
 @keyframes scan { from { background-position: 0 -60%; } to { background-position: 0 160%; } }
 .led-main { font: 400 clamp(1rem, 3.6vh, 2.4rem)/1.1 'Bungee', sans-serif; color: #fff; letter-spacing: .02em; text-shadow: 0 0 10px color-mix(in srgb, var(--tier) 90%, #fff), 0 0 22px var(--tier); max-width: 100%; }
 .led-sub { font-weight: 800; font-size: clamp(.78rem, 2vh, 1.25rem); color: #e9e3ff; letter-spacing: .05em; text-shadow: 0 0 8px rgba(0, 0, 0, .8); }
@@ -143,11 +143,11 @@ button { font-family: inherit; color: inherit; }
 
 .clock { position: relative; flex: 0 0 auto; width: clamp(84px, 16vh, 170px); aspect-ratio: 1; margin-top: 4px; border-radius: 50%; transition: opacity .5s, transform .3s;
   background: radial-gradient(circle at 50% 40%, #2b1666, #120734 70%); box-shadow: 0 0 0 3px #2a1a55, 0 0 30px rgba(124, 58, 237, .45), inset 0 0 20px rgba(0, 0, 0, .6); }
-.clock svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.clock svg { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
 .clock circle { fill: none; stroke-width: 9; }
 .clock .c-bg { stroke: rgba(255, 255, 255, .08); }
 .clock .c-fg { stroke: #2dd4bf; stroke-linecap: round; stroke-dasharray: 326.7; stroke-dashoffset: 0; transition: stroke .4s; filter: drop-shadow(0 0 6px currentColor); }
-.clock .c-in { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+.clock .c-in { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: grid; place-content: center; text-align: center; }
 .clock b { font: 400 clamp(1.6rem, 5.6vh, 3.6rem)/1 'Bungee', sans-serif; font-variant-numeric: tabular-nums; }
 .clock small { font-size: clamp(.5rem, 1.2vh, .72rem); font-weight: 900; letter-spacing: .25em; color: var(--muted); }
 .clock.mid .c-fg { stroke: #fbbf24; }

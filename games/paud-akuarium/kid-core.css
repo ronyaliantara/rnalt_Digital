@@ -22,7 +22,7 @@
 html, body { margin: 0; height: 100%; }
 body.kg-body { font-family: 'Fredoka', 'Nunito', sans-serif; color: var(--kg-ink); overflow: hidden; user-select: none; -webkit-user-select: none; background: #8fd3ff; }
 button { font-family: inherit; }
-.kg-app { position: fixed; inset: 0; display: flex; flex-direction: column; }
+.kg-app { position: fixed; top: 0; right: 0; bottom: 0; left: 0; display: flex; flex-direction: column; }
 
 /* ------------------------------ Bar atas ------------------------------ */
 .kg-top { position: relative; z-index: 6; flex: 0 0 auto; display: flex; align-items: center; gap: 10px; padding: 8px 12px; }
@@ -46,7 +46,7 @@ button { font-family: inherit; }
 .kg-vs { font-style: normal; font-weight: 700; color: #fff; text-shadow: 0 2px 0 rgba(0, 0, 0, .3); }
 
 /* ------------------------------ Adegan ------------------------------ */
-.kg-scene { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
+.kg-scene { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 1; overflow: hidden; }
 .kg-emo { display: inline-block; font-size: 1.25em; line-height: 1; vertical-align: -0.1em; }
 
 /* ------------------------------ Panel soal ------------------------------ */
@@ -99,7 +99,7 @@ button { font-family: inherit; }
 .kg-praise.show { animation: kgPraise 1.4s ease-out forwards; }
 
 /* ------------------------------ Layar awal & akhir ------------------------------ */
-.kg-over { position: absolute; inset: 0; z-index: 8; display: grid; place-items: center; padding: 16px; background: rgba(40, 20, 90, .28); backdrop-filter: blur(2px); }
+.kg-over { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 8; display: grid; place-items: center; padding: 16px; background: rgba(40, 20, 90, .28); backdrop-filter: blur(2px); }
 .kg-over[hidden] { display: none; }
 .kg-card { width: min(640px, 94vw); max-height: 94vh; overflow-x: hidden; overflow-y: auto; text-align: center; padding: 18px 26px 22px; border-radius: 34px; background: #fff; box-shadow: 0 10px 0 rgba(0, 0, 0, .15), 0 30px 80px rgba(0, 0, 0, .3); animation: kgUp .5s cubic-bezier(.2, .9, .3, 1.3); }
 .kg-mascot { font-size: clamp(4rem, 13vh, 7rem); line-height: 1.1; animation: kgBob 2s ease-in-out infinite; }

@@ -1,10 +1,10 @@
 /* Panjat Kelapa — rebutan cepat */
 :root { --kg-a: #16a34a; }
-.sky { position: absolute; inset: 0; background: linear-gradient(#38bdf8, #bae6fd 55%, #fef9c3); }
+.sky { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(#38bdf8, #bae6fd 55%, #fef9c3); }
 .sun { position: absolute; left: 3%; top: 23%; font-size: 11vh; animation: kgSpin 30s linear infinite; }
 .cloud { position: absolute; left: 0; font-size: 9vh; animation: kgDrift 55s linear infinite; }
 .sea { position: absolute; left: 0; right: 0; bottom: 34%; height: 12%; background: linear-gradient(#0ea5e9, #0284c7); overflow: hidden; }
-.sea i { position: absolute; inset: 0; background: radial-gradient(14px 5px at 50% 0, rgba(255, 255, 255, .7) 60%, transparent 62%) 0 20% / 60px 30px; animation: waves 6s linear infinite; }
+.sea i { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: radial-gradient(14px 5px at 50% 0, rgba(255, 255, 255, .7) 60%, transparent 62%) 0 20% / 60px 30px; animation: waves 6s linear infinite; }
 @keyframes waves { to { background-position: 600px 20%; } }
 .sand { position: absolute; left: 0; right: 0; bottom: 0; height: 35%; background: linear-gradient(#fde68a, #f5c451); }
 .boat { position: absolute; bottom: 41%; font-size: 7vh; animation: boatGo 40s linear infinite; }
@@ -35,8 +35,8 @@
 .pad.one .btns { grid-template-columns: repeat(4, 1fr); }
 .pad .kg-opt { min-height: 9vh; font-size: clamp(1rem, 3.2vh, 1.9rem); }
 .pad.locked { opacity: .45; filter: grayscale(.8); pointer-events: none; }
-.pad.locked::after { content: '🔒 Salah — tunggu soal berikutnya'; position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; font-size: 2.6vh; color: #b91c1c; }
+.pad.locked::after { content: '🔒 Salah — tunggu soal berikutnya'; position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: grid; place-items: center; font-weight: 700; font-size: 2.6vh; color: #b91c1c; }
 .timer { position: absolute; left: 50%; bottom: 29%; translate: -50% 0; z-index: 5; width: min(420px, 40vw); height: 3.6vh; border-radius: 99px; background: rgba(255, 255, 255, .85); box-shadow: 0 3px 0 rgba(0, 0, 0, .15); overflow: hidden; }
 .timer i { position: absolute; left: 0; top: 0; bottom: 0; background: #f59e0b; transition: width .1s linear; }
 .timer i.fast { background: linear-gradient(90deg, #22c55e, #84cc16); }
-.timer b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.4vh; }
+.timer b { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: grid; place-items: center; font-size: 2.4vh; }

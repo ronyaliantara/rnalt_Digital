@@ -1,7 +1,7 @@
 /* Kembang Api Kata — ketapel */
 :root { --kg-a: #7c3aed; }
 body.kg-body { background: #0b1026; }
-.night { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 120%, #4c1d95, transparent 60%), linear-gradient(#0b1026, #1e1b4b 60%, #312e81); }
+.night { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: radial-gradient(ellipse at 50% 120%, #4c1d95, transparent 60%), linear-gradient(#0b1026, #1e1b4b 60%, #312e81); }
 .star { position: absolute; width: var(--s); height: var(--s); border-radius: 50%; background: #fff; animation: twinkle 2.4s ease-in-out infinite; }
 @keyframes twinkle { 50% { opacity: .2; transform: scale(.6); } }
 .moon { position: absolute; right: 3%; top: 24%; font-size: 10vh; filter: drop-shadow(0 0 3vh rgba(253, 224, 71, .6)); animation: kgFloat 6s ease-in-out infinite; }
@@ -23,7 +23,7 @@ body.kg-body { background: #0b1026; }
 .sling .stick { position: absolute; left: 50%; bottom: 0; width: 2.4vh; height: 12vh; margin-left: -1.2vh; border-radius: 1vh; background: linear-gradient(90deg, #92400e, #78350f); }
 .sling .fork { position: absolute; bottom: 10vh; width: 2.2vh; height: 10vh; border-radius: 1vh; background: linear-gradient(90deg, #a16207, #78350f); }
 .sling .fork.l { left: 2vh; transform: rotate(-18deg); } .sling .fork.r { right: 2vh; transform: rotate(18deg); }
-.bands { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; overflow: visible; }
+.bands { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; overflow: visible; }
 .bands path { fill: none; stroke: #f97316; stroke-width: 6; }
 .rocket { position: absolute; z-index: 6; font-size: 7vh; transform: translate(-50%, -50%) rotate(-45deg); pointer-events: none; }
 .dot { position: absolute; z-index: 5; width: 1.2vh; height: 1.2vh; margin: -.6vh 0 0 -.6vh; border-radius: 50%; background: #fde047; opacity: 0; pointer-events: none; }

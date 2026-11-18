@@ -1,9 +1,9 @@
 /* Telur Dino — pilih jalan */
 :root { --kg-a: #15803d; }
-.sky { position: absolute; inset: 0; background: linear-gradient(#fb923c, #fdba74 30%, #fef3c7 55%); }
+.sky { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(#fb923c, #fdba74 30%, #fef3c7 55%); }
 .sun { position: absolute; left: 4%; top: 24%; width: 12vh; height: 12vh; border-radius: 50%; background: radial-gradient(circle, #fff7ae, #fbbf24 60%, rgba(251, 191, 36, 0) 72%); animation: kgFloat 6s ease-in-out infinite; }
 .volcano { position: absolute; right: 3%; top: 21%; width: 34vh; height: 18vh; }
-.volcano .cone { position: absolute; inset: 0; background: linear-gradient(#78350f, #451a03); clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); }
+.volcano .cone { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(#78350f, #451a03); clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); }
 .volcano .lava { position: absolute; left: 38%; right: 38%; top: 0; height: 30%; background: linear-gradient(#f97316, transparent); }
 .smoke { position: absolute; left: 50%; top: -5vh; width: 7vh; height: 7vh; margin-left: -3.5vh; border-radius: 50%; background: rgba(120, 113, 108, .55); animation: smoke 4.5s ease-out infinite; }
 .smoke.s2 { animation-delay: 1.5s; } .smoke.s3 { animation-delay: 3s; }
@@ -13,7 +13,7 @@
 .plant { position: absolute; top: 27%; font-size: 10vh; transform-origin: 50% 100%; animation: kgSway 3.4s ease-in-out infinite; }
 .ptero { position: absolute; top: 25%; font-size: 6vh; animation: ptero 18s linear infinite; }
 @keyframes ptero { from { left: -10%; } to { left: 110%; } }
-.paths { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+.paths { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
 .paths path { fill: none; stroke: #d6a35a; stroke-width: 26; stroke-linecap: round; vector-effect: non-scaling-stroke; opacity: .95; }
 .paths path.dead { stroke: #a8a29e; opacity: .5; }
 .start { position: absolute; z-index: 2; translate: -50% -20%; font-size: 6vh; }

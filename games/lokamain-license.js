@@ -1,3 +1,48 @@
+/* rnalt_Digital: kompatibilitas browser lama (IFP / Smart TV) — roundRect & aspect-ratio. Aktif hanya bila browser belum mendukung. */
+(function lokamainCompat() {
+  try {
+    var rr = function (x, y, w, h, r) { var q = Array.isArray(r) ? (+r[0] || 0) : (+r || 0); q = Math.max(0, Math.min(q, Math.abs(w) / 2, Math.abs(h) / 2)); this.moveTo(x + q, y); this.arcTo(x + w, y, x + w, y + h, q); this.arcTo(x + w, y + h, x, y + h, q); this.arcTo(x, y + h, x, y, q); this.arcTo(x, y, x + w, y, q); this.closePath(); return this; };
+    [window.CanvasRenderingContext2D, window.OffscreenCanvasRenderingContext2D, window.Path2D].forEach(function (C) { if (C && C.prototype && !C.prototype.roundRect) C.prototype.roundRect = rr; });
+  } catch (e) { /* abaikan */ }
+  var force = /[?&]compat=1/.test(location.search);
+  var hasAR = !!(window.CSS && CSS.supports && CSS.supports('aspect-ratio', '1 / 1'));
+  if (hasAR && !force) return;
+  // [selector, rasio lebar/tinggi, 'w' = tinggi dari lebar | 'h' = lebar dari tinggi, media query opsional]
+  var MAP = {
+    'balap-roket': [['.joy', 1, 'w']],
+    'benteng-nusantara': [['.mapwrap', 1200 / 860, 'w', '(max-width: 820px)']],
+    'pendaki-nekat': [['.sun', 1, 'w']],
+    'tarik-tambang': [['.pull .pl-beat', 1, 'w']],
+    'panggung-kuis': [['.clock', 1, 'w']],
+    'detektif-kelas': [['.photo', 120 / 140, 'w'], ['.bs .mug, .cc-clear .mini .mug, .ch-btn .mug, .dk-wrong .wr-face .mug, .nt-face .mug', 120 / 140, 'w']],
+    'modul-tata-surya': [['.ss-stage', 1, 'w']],
+    'saudagar-nusantara': [['.kc-rays', 1, 'w']],
+    'pertempuran-laut': [['.rdr b', 1, 'w'], ['.sweep', 1, 'w']],
+    'ekspedisi-kapal': [['.stage', 900 / 560, 'w'], ['.cambox', 4 / 3, 'w'], ['body.fs .cambox', 16 / 9, 'w']],
+    'harta-karun': [['.palm', 40 / 48, 'h'], ['.compass', 1, 'h'], ['.sailship', 64 / 56, 'h'], ['.kraken-fx', 56 / 52, 'w']]
+  };
+  var m = location.pathname.match(/\/games\/([^\/]+)\//) || location.pathname.match(/\/([^\/]+)\/(?:index\.html)?$/);
+  var rules = m && MAP[m[1]]; if (!rules) return;
+  var queued = false;
+  function apply() {
+    queued = false;
+    rules.forEach(function (r) {
+      var on = !r[3] || window.matchMedia(r[3]).matches;
+      Array.prototype.forEach.call(document.querySelectorAll(r[0]), function (el) {
+        if (!on) { if (el.dataset.lmAr) { el.style.height = ''; el.style.width = ''; delete el.dataset.lmAr; } return; }
+        el.dataset.lmAr = '1';
+        if (r[2] === 'w') { el.style.height = ''; var w = el.getBoundingClientRect().width; if (w > 0) el.style.height = (w / r[1]).toFixed(2) + 'px'; }
+        else { el.style.width = ''; var h = el.getBoundingClientRect().height; if (h > 0) el.style.width = (h * r[1]).toFixed(2) + 'px'; }
+      });
+    });
+  }
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(apply); } }
+  window.addEventListener('resize', queue); window.addEventListener('load', queue);
+  document.addEventListener('DOMContentLoaded', queue); queue();
+  try { new MutationObserver(queue).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] }); } catch (e) { /* abaikan */ }
+  setInterval(queue, 1500);
+  window.__lokamainCompat = { aspectRatio: true, rules: rules.length };
+})();
 /**
  * rnalt_Digital - Engine Pengaman Lisensi & Anti-Pembajakan Otomatis
  * Pasang di game apa pun dengan menambahkan 1 baris sebelum </body>:
@@ -106,7 +151,7 @@
       }
       #lokamain-gate-modal, #lokamain-kicked-modal {
         position: fixed;
-        inset: 0;
+        top: 0; right: 0; bottom: 0; left: 0;
         z-index: 99999;
         background: rgba(15, 23, 42, 0.94);
         backdrop-filter: blur(8px);

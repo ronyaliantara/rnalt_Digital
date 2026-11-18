@@ -153,7 +153,7 @@
 
   /* --------------------------------- Tampilan --------------------------------- */
   const CSS = `
-.ts-ov{position:fixed;inset:0;z-index:3000;background:rgba(8,12,28,.72);display:flex;align-items:center;justify-content:center;padding:12px;font-family:Nunito,'Segoe UI',system-ui,sans-serif;color:#0f172a;-webkit-text-size-adjust:100%}
+.ts-ov{position:fixed;top:0;right:0;bottom:0;left:0;z-index:3000;background:rgba(8,12,28,.72);display:flex;align-items:center;justify-content:center;padding:12px;font-family:Nunito,'Segoe UI',system-ui,sans-serif;color:#0f172a;-webkit-text-size-adjust:100%}
 .ts-box{background:#f8fafc;width:min(1180px,100%);max-height:calc(100vh - 24px);display:flex;flex-direction:column;border-radius:20px;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden;animation:tsIn .22s ease}
 @keyframes tsIn{from{transform:translateY(14px) scale(.97);opacity:0}to{transform:none;opacity:1}}
 .ts-head{display:flex;align-items:center;gap:10px;padding:14px 18px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:#fff}

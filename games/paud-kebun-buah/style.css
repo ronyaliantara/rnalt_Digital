@@ -1,6 +1,6 @@
 /* Kebun Buah Ceria — seret ke keranjang */
 :root { --kg-a: #e8590c; }
-.sky { position: absolute; inset: 0; background: linear-gradient(#5ec8ff, #b9ecff 55%, #e6f9ff); }
+.sky { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(#5ec8ff, #b9ecff 55%, #e6f9ff); }
 .sun { position: absolute; right: 4%; top: 22%; font-size: 12vh; line-height: 1; }
 .sun span { display: inline-block; animation: kgSpin 24s linear infinite; }
 .cloud { position: absolute; left: 0; font-size: 10vh; opacity: .95; animation: kgDrift 46s linear infinite; }

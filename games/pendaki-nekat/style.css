@@ -93,7 +93,7 @@ kbd { font-family: var(--num); font-size: .7em; font-weight: 800; padding: 0 5px
 .tcard { position: relative; padding: 9px 11px 10px 14px; border-radius: 16px; background: linear-gradient(180deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .04)); border: 2px solid rgba(255, 255, 255, .14);
   box-shadow: 0 6px 14px rgba(0, 0, 0, .3); transition: transform .25s, border-color .25s, background .25s; }
 .tcard::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 6px; border-radius: 0 6px 6px 0; background: var(--pc); }
-.tcard::after { content: ''; position: absolute; inset: -3px; border-radius: 18px; pointer-events: none; opacity: 0; box-shadow: 0 0 0 3px var(--pc), 0 0 22px var(--pc); }
+.tcard::after { content: ''; position: absolute; top: -3px; right: -3px; bottom: -3px; left: -3px; border-radius: 18px; pointer-events: none; opacity: 0; box-shadow: 0 0 0 3px var(--pc), 0 0 22px var(--pc); }
 .tcard.turn { background: linear-gradient(180deg, color-mix(in srgb, var(--pc) 35%, transparent), rgba(255, 255, 255, .06)); transform: translateX(4px); }
 .tcard.turn::after { opacity: 1; animation: turnGlow 1.8s ease-in-out infinite; }
 @keyframes turnGlow { 50% { opacity: .4; } }
@@ -124,7 +124,7 @@ kbd { font-family: var(--num); font-size: .7em; font-weight: 800; padding: 0 5px
 
 /* ---------- Adegan gunung ---------- */
 .scene { position: relative; flex: 1 1 auto; min-width: 0; overflow: hidden; }
-.sky { position: absolute; inset: 0; overflow: hidden; background: linear-gradient(180deg, #4fb3ea 0%, #8fd2f2 45%, #d4f0f5 80%, #e9f6e0 100%); }
+.sky { position: absolute; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; background: linear-gradient(180deg, #4fb3ea 0%, #8fd2f2 45%, #d4f0f5 80%, #e9f6e0 100%); }
 .w-hujan .sky { background: linear-gradient(180deg, #4b5d70 0%, #7d93a6 50%, #a9bac2 100%); }
 .w-kabut .sky { background: linear-gradient(180deg, #a3b3bd 0%, #c9d4d9 50%, #e2e8ea 100%); }
 .w-angin .sky { background: linear-gradient(180deg, #3aa6dd 0%, #8bd0ee 50%, #e3f6f2 100%); }
@@ -140,7 +140,7 @@ kbd { font-family: var(--num); font-size: .7em; font-weight: 800; padding: 0 5px
 .w-kabut .clouds { opacity: .95; }
 .w-angin .clouds.c2 { animation-duration: 28s; } .w-angin .clouds.c1 { animation-duration: 50s; }
 @keyframes drift { to { transform: translateX(-50%); } }
-.mtn { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.mtn { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; display: block; }
 
 /* SVG: tanda, angka langkah, petak */
 .mtn text { font-family: var(--num); text-anchor: middle; }
@@ -169,7 +169,7 @@ kbd { font-family: var(--num); font-size: .7em; font-weight: 800; padding: 0 5px
 .wf-txt { font-size: 22px; fill: #fff; }
 
 /* cuaca */
-.wxfx { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+.wxfx { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 3; pointer-events: none; overflow: hidden; }
 .w-kabut .wxfx { background: rgba(232, 238, 241, .26); }
 .w-hujan .wxfx { background: rgba(30, 50, 70, .12); }
 .rain, .fog, .wind { display: none; position: absolute; will-change: transform; }
@@ -243,11 +243,11 @@ kbd { font-family: var(--num); font-size: .7em; font-weight: 800; padding: 0 5px
 .cbtn small { font: 800 10px var(--num); letter-spacing: .08em; padding: 1px 6px; border-radius: 6px; background: rgba(0, 0, 0, .25); }
 .cbtn.main { min-height: 60px; padding: 8px 26px; font-size: clamp(17px, 1.4vw, 26px); font-family: var(--hd); font-weight: 400; letter-spacing: .04em; color: #3a1a02;
   background: linear-gradient(180deg, #fde047, #f59e0b); border-color: #7c2d12; box-shadow: 0 5px 0 #7c2d12; }
-.cbtn.main::after { content: ''; position: absolute; inset: -4px; border-radius: 20px; border: 3px solid rgba(253, 224, 71, .7); opacity: 0; animation: glowRing 1.6s ease-in-out infinite; pointer-events: none; }
+.cbtn.main::after { content: ''; position: absolute; top: -4px; right: -4px; bottom: -4px; left: -4px; border-radius: 20px; border: 3px solid rgba(253, 224, 71, .7); opacity: 0; animation: glowRing 1.6s ease-in-out infinite; pointer-events: none; }
 @keyframes glowRing { 50% { opacity: 1; } }
 
 /* ---------- Panduan bergambar ---------- */
-.brief { position: absolute; inset: 0; z-index: 20; display: flex; align-items: center; justify-content: center; padding: 10px; background: rgba(6, 26, 15, .66); overflow: auto; }
+.brief { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 20; display: flex; align-items: center; justify-content: center; padding: 10px; background: rgba(6, 26, 15, .66); overflow: auto; }
 .brief-card { position: relative; width: min(1040px, 100%); max-height: 100%; overflow: auto; margin: auto; text-align: center; padding: 16px 20px 18px; border-radius: 22px; color: #3b230c;
   background: linear-gradient(180deg, #fffaf0, #fbe7c0); border: 4px solid #7c4a1a; box-shadow: 0 0 0 4px #fbbf24, 0 24px 60px rgba(0, 0, 0, .5); animation: dcIn .45s cubic-bezier(.2, 1.3, .4, 1) both; }
 .stampx { display: inline-block; padding: 3px 14px; border-radius: 999px; background: #14532d; color: #fde68a; font: 800 13px var(--num); letter-spacing: .1em; }

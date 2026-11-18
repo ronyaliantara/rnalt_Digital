@@ -92,7 +92,7 @@ button { font-family: inherit; color: inherit; }
 .hpbar i.mid { background: linear-gradient(180deg, #fde68a, #d97706); }
 .hpbar i.low { background: linear-gradient(180deg, #fca5a5, #dc2626); animation: hpPulse .6s ease-in-out infinite alternate; }
 @keyframes hpPulse { to { filter: brightness(1.35); } }
-.hpbar span { position: absolute; inset: 0; display: grid; place-items: center; font: 800 .82rem/1 'Baloo 2', sans-serif; text-shadow: 0 1px 2px #000; }
+.hpbar span { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: grid; place-items: center; font: 800 .82rem/1 'Baloo 2', sans-serif; text-shadow: 0 1px 2px #000; }
 .hstat.hp.hit { animation: poor .45s; border-color: var(--red); box-shadow: 0 0 22px rgba(229, 72, 77, .6); }
 .hstat.fog { border-color: #a78bfa; background: rgba(76, 29, 149, .55); animation: fogPulse 1.2s ease-in-out infinite; }
 .hstat.fog b { color: #ddd6fe; }
@@ -110,7 +110,7 @@ button { font-family: inherit; color: inherit; }
 /* ------------------------------ Layout ------------------------------ */
 .game { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) var(--side); gap: 10px; padding: 14px 10px 10px; }
 .mapwrap { position: relative; min-width: 0; min-height: 0; }
-#cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+#cv { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; display: block; touch-action: none; }
 .side { display: flex; flex-direction: column; gap: 8px; min-height: 0; min-width: 0; }
 
 /* Pesan di atas peta */
@@ -119,7 +119,7 @@ button { font-family: inherit; color: inherit; }
   box-shadow: 0 8px 22px rgba(0, 0, 0, .4); pointer-events: none; animation: tipIn .45s cubic-bezier(.2, .9, .3, 1.3); }
 .maptip.pq { border-color: #a78bfa; background: rgba(46, 16, 101, .88); }
 @keyframes tipIn { from { opacity: 0; transform: translate(-50%, -14px); } }
-.veil { position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; background: rgba(3, 18, 12, .45); border-radius: 22px; pointer-events: none; }
+.veil { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 4; display: grid; place-items: center; background: rgba(3, 18, 12, .45); border-radius: 22px; pointer-events: none; }
 .veil div { text-align: center; padding: 18px 34px; border-radius: 22px; background: rgba(43, 26, 12, .9); border: 3px solid var(--gold); box-shadow: 0 16px 40px rgba(0, 0, 0, .5); }
 .veil b { display: block; font: 800 clamp(2rem, 4vw, 3.4rem)/1 'Baloo 2', sans-serif; color: var(--gold); text-shadow: 0 4px 0 #6b3410; }
 .veil small { font-weight: 800; color: var(--cream2); }
@@ -215,7 +215,7 @@ button { font-family: inherit; color: inherit; }
 .qtimer .tf { stroke: #15803d; stroke-linecap: round; stroke-dasharray: 119.4; transition: stroke .3s; }
 .qtimer.hurry .tf { stroke: #dc2626; }
 .qtimer.hurry { animation: hpPulse .5s infinite alternate; }
-.qtimer b { position: absolute; inset: 0; display: grid; place-items: center; font: 800 1rem 'Baloo 2', sans-serif; }
+.qtimer b { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: grid; place-items: center; font: 800 1rem 'Baloo 2', sans-serif; }
 .qbody { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
 .qtext { flex: 0 0 auto; font: 800 var(--qf)/1.28 'Nunito', sans-serif; text-align: center; padding: 4px 4px 10px; text-wrap: balance; }
 .qtext.in { animation: qIn .45s cubic-bezier(.2, .9, .3, 1.2); }

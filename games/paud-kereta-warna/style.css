@@ -1,6 +1,6 @@
 /* Kereta Warna — mewarnai gerbong */
 :root { --kg-a: #2563eb; }
-.sky { position: absolute; inset: 0; background: linear-gradient(#60a5fa, #bfdbfe 60%, #eff6ff); }
+.sky { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(#60a5fa, #bfdbfe 60%, #eff6ff); }
 .sun { position: absolute; right: 3%; top: 24%; font-size: 11vh; animation: kgFloat 5s ease-in-out infinite; }
 .cloud { position: absolute; left: 0; font-size: 9vh; animation: kgDrift 48s linear infinite; }
 .mount { position: absolute; bottom: 44%; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
@@ -15,7 +15,7 @@
 .smoke.s2 { animation-delay: 1.1s; }
 @keyframes puff { 0% { opacity: .9; transform: translate(0, 0) scale(.6); } 100% { opacity: 0; transform: translate(-4vh, -14vh) scale(1.6); } }
 .wagon { position: relative; width: var(--w); min-width: 8vh; max-width: 17vh; height: 13vh; flex: 0 0 auto; }
-.wagon .box { position: absolute; inset: 2.6vh 0 1.6vh; border-radius: 1.4vh; background: #fff; border: .5vh dashed #94a3b8; display: grid; place-items: center; transition: background .5s, border-color .5s; z-index: 1; }
+.wagon .box { position: absolute; top: 2.6vh; right: 0; bottom: 1.6vh; left: 0; border-radius: 1.4vh; background: #fff; border: .5vh dashed #94a3b8; display: grid; place-items: center; transition: background .5s, border-color .5s; z-index: 1; }
 .wagon .box b { font-size: 3vh; color: #94a3b8; }
 .wagon.painted .box { background: var(--wc); border: .5vh solid rgba(0, 0, 0, .15); box-shadow: inset 0 -1vh 0 rgba(0, 0, 0, .18), inset 0 .6vh 0 rgba(255, 255, 255, .35); }
 .wagon.painted .box b { color: rgba(255, 255, 255, .85); }
