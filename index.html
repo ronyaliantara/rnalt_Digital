@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="preload" href="assets/fonts/poppins-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/page.css?v=20261118c">
+  <link rel="stylesheet" href="css/page.css?v=20261118d">
 
   <script type="application/ld+json">
   {
@@ -83,6 +83,7 @@
 
       <nav class="main-nav" id="hamburger-menu" aria-label="Menu utama">
         <a href="#katalog" class="nav-link">Katalog</a>
+        <a href="#game-kamera" class="nav-link" id="nav-kamera" hidden>Game Sensor</a>
         <a href="#modul-ajar" class="nav-link" id="nav-modul" hidden>Modul Ajar</a>
         <a href="#testimoni" class="nav-link" id="nav-testimoni" hidden>Testimoni</a>
         <a href="#cara-order" class="nav-link">Cara Order</a>
@@ -140,6 +141,20 @@
           <div class="skeleton" aria-hidden="true"></div>
           <noscript><p class="empty-state">Aktifkan JavaScript di browser untuk melihat katalog game.</p></noscript>
         </div>
+      </div>
+    </section>
+
+    <!-- Game sensor gerak (kamera) dipisah dari katalog game biasa; tersembunyi bila belum ada -->
+    <section id="game-kamera" class="section kamera-section" aria-labelledby="kamera-title" hidden>
+      <div class="container">
+        <div class="section-head">
+          <div class="catalog-meta">
+            <p class="modul-kicker">📷 Main pakai gerakan tubuh</p>
+            <h2 id="kamera-title">Game Sensor Gerak</h2>
+          </div>
+          <p>Siswa menjawab dengan <strong>bergerak di depan layar</strong>: menggerakkan kepala, tangan, atau badan. Gerakan dibaca lewat <strong>kamera</strong> (webcam laptop atau kamera IFP), tanpa alat tambahan.</p>
+        </div>
+        <div id="kamera-grid" class="game-grid" aria-live="polite"></div>
       </div>
     </section>
 
@@ -489,6 +504,6 @@ Pembahasan: Jakarta adalah ibu kota Indonesia.</pre>
   <script src="js/vendor/qrcode.js"></script>
   <script src="js/qris-helper.js"></script>
   <script src="js/store.js?v=20261111a"></script>
-  <script src="js/catalog.js?v=20261117b"></script>
+  <script src="js/catalog.js?v=20261118d"></script>
 </body>
 </html>

@@ -314,10 +314,23 @@
     grid.innerHTML = mods.map(cardHtml).join('');
   }
 
+  // Game sensor gerak (memakai kamera) ditampilkan di bagian sendiri
+  const isKamera = (g) => g && !isModul(g) && (g.kind === 'kamera' || /kinestetik|kamera|pose|sensor/i.test(String(g.category || '')));
+
+  function renderKamera(store) {
+    const sec = $('game-kamera'); const grid = $('kamera-grid'); const nav = $('nav-kamera');
+    if (!sec || !grid) return;
+    const list = store.games.filter(isKamera);
+    sec.hidden = !list.length; if (nav) nav.hidden = !list.length;
+    grid.innerHTML = list.map(cardHtml).join('');
+  }
+
   function renderGrid(store) {
     const grid = $('game-grid');
     renderModules(store);
+    renderKamera(store);
     store = onlyGames(store);
+    store = { ...store, games: store.games.filter((g) => !isKamera(g)) };
     renderLevelTabs(store);
     const games = visibleGames(store);
     grid.innerHTML = games.length
