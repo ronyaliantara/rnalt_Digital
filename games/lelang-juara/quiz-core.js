@@ -270,6 +270,7 @@
   }
   function saveQuestions() { store(KEY(), QC.questions); deck = []; }
   let deck = [];
+  QC.reloadQuestions = function () { loadQuestions(); deck = []; }; // dipakai sinkron soal cloud
   QC.nextQuestion = function () {
     if (!QC.questions.length) return null;
     if (!deck.length) deck = QC.shuffle(QC.questions.map((_, i) => i));

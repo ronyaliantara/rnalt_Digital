@@ -43,6 +43,146 @@
   setInterval(queue, 1500);
   window.__lokamainCompat = { aspectRatio: true, rules: rules.length };
 })();
+/* rnalt_Digital: Sinkron soal per link lisensi (Google Sheets).
+   - Game TIDAK menunggu cloud: soal di perangkat / soal bawaan langsung dipakai.
+   - Cloud dicek di latar belakang; bila ada soal lebih baru, soal diperbarui otomatis.
+   - Soal yang diubah guru disimpan di perangkat dulu, lalu dikirim ke cloud (dicoba ulang bila gagal). */
+(function lokamainSinkronSoal() {
+  var URL_CLOUD = 'https://script.google.com/macros/s/AKfycbwXIE8HIoUHpw7rs-aTlNgEavzsyHtyhaxWlsyOAaQNDZKPswDnPC-bmeo0DvLbycMQ/exec';
+  var LS; try { LS = window.localStorage; } catch (e) { return; }
+  if (!LS || !window.fetch || !window.Storage) return;
+  var m = location.pathname.match(/\/games\/([^\/]+)\//) || location.pathname.match(/\/([^\/]+)\/(?:index\.html)?$/);
+  var slug = m ? m[1].toLowerCase() : '';
+  if (!/^[a-z0-9-]{2,60}$/.test(slug)) return;
+  var KHUSUS = { 'ular-tangga': 'ips_smp_questions_50_v3', 'ekspedisi-kapal': 'ips_ekspedisi_soal_v2' };
+  var st = { status: 'mati', lisensi: '', kunci: '', terakhir: '' };
+  window.__lokamainSync = st;
+  var token = '', lic = '', tPush = null, tUlang = null, sedangKirim = false;
+  var asliSet = Storage.prototype.setItem;
+
+  function kunci() {
+    if (KHUSUS[slug]) return KHUSUS[slug];
+    var Q = window.QuizCore; var id = Q && Q.cfg && Q.cfg.gameId;
+    return id ? 'lokamain_' + id + '_soal_v1' : '';
+  }
+  function baca(k) { try { return LS.getItem(k); } catch (e) { return null; } }
+  function tulis(k, v) { try { asliSet.call(LS, k, v); } catch (e) { /* penuh / diblokir */ } }
+  function meta(k, v) {
+    var mk = 'lokamain_sync_' + k;
+    if (v === undefined) { try { return JSON.parse(baca(mk)) || null; } catch (e) { return null; } }
+    tulis(mk, JSON.stringify(v));
+  }
+
+  // Pantau penyimpanan soal oleh game (tanpa mengubah kode game)
+  Storage.prototype.setItem = function (k, v) {
+    asliSet.call(this, k, v);
+    try { if (this === LS && token && k === st.kunci) diubah(); } catch (e) { /* abaikan */ }
+  };
+
+  function toast(teks, lama) {
+    try {
+      var el = document.getElementById('lokamain-sync-toast');
+      if (!el) {
+        el = document.createElement('div'); el.id = 'lokamain-sync-toast';
+        el.style.cssText = 'position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:2147483000;max-width:92vw;background:rgba(15,23,42,.92);color:#fff;font:600 14px/1.4 system-ui,sans-serif;padding:10px 16px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.3);text-align:center;transition:opacity .3s;pointer-events:none';
+        document.body.appendChild(el);
+      }
+      el.textContent = teks; el.style.opacity = '1';
+      clearTimeout(el._t); el._t = setTimeout(function () { el.style.opacity = '0'; }, lama || 4000);
+    } catch (e) { /* abaikan */ }
+  }
+
+  function minta(opsi, ms) {
+    var ctl = window.AbortController ? new AbortController() : null;
+    var t = setTimeout(function () { if (ctl) ctl.abort(); }, ms || 15000);
+    return fetch(URL_CLOUD, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(opsi), signal: ctl ? ctl.signal : undefined }).then(function (r) { return r.json(); }).then(function (j) { clearTimeout(t); return j; }, function (e) { clearTimeout(t); throw e; });
+  }
+
+  // Muat ulang soal di game yang sedang terbuka
+  function segarkanGame() {
+    try {
+      var Q = window.QuizCore;
+      if (slug === 'ular-tangga' && window.game && window.game.loadQuestions) { window.game.questions = window.game.loadQuestions(); return; }
+      if (slug === 'ekspedisi-kapal') { /* eslint-disable-next-line no-undef */ if (typeof game !== 'undefined' && game && typeof loadQuestions === 'function') game.questions = loadQuestions(); return; }
+      if (Q && Q.reloadQuestions) Q.reloadQuestions();
+    } catch (e) { /* abaikan */ }
+  }
+
+  function diubah() {
+    if (st.status === 'awal') return; // penulisan bawaan saat game baru dibuka, bukan ubahan guru
+    var mt = meta(st.kunci) || {}; mt.kotor = true; mt.lic = lic; meta(st.kunci, mt);
+    clearTimeout(tPush); tPush = setTimeout(kirim, 2500);
+  }
+
+  function kirim() {
+    if (sedangKirim) { clearTimeout(tPush); tPush = setTimeout(kirim, 1500); return; }
+    var k = st.kunci, data = baca(k), mt = meta(k) || {};
+    if (!k || data == null || !mt.kotor) return;
+    sedangKirim = true;
+    minta({ aksi: 'simpan', token: token, game: slug, kunci: k, data: data, basisRev: mt.rev || 0, paksa: true }).then(function (j) {
+      sedangKirim = false;
+      if (j && j.ok) {
+        var masihSama = baca(k) === data;
+        meta(k, { rev: j.rev, lic: lic, kotor: !masihSama });
+        st.status = 'tersinkron'; st.terakhir = 'simpan';
+        if (masihSama) toast('☁️ Soal tersimpan di cloud — otomatis ikut di laptop / IFP lain'); else kirim();
+      } else if (j && j.terlaluBesar) {
+        st.status = 'lokal'; toast('📱 Bank soal terlalu besar untuk cloud. Soal tetap tersimpan di perangkat ini.', 6000);
+      } else gagal();
+    }, function () { sedangKirim = false; gagal(); });
+  }
+
+  function gagal() {
+    st.status = 'lokal';
+    toast('📱 Soal tersimpan di perangkat ini. Akan disinkronkan otomatis saat internet tersedia.', 5000);
+    jadwalUlang();
+  }
+  function jadwalUlang() { clearTimeout(tUlang); tUlang = setTimeout(tarik, 30000); }
+
+  // Ambil soal dari cloud lalu cocokkan dengan perangkat
+  function tarik() {
+    var k = st.kunci;
+    return minta({ aksi: 'ambil', token: token, game: slug }, 12000).then(function (j) {
+      if (!j || !j.ok) throw new Error((j && j.error) || 'gagal');
+      var awan = j.item && j.item[k], lokal = baca(k), mt = meta(k);
+      if (mt && mt.kotor && lokal != null && mt.lic === lic) { st.status = 'tersinkron'; kirim(); return; }
+      if (awan && awan.data != null) {
+        if (mt && mt.lic === lic && mt.rev === awan.rev && lokal === awan.data) { st.status = 'tersinkron'; return; }
+        if (lokal !== awan.data) {
+          if (lokal != null) tulis('lokamain_sync_cadangan_' + k, lokal);
+          tulis(k, awan.data); segarkanGame();
+          toast('☁️ Soal terbaru dimuat dari cloud');
+        }
+        meta(k, { rev: awan.rev, lic: lic, kotor: false }); st.status = 'tersinkron'; st.terakhir = 'muat';
+        return;
+      }
+      // belum ada di cloud: unggah soal perangkat ini bila memang milik lisensi ini (atau belum pernah disinkronkan)
+      if (lokal != null && (!mt || mt.lic === lic)) { meta(k, { rev: 0, lic: lic, kotor: true }); st.status = 'tersinkron'; kirim(); return; }
+      st.status = 'tersinkron';
+    }).catch(function () {
+      st.status = 'lokal'; jadwalUlang();
+    });
+  }
+
+  function mulai(licenseId) {
+    try { token = sessionStorage.getItem('lokamain_verified_token') || ''; } catch (e) { token = ''; }
+    lic = String(licenseId || '').toUpperCase().trim();
+    if (!token || !lic) return;
+    st.lisensi = lic; st.status = 'awal';
+    var n = 0;
+    (function tunggu() { // tunggu mesin game siap (nama kunci soal diketahui)
+      st.kunci = kunci();
+      if (!st.kunci) { if (++n < 40) return setTimeout(tunggu, 250); st.status = 'mati'; return; }
+      tarik();
+    })();
+  }
+  window.__lokamainSinkron = mulai;
+  window.addEventListener('online', function () {
+    if (!token || !st.kunci) return;
+    var mt = meta(st.kunci);
+    if (mt && mt.kotor) kirim(); else if (st.status === 'lokal') tarik();
+  });
+})();
 /**
  * rnalt_Digital - Engine Pengaman Lisensi & Anti-Pembajakan Otomatis
  * Pasang di game apa pun dengan menambahkan 1 baris sebelum </body>:
@@ -407,6 +547,7 @@
     if (gate) gate.style.display = 'none';
 
     updateBadge(buyerName, licenseKey);
+    try { if (window.__lokamainSinkron) window.__lokamainSinkron(licenseKey); } catch (_) {}
     claimActiveSession();
     listenRemoteSessions();
   }
