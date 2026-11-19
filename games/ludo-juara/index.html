@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ludo Juara Nusantara — Game Edukasi 4 Pemain</title>
+  
+  <!-- Font Orbitron & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- QuizCore & Ludo Styles -->
+  <link rel="stylesheet" href="quiz-core.css?v=20261119a">
+  <link rel="stylesheet" href="style.css?v=20261119a">
+</head>
+<body>
+  <!-- Header / HUD Atas -->
+  <header class="ludo-header">
+    <div class="brand-wrap">
+      <span class="brand-icon">🎲</span>
+      <h1 class="brand-name">LUDO JUARA</h1>
+    </div>
+
+    <!-- Banner Giliran Pemain Aktif -->
+    <div id="turnBanner" class="turn-banner turn-p0">
+      <span id="turnBannerAvatar" class="turn-avatar">🔴</span>
+      <span id="turnBannerText">GILIRAN REGU MERAH</span>
+    </div>
+
+    <!-- Tombol Navigasi & Pengaturan -->
+    <div class="header-tools">
+      <button class="tool-btn" data-qc="sound" title="Suara Musik & Efek">🔊</button>
+      <button class="tool-btn" data-qc="fullscreen" title="Layar Penuh">⛶</button>
+      <button id="btnTogglePlayers" class="tool-btn" title="Ganti Jumlah Pemain">👥 4 Pemain</button>
+      <button id="btnToggleBot" class="tool-btn" title="Mode AI Bot vs Manusia">🤖 Lawan Bot AI</button>
+      <button id="btnRules" class="tool-btn" title="Peraturan Permainan">📜 Aturan</button>
+      <button class="tool-btn btn-teacher" data-qc="teacher" title="Mode Guru (Kelola Soal)">⚙️ Guru</button>
+    </div>
+  </header>
+
+  <!-- Notifikasi Toast Tendang / Info Khusus -->
+  <div id="toastKick" class="toast-kick"></div>
+
+  <!-- Area Permainan -->
+  <main class="game-container">
+    <!-- Panel Kiri: Regu Merah (P0) & Regu Biru (P3) -->
+    <aside class="side-panel">
+      <div id="playerCard0" class="player-card" style="--p-color: var(--red);">
+        <div class="p-header">
+          <span class="p-avatar">🔴</span>
+          <span class="p-title">Regu Merah</span>
+        </div>
+        <div class="p-stats-row">
+          <span>Kandang: <b id="p0BaseCount">2</b></span>
+          <span>Finis: <b id="p0GoalCount">0</b></span>
+        </div>
+      </div>
+
+      <div id="playerCard3" class="player-card" style="--p-color: var(--blue);">
+        <div class="p-header">
+          <span class="p-avatar">🔵</span>
+          <span class="p-title">Regu Biru</span>
+        </div>
+        <div class="p-stats-row">
+          <span>Kandang: <b id="p3BaseCount">2</b></span>
+          <span>Finis: <b id="p3GoalCount">0</b></span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Area Tengah: Papan Ludo 15x15 & Dadu Dock -->
+    <section class="center-area">
+      <div id="boardWrapper" class="board-wrapper">
+        <canvas id="ludoCanvas"></canvas>
+      </div>
+
+      <div class="dice-dock">
+        <button id="diceBtn" type="button" class="dice-cube-btn" title="Klik atau tekan Spasi untuk lempar dadu">
+          <span id="diceFace" class="dice-face">🎲</span>
+        </button>
+        <div class="dice-dock-col">
+          <div id="diceHintText" class="dice-hint-text">Klik Dadu / Tekan Spasi</div>
+          <div class="dice-btn-row">
+            <button id="btnGateQuiz" type="button" class="btn-gate-quiz" onclick="window.triggerGateQuiz()" title="Jawab soal untuk langsung mengeluarkan pion ke petak awal">
+              ⚡ Jawab Soal (Buka Gerbang)
+            </button>
+            <button id="btnBonusQuiz" type="button" class="btn-bonus-quiz" onclick="window.triggerBonusQuiz()" title="Jawab soal kuis untuk dapat Dadu Super (Angka 6)">
+              ⭐ Kuis Cerdas (Dadu Super)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel Kanan: Regu Hijau (P1) & Regu Kuning (P2) -->
+    <aside class="side-panel">
+      <div id="playerCard1" class="player-card" style="--p-color: var(--green);">
+        <div class="p-header">
+          <span class="p-avatar">🟢</span>
+          <span class="p-title">Regu Hijau</span>
+        </div>
+        <div class="p-stats-row">
+          <span>Kandang: <b id="p1BaseCount">2</b></span>
+          <span>Finis: <b id="p1GoalCount">0</b></span>
+        </div>
+      </div>
+
+      <div id="playerCard2" class="player-card" style="--p-color: var(--yellow);">
+        <div class="p-header">
+          <span class="p-avatar">🟡</span>
+          <span class="p-title">Regu Kuning</span>
+        </div>
+        <div class="p-stats-row">
+          <span>Kandang: <b id="p2BaseCount">2</b></span>
+          <span>Finis: <b id="p2GoalCount">0</b></span>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Modal Kuis Petak Bintang ⭐ & Gerbang -->
+  <div id="starQuizModal" class="ludo-modal-overlay">
+    <div class="ludo-modal-card">
+      <div class="quiz-badge-star">⭐</div>
+      <h2 class="quiz-title">TANTANGAN KUIS BINTANG</h2>
+      <p id="quizSubTitle" class="quiz-sub">Jawab dengan tepat untuk memperoleh booster!</p>
+      
+      <div id="quizQuestionText" class="quiz-box">Pertanyaan kuis sedang dimuat...</div>
+      
+      <div id="quizOptionsList" class="quiz-opts"></div>
+
+      <div id="quizFeedback" class="quiz-feedback-box"></div>
+    </div>
+  </div>
+
+  <!-- Script Modules -->
+  <script src="questions-default.js?v=20261119a"></script>
+  <script src="quiz-core.js?v=20261119a"></script>
+  <script src="tempel-soal.js?v=20261119a"></script>
+  <script src="game.js?v=20261119a"></script>
+  <script src="../lokamain-license.js?v=20261119a"></script>
+</body>
+</html>

@@ -1,0 +1,645 @@
+/* ==========================================================================
+   style.css — Ludo Juara (Ludo Edukasi 4 Pemain)
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:root {
+  --bg-main: #0b1120;
+  --bg-board: #0f172a;
+  --board-border: #334155;
+  --tile-border: #1e293b;
+  --tile-bg: #1e293b;
+  
+  /* Warna 4 Pemain */
+  --red: #ef4444;
+  --red-light: #f87171;
+  --red-dark: #b91c1c;
+
+  --green: #10b981;
+  --green-light: #34d399;
+  --green-dark: #047857;
+
+  --yellow: #f59e0b;
+  --yellow-light: #fbbf24;
+  --yellow-dark: #d97706;
+
+  --blue: #3b82f6;
+  --blue-light: #60a5fa;
+  --blue-dark: #1d4ed8;
+
+  --gold: #facc15;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-main);
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* ---------------- HUD ATAS & NAVIGASI ---------------- */
+.ludo-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 100;
+}
+
+.brand-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  font-size: 28px;
+  filter: drop-shadow(0 2px 6px rgba(250, 204, 21, 0.4));
+}
+
+.brand-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 19px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  background: linear-gradient(180deg, #fef08a 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.turn-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #1e293b;
+  border: 2px solid #334155;
+  border-radius: 99px;
+  padding: 5px 16px;
+  font-size: 13.5px;
+  font-weight: 800;
+  transition: all 0.25s ease;
+}
+
+.turn-banner.turn-p0 { border-color: var(--red); color: var(--red-light); box-shadow: 0 0 12px rgba(239, 68, 68, 0.35); }
+.turn-banner.turn-p1 { border-color: var(--green); color: var(--green-light); box-shadow: 0 0 12px rgba(16, 185, 129, 0.35); }
+.turn-banner.turn-p2 { border-color: var(--yellow); color: var(--yellow-light); box-shadow: 0 0 12px rgba(245, 158, 11, 0.35); }
+.turn-banner.turn-p3 { border-color: var(--blue); color: var(--blue-light); box-shadow: 0 0 12px rgba(59, 130, 246, 0.35); }
+
+.turn-avatar {
+  font-size: 20px;
+}
+
+.header-tools {
+  display: flex;
+  gap: 8px;
+}
+
+.tool-btn {
+  background: #1e293b;
+  color: #e2e8f0;
+  border: 1.5px solid #334155;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.tool-btn:hover {
+  background: #334155;
+  color: #fff;
+  border-color: #64748b;
+}
+
+.tool-btn.btn-teacher {
+  background: #0284c7;
+  border-color: #38bdf8;
+  color: #fff;
+}
+
+.tool-btn.btn-teacher:hover {
+  background: #0369a1;
+}
+
+/* ---------------- AREA UTAMA: PAPAN & KARTU PEMAIN ---------------- */
+.game-container {
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 14px;
+  background: radial-gradient(circle at center, #131d33 0%, #0b1120 100%);
+}
+
+/* Panel Samping (Kiri & Kanan untuk Info Pemain) */
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  max-height: 640px;
+  width: 170px;
+  flex-shrink: 0;
+}
+
+.player-card {
+  background: rgba(30, 41, 59, 0.85);
+  border: 2px solid var(--p-color);
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0.55;
+}
+
+.player-card.is-active {
+  opacity: 1;
+  transform: scale(1.04);
+  box-shadow: 0 0 16px var(--p-color);
+}
+
+.player-card.is-disabled {
+  display: none;
+}
+
+.p-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.p-avatar {
+  font-size: 22px;
+}
+
+.p-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--p-color);
+}
+
+.p-stats-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.p-pawn-indicator {
+  display: flex;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.pawn-pip {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #475569;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pawn-pip.home { background: var(--p-color); }
+.pawn-pip.fin { background: #facc15; box-shadow: 0 0 6px #facc15; }
+
+/* ---------------- AREA TENGAH: PAPAN & KONTROL DADU ---------------- */
+.center-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+  gap: 12px;
+}
+
+.board-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+#ludoCanvas {
+  display: block;
+  background: var(--bg-board);
+  border-radius: 18px;
+  border: 3.5px solid #334155;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 32px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+/* ---------------- KONTROL DADU DI TENGAH (DICE DOCK) ---------------- */
+.dice-dock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  pointer-events: auto;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.85);
+  border: 2px solid #334155;
+  border-radius: 20px;
+  padding: 8px 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.dice-dock-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.dice-btn-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Tombol Buka Gerbang via Kuis */
+.btn-gate-quiz {
+  background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%);
+  border: 2px solid #fef08a;
+  color: #fff;
+  border-radius: 99px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.4);
+  transition: transform 0.1s, filter 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-gate-quiz:hover {
+  filter: brightness(1.15);
+  transform: scale(1.04);
+}
+
+.btn-gate-quiz:active {
+  transform: scale(0.96);
+}
+
+/* Tombol Kuis Cerdas (Dadu Super) */
+.btn-bonus-quiz {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  border: 2px solid #7dd3fc;
+  color: #fff;
+  border-radius: 99px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(2, 132, 199, 0.4);
+  transition: transform 0.1s, filter 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-bonus-quiz:hover {
+  filter: brightness(1.15);
+  transform: scale(1.04);
+}
+
+.btn-bonus-quiz:active {
+  transform: scale(0.96);
+}
+
+.dice-cube-btn {
+  width: 82px;
+  height: 82px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 4px solid #cbd5e1;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), inset 0 -4px 6px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
+  outline: none;
+}
+
+.dice-cube-btn:active {
+  transform: scale(0.92);
+}
+
+.dice-cube-btn.is-rolling {
+  animation: diceRollAnim 0.65s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes diceRollAnim {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.1); }
+  50% { transform: rotate(180deg) scale(0.95); }
+  75% { transform: rotate(270deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.dice-face {
+  font-size: 46px;
+  font-weight: 900;
+  line-height: 1;
+  color: #0f172a;
+}
+
+.dice-hint-text {
+  background: rgba(15, 23, 42, 0.92);
+  border: 1.5px solid #475569;
+  border-radius: 99px;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fde68a;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+/* ---------------- MODAL KUIS PETAK BINTANG ⭐ ---------------- */
+.ludo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 17, 32, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 250;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.ludo-modal-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ludo-modal-card {
+  background: #1e293b;
+  border: 3px solid #f59e0b;
+  border-radius: 22px;
+  width: 100%;
+  max-width: 540px;
+  padding: 26px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 32px rgba(245, 158, 11, 0.25);
+  color: #fff;
+  text-align: center;
+  transform: translateY(14px) scale(0.96);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ludo-modal-overlay.is-visible .ludo-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.quiz-badge-star {
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: 8px;
+  animation: starGlow 1s infinite alternate;
+}
+
+@keyframes starGlow {
+  from { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.4)); }
+  to { transform: scale(1.12) rotate(6deg); filter: drop-shadow(0 0 20px rgba(250, 204, 21, 0.8)); }
+}
+
+.quiz-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 21px;
+  font-weight: 900;
+  color: #fef08a;
+  margin-bottom: 4px;
+}
+
+.quiz-sub {
+  font-size: 13.5px;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+.quiz-box {
+  background: #0f172a;
+  border: 2px solid #334155;
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #fef9c3;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.quiz-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.quiz-opt-btn {
+  background: #334155;
+  border: 2px solid #475569;
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  transition: all 0.15s ease;
+}
+
+.quiz-opt-btn:hover {
+  background: #475569;
+  border-color: #facc15;
+  transform: translateX(4px);
+}
+
+.quiz-opt-letter {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #0284c7;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.quiz-feedback-box {
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  display: none;
+  line-height: 1.45;
+}
+
+.quiz-feedback-box.success {
+  display: block;
+  background: rgba(22, 101, 52, 0.4);
+  border: 2px solid #22c55e;
+  color: #86efac;
+}
+
+.quiz-feedback-box.fail {
+  display: block;
+  background: rgba(153, 27, 27, 0.4);
+  border: 2px solid #ef4444;
+  color: #fca5a5;
+}
+
+/* ---------------- FLOATING BANNER / NOTIFIKASI TENDANG ---------------- */
+.toast-kick {
+  position: absolute;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: rgba(225, 29, 72, 0.95);
+  border: 2px solid #fda4af;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 99px;
+  font-size: 13.5px;
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgba(225, 29, 72, 0.5);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.25s ease;
+  z-index: 180;
+}
+
+.toast-kick.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------------- RESPONSIVE MEDIA QUERIES ---------------- */
+@media (max-width: 960px) {
+  .game-container {
+    flex-direction: column;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .side-panel {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .player-card {
+    padding: 6px 10px;
+    min-width: 130px;
+  }
+
+  .p-avatar {
+    font-size: 18px;
+  }
+
+  .p-title {
+    font-size: 11.5px;
+  }
+
+  .dice-dock {
+    padding: 6px 12px;
+    gap: 10px;
+  }
+
+  .dice-cube-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+  }
+
+  .dice-face {
+    font-size: 36px;
+  }
+
+  .dice-hint-text {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .btn-gate-quiz {
+    font-size: 10.5px;
+    padding: 4px 10px;
+  }
+
+  .ludo-header {
+    height: 56px;
+    padding: 0 10px;
+  }
+
+  .game-container {
+    top: 56px;
+  }
+
+  .brand-name {
+    font-size: 16px;
+  }
+
+  .turn-banner {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+
+  .tool-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+}
+
