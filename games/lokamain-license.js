@@ -164,8 +164,9 @@
     });
   }
 
-  function mulai(licenseId) {
-    try { token = sessionStorage.getItem('lokamain_verified_token') || ''; } catch (e) { token = ''; }
+  // cloudToken = token format lama (dibuat ulang oleh mesin lisensi) karena cloud masih memeriksa format itu
+  function mulai(licenseId, cloudToken) {
+    token = String(cloudToken || '');
     lic = String(licenseId || '').toUpperCase().trim();
     if (!token || !lic) return;
     st.lisensi = lic; st.status = 'awal';
@@ -187,12 +188,24 @@
  * rnalt_Digital - Engine Pengaman Lisensi & Anti-Pembajakan Otomatis
  * Pasang di game apa pun dengan menambahkan 1 baris sebelum </body>:
  * <script src="../lokamain-license.js"></script>
+ *
+ * Link versi baru: token = base64url("KODE|Nama|nama-folder-game") + "." + tanda tangan ECDSA P-256.
+ * - Tanda tangan dibuat dengan kunci PRIVAT yang hanya ada di laptop admin, jadi tidak bisa dipalsukan.
+ * - Nama folder game ikut ditandatangani: link hanya membuka game yang dibeli.
+ * Link versi lama (tanpa titik) masih diterima sampai LINK_LAMA_BERLAKU_SAMPAI.
  */
 (function initLokaMainLicenseEngine() {
   'use strict';
 
-  const SECRET = 'LOKAMAIN_SECURE_AUTH_KEY_2026_V1';
+  const SECRET = 'LOKAMAIN_SECURE_AUTH_KEY_2026_V1'; // hanya untuk link lama & sinkron cloud (format lama)
   const WA_NUMBER = '6287881258019';
+  // Link lama (dibuat sebelum sistem baru) masih bisa dipakai sampai tanggal ini (WIB). Setelahnya ditolak.
+  const LINK_LAMA_BERLAKU_SAMPAI = new Date('2027-01-01T00:00:00+07:00').getTime();
+  const SCRIPT_SRC = (document.currentScript && document.currentScript.src) || '';
+  const GAME_SLUG = (() => {
+    const m = location.pathname.match(/\/games\/([^\/]+)\//) || location.pathname.match(/\/([^\/]+)\/(?:index\.html)?$/);
+    return m ? decodeURIComponent(m[1]).toLowerCase() : '';
+  })();
 
   function detectDeviceType() {
     const ua = navigator.userAgent.toLowerCase();
@@ -247,7 +260,97 @@
       } catch (e) {
         return null;
       }
+    },
+
+    toBase64Url(str) {
+      let bin;
+      try { bin = unescape(encodeURIComponent(str)); } catch (e) { bin = str; }
+      return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    },
+
+    // Token format lama untuk sinkron soal di cloud (sama persis dengan buatan Aplikasi Admin versi lama)
+    makeLegacyToken(licenseId, buyerName) {
+      const lic = String(licenseId || '').trim().toUpperCase();
+      const name = String(buyerName || '').trim();
+      const sig = this.computeHash(`${lic}|${name}|${SECRET}`);
+      const payload = JSON.stringify({ l: lic, n: name, s: sig, t: Date.now() });
+      return this.toBase64Url(this.xorCipher(payload, SECRET));
     }
+  };
+
+  // ---------------- Link versi baru (ECDSA) ----------------
+  function b64urlToBytes(s) {
+    let str = String(s).replace(/-/g, '+').replace(/_/g, '/');
+    while (str.length % 4) str += '=';
+    const bin = atob(str);
+    const out = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+
+  const PUBKEY_CACHE = 'lokamain_lisensi_publik_v1';
+  function loadPublicJwk() {
+    const cached = () => { try { return JSON.parse(localStorage.getItem(PUBKEY_CACHE)) || null; } catch (_) { return null; } };
+    let url = '';
+    try { url = new URL('lisensi-publik.json', SCRIPT_SRC || location.href.replace(/[^\/]*$/, '../')).href; } catch (_) { return Promise.resolve(cached()); }
+    return fetch(url, { cache: 'no-cache' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((jwk) => {
+        if (jwk && jwk.x && jwk.y) {
+          try { localStorage.setItem(PUBKEY_CACHE, JSON.stringify(jwk)); } catch (_) {}
+          return jwk;
+        }
+        return cached();
+      })
+      .catch(() => cached());
+  }
+
+  // Hasil: { licenseId, buyerName, cloudToken } atau { error: 'pesan' }
+  async function verifyNewToken(token) {
+    const parts = String(token).trim().split('.');
+    if (parts.length !== 2 || !parts[0] || !parts[1]) return { error: 'invalid' };
+    let fields;
+    try {
+      fields = new TextDecoder().decode(b64urlToBytes(parts[0])).split('|');
+    } catch (_) { return { error: 'invalid' }; }
+    if (fields.length !== 3 || !fields[0]) return { error: 'invalid' };
+    const [licenseId, name, game] = fields;
+
+    const subtle = window.crypto && window.crypto.subtle;
+    if (subtle && window.TextEncoder) {
+      const jwk = await loadPublicJwk();
+      if (!jwk) return { error: 'nokey' };
+      try {
+        const key = await subtle.importKey('jwk', { kty: 'EC', crv: 'P-256', x: jwk.x, y: jwk.y, ext: true }, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
+        const ok = await subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, key, b64urlToBytes(parts[1]), new TextEncoder().encode(parts[0]));
+        if (!ok) return { error: 'invalid' };
+      } catch (_) {
+        return { error: 'invalid' };
+      }
+    }
+    // Browser sangat lama tanpa WebCrypto (sebagian IFP/Smart TV lama): tanda tangan tidak bisa diperiksa,
+    // tetapi aturan "satu link = satu game" tetap berlaku.
+
+    if (!GAME_SLUG || game !== GAME_SLUG) return { error: 'beda-game' };
+    const buyerName = name || 'Pembeli Resmi';
+    return { licenseId, buyerName, cloudToken: LOKAMAIN_SECURITY.makeLegacyToken(licenseId, buyerName) };
+  }
+
+  async function verifyAnyToken(token) {
+    const t = String(token || '').trim();
+    if (!t) return { error: 'invalid' };
+    if (t.includes('.')) return verifyNewToken(t);
+    const old = LOKAMAIN_SECURITY.verifyAndDecodeToken(t);
+    if (!old) return { error: 'invalid' };
+    if (Date.now() >= LINK_LAMA_BERLAKU_SAMPAI) return { error: 'lama' };
+    return { licenseId: old.licenseId, buyerName: old.buyerName, cloudToken: t };
+  }
+
+  const ERR_TEXT = {
+    invalid: '⚠️ Link / token tidak valid. Buka game dari link resmi yang dikirim Admin.',
+    'beda-game': '⚠️ Link ini untuk game lain. Buka game dari link yang dikirim Admin untuk game ini.',
+    lama: '⚠️ Link versi lama sudah tidak berlaku. Minta link baru ke Admin via WhatsApp (gratis).',
+    nokey: '⚠️ Tidak bisa memeriksa lisensi. Periksa koneksi internet lalu muat ulang halaman.'
   };
 
   let licenseKey = '';
@@ -539,7 +642,7 @@
     claimActiveSession();
   }
 
-  function grantAccess(key, name) {
+  function grantAccess(key, name, cloudToken) {
     licenseKey = (key || '').toUpperCase().trim();
     buyerName = name || 'Pembeli Resmi';
 
@@ -547,68 +650,71 @@
     if (gate) gate.style.display = 'none';
 
     updateBadge(buyerName, licenseKey);
-    try { if (window.__lokamainSinkron) window.__lokamainSinkron(licenseKey); } catch (_) {}
+    try { if (window.__lokamainSinkron) window.__lokamainSinkron(licenseKey, cloudToken); } catch (_) {}
     claimActiveSession();
     listenRemoteSessions();
   }
 
-  function startEvaluation() {
+  async function startEvaluation() {
     injectSecurityUI();
 
     document.getElementById('lokamain-reclaim-btn')?.addEventListener('click', resumeSession);
+
+    const input = document.getElementById('lokamain-gate-input');
+    const btn = document.getElementById('lokamain-gate-btn');
+    const err = document.getElementById('lokamain-gate-err');
+    const showErr = (code) => {
+      if (!err) return;
+      err.textContent = ERR_TEXT[code] || ERR_TEXT.invalid;
+      err.style.display = 'block';
+    };
+    // Token disimpan per game, jadi token game A tidak ikut terpakai saat membuka game B di tab yang sama.
+    const CACHE_KEY = 'lokamain_verified_token_' + GAME_SLUG;
 
     const params = new URLSearchParams(window.location.search);
     // Hanya TOKEN resmi (link dari Aplikasi Admin) yang membuka game.
     // Link boleh disalin & dibuka di perangkat mana pun; pemakaian bersamaan dicegah oleh fitur anti-dobel.
     const rawToken = params.get('token') || params.get('auth');
+    let cachedToken = null;
+    try { cachedToken = sessionStorage.getItem(CACHE_KEY); } catch (_) {}
+    const firstToken = rawToken || cachedToken;
 
-    if (rawToken) {
-      const verified = LOKAMAIN_SECURITY.verifyAndDecodeToken(rawToken);
-      if (verified) {
+    if (firstToken) {
+      const res = await verifyAnyToken(firstToken);
+      if (!res.error) {
         try {
-          sessionStorage.setItem('lokamain_verified_token', rawToken);
-          window.history.replaceState({}, document.title, window.location.pathname);
+          sessionStorage.setItem(CACHE_KEY, firstToken);
+          if (rawToken) window.history.replaceState({}, document.title, window.location.pathname);
         } catch (_) {}
-        grantAccess(verified.licenseId, verified.buyerName);
+        grantAccess(res.licenseId, res.buyerName, res.cloudToken);
         return;
       }
-    } else {
-      let cachedToken = null;
-      try { cachedToken = sessionStorage.getItem('lokamain_verified_token'); } catch (_) {}
-      if (cachedToken) {
-        const verified = LOKAMAIN_SECURITY.verifyAndDecodeToken(cachedToken);
-        if (verified) {
-          grantAccess(verified.licenseId, verified.buyerName);
-          return;
-        }
-      }
+      try { if (!rawToken) sessionStorage.removeItem(CACHE_KEY); } catch (_) {}
+      if (rawToken) showErr(res.error);
     }
 
     // Gerbang kunci tetap aktif
-    const input = document.getElementById('lokamain-gate-input');
-    const btn = document.getElementById('lokamain-gate-btn');
-    const err = document.getElementById('lokamain-gate-err');
-
-    const tryUnlock = () => {
+    let busy = false;
+    const tryUnlock = async () => {
+      if (busy) return;
       let val = (input?.value || '').trim();
       if (!val) {
         if (err) { err.textContent = '⚠️ Masukkan kode lisensi atau tempel link Anda!'; err.style.display = 'block'; }
         return;
       }
       if (val.includes('token=')) {
-        const m = val.match(/token=([a-zA-Z0-9_-]+)/);
+        const m = val.match(/token=([a-zA-Z0-9_.-]+)/);
         if (m && m[1]) val = m[1];
       }
-      const verified = LOKAMAIN_SECURITY.verifyAndDecodeToken(val);
-      if (verified) {
-        try { sessionStorage.setItem('lokamain_verified_token', val); } catch (_) {}
-        grantAccess(verified.licenseId, verified.buyerName);
+      busy = true;
+      const res = await verifyAnyToken(val);
+      busy = false;
+      if (!res.error) {
+        try { sessionStorage.setItem(CACHE_KEY, val); } catch (_) {}
+        grantAccess(res.licenseId, res.buyerName, res.cloudToken);
         return;
       }
-      if (err) {
-        err.textContent = '⚠️ Link / token tidak valid. Buka game dari link resmi yang dikirim Admin.';
-        err.style.display = 'block';
-      }
+      showErr(res.error);
     };
 
     btn?.addEventListener('click', tryUnlock);
