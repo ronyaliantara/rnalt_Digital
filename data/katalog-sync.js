@@ -1,5 +1,5 @@
 window.LOKAMAIN_LIVE_DATA = {
-  "updatedAt": 1794904861549,
+  "updatedAt": 1795154153301,
   "settings": {
     "storeName": "rnalt_Digital",
     "siteSubtitle": "Pilih game pembelajaran digital, lalu klik tombol WhatsApp di bawahnya untuk memesan.",
@@ -17,6 +17,44 @@ window.LOKAMAIN_LIVE_DATA = {
     "sellerTemplate": "Halo Kak {buyerName}, terima kasih sudah memesan di {storeName}!\n\nBerikut akses game pembelajaran digital pesanan Anda:\nJudul Game: {title} ({code})\nLink Akses Game: {gameUrl}\n\nCara Pakai:\n1. Klik link di atas melalui browser HP, tablet, atau laptop.\n2. Game langsung berjalan tanpa instalasi tambahan.\n3. Simpan link ini untuk digunakan kembali kapan saja.\n\nSelamat bermain dan belajar!"
   },
   "games": [
+    {
+      "id": "LM-PJ",
+      "code": "SERI-PJ",
+      "title": "Pacu Jalur",
+      "category": "Kuis Dayung Berirama 2–4 Tim (Soal Bisa Diubah)",
+      "grade": "✏️ Soal Bisa Diubah",
+      "duration": "15–30 menit",
+      "device": "Smart TV / IFP (layar sentuh), Laptop & Proyektor",
+      "price": 30000,
+      "originalPrice": 40000,
+      "image": "assets/games/game-pacu-jalur-cover.jpg",
+      "coverImage": "assets/games/game-pacu-jalur-cover.jpg",
+      "coverHd": "",
+      "shortDesc": "Lomba perahu jalur di kelas! 2–4 tim menjawab soal untuk menambah pendayung, lalu mendayung serempak mengikuti irama gendang. Ketukan PAS bikin perahu melaju, asal-asalan bikin oleng. 4× PAS beruntun = AURA, penari haluan beraksi! (SOAL BISA DI UBAH)",
+      "howToPlay": [
+        "Bagi kelas menjadi 2–4 tim. Soal muncul untuk semua tim sekaligus, tiap tim menjawab di pad masing-masing.",
+        "Jawaban benar menambah pendayung (jawab cepat = lebih banyak). Makin banyak pendayung, makin kuat perahu.",
+        "Di babak DAYUNG, ketuk tombol tepat pada bunyi gendang. Perahu pertama yang melewati garis finis menang!"
+      ],
+      "learningGoals": [
+        "Mengulang materi pelajaran dengan suasana lomba yang seru dan kompak.",
+        "Melatih kecepatan berpikir, kerja sama tim, dan konsentrasi mengikuti irama.",
+        "Mengenalkan budaya Pacu Jalur dari Riau. Soal bisa diganti guru lewat Tempel Soal, AI, atau Excel (Mode Guru)."
+      ],
+      "gameUrl": "games/pacu-jalur/",
+      "sampleQuestion": "Pacu Jalur adalah tradisi lomba perahu dari provinsi...",
+      "sampleOptions": [
+        "Riau",
+        "Bali",
+        "Papua",
+        "Aceh"
+      ],
+      "sampleAnswer": 0,
+      "levels": [
+        "SMP",
+        "SMA"
+      ]
+    },
     {
       "id": "LM-LK",
       "code": "SERI-LK",
