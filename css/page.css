@@ -1477,6 +1477,20 @@ a {
   gap: 12px;
 }
 
+/* Tombol "Coba Main Gratis" (Mode Coba game asli) — paling menonjol di halaman detail */
+.btn-coba {
+  order: -1;
+  flex: 1 1 100%;
+  min-height: 56px;
+  font-size: 17px;
+  color: #fff;
+  background: #2f5fe8;
+}
+
+.btn-coba:hover {
+  background: #2550cc;
+}
+
 .quiz-panel {
   position: sticky;
   top: 96px;

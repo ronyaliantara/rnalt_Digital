@@ -101,9 +101,22 @@
   $('play-order').addEventListener('click', () => {
     location.href = `index.html?pesan=${encodeURIComponent(game.id)}#katalog`;
   });
+  // Tombol "Coba Main Gratis": membuka GAME ASLI dalam Mode Coba (dibatasi oleh games/lokamain-license.js).
+  // Muncul otomatis untuk game di folder games/ yang memakai mesin kuis (quiz-core), kecuali dimatikan di Aplikasi Admin.
+  const COBA_TIDAK_DUKUNG = ['ular-tangga', 'ekspedisi-kapal', 'modul-tata-surya'];
   const direct = $('play-launch-direct');
   const gu = safe(game.gameUrl);
-  if (gu && !gu.startsWith('play.html')) { direct.href = gu; direct.hidden = false; }
+  const slugM = String(gu || '').match(/^(?:\.?\/)?games\/([a-z0-9-]+)\/?(?:index\.html)?$/i);
+  const isModul = game.kind === 'modul' || /^modul ajar/i.test(String(game.category || ''));
+  if (slugM && game.trial !== false && !isModul && !COBA_TIDAK_DUKUNG.includes(slugM[1].toLowerCase())) {
+    direct.href = `games/${slugM[1].toLowerCase()}/?coba=1`;
+    direct.innerHTML = '🎮 Coba Main Gratis';
+    direct.className = 'btn btn-coba';
+    direct.title = 'Main game aslinya: 5 soal contoh, tanpa daftar';
+    direct.hidden = false;
+  } else {
+    direct.hidden = true;
+  }
 
   /* ================= Coba main dulu: ilustrasi mini + soal asli game ================= */
   const N_MAX = 4;

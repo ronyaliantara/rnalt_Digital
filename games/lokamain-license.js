@@ -593,6 +593,143 @@
     claimActiveSession();
   }
 
+  // ---------------- MODE COBA (uji coba gratis dari halaman detail game) ----------------
+  // Game ASLI dibuka tanpa link pembeli, tetapi dibatasi:
+  // - hanya soal bawaan (soal milik pembeli di perangkat ini tidak dibaca/diubah),
+  // - maksimal COBA_SOAL soal atau COBA_MENIT menit (mana yang lebih dulu),
+  // - Mode Guru terkunci, tidak ada sinkron cloud,
+  // - 1x per perangkat per game (disimpan di browser; bisa diulang bila data browser dihapus).
+  // Berlaku otomatis untuk semua game yang memakai quiz-core.js (QuizCore.nextQuestion).
+  const COBA_SOAL = 5;
+  const COBA_MENIT = 10;
+  const COBA_KEY = 'lokamain_coba_v1_' + GAME_SLUG;
+
+  function cobaBaca() { try { return JSON.parse(localStorage.getItem(COBA_KEY)) || {}; } catch (_) { return {}; } }
+  function cobaTulis(v) { try { localStorage.setItem(COBA_KEY, JSON.stringify(v)); } catch (_) {} }
+
+  function cobaInfoGame() {
+    let url = '';
+    try { url = new URL('../data/games.json', SCRIPT_SRC || location.href).href; } catch (_) { return Promise.resolve(null); }
+    return fetch(url, { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : null)).then((d) => {
+      const games = (d && Array.isArray(d.games)) ? d.games : [];
+      const g = games.find((x) => x && new RegExp('(^|/)games/' + GAME_SLUG + '/?($|[?#])').test(String(x.gameUrl || '')));
+      return { game: g || null, wa: (d && d.settings && d.settings.whatsappNumber) || WA_NUMBER };
+    }).catch(() => null);
+  }
+
+  function cobaLinkWeb(path) {
+    try { return new URL('../' + path, SCRIPT_SRC || location.href).href; } catch (_) { return '/' + path; }
+  }
+
+  // Jendela Mode Coba (selesai / tidak tersedia / Mode Guru terkunci)
+  function cobaModal(jenis, info, bisaTutup) {
+    const lama = document.getElementById('lokamain-coba-modal');
+    if (lama) lama.remove();
+    const g = info && info.game;
+    const judul = g && g.title ? g.title : 'game ini';
+    const pesan = g && g.id ? cobaLinkWeb('index.html?pesan=' + encodeURIComponent(g.id) + '#katalog') : cobaLinkWeb('index.html#katalog');
+    const detail = g && g.id ? cobaLinkWeb('play.html?id=' + encodeURIComponent(g.id)) : cobaLinkWeb('index.html#katalog');
+    const wa = String((info && info.wa) || WA_NUMBER).replace(/\D+/g, '');
+    const waUrl = 'https://wa.me/' + wa + '?text=' + encodeURIComponent('Halo Admin, saya sudah mencoba game "' + judul + '" dan ingin bertanya.');
+    const TEKS = {
+      selesai: ['🎉', 'Uji coba selesai!', 'Anda sudah mencoba <b>' + judul.replace(/[<>&"]/g, '') + '</b>. Suka? Versi lengkap bisa langsung dipakai di kelas atau di rumah.'],
+      terpakai: ['⏳', 'Uji coba sudah dipakai', 'Uji coba gratis untuk game ini sudah dipakai di perangkat ini. Pesan versi lengkap untuk bermain tanpa batas.'],
+      tidakada: ['🎮', 'Uji coba belum tersedia', 'Game ini belum punya mode coba. Lihat video dan soal contohnya di halaman detail, atau tanya Admin lewat WhatsApp.'],
+      guru: ['🔐', 'Mode Guru ada di versi lengkap', 'Di versi lengkap Anda bisa <b>mengganti soal sendiri</b> (tempel dari Word/WhatsApp, buat dengan AI, atau Excel), dan soal ikut ke semua perangkat.']
+    };
+    const t = TEKS[jenis] || TEKS.selesai;
+    const m = document.createElement('div');
+    m.id = 'lokamain-coba-modal';
+    m.setAttribute('role', 'dialog');
+    m.setAttribute('aria-modal', 'true');
+    m.style.cssText = 'position:fixed;inset:0;z-index:2147483600;background:rgba(15,23,42,.9);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:14px;box-sizing:border-box;font-family:system-ui,-apple-system,sans-serif';
+    m.innerHTML = '<div class="lokamain-card" style="max-width:420px">' +
+      '<div style="font-size:46px;margin-bottom:6px">' + t[0] + '</div>' +
+      '<h2 style="margin:0 0 8px;font-size:21px;font-weight:800">' + t[1] + '</h2>' +
+      '<p style="font-size:14px;color:#475569;margin:0 0 14px;line-height:1.5">' + t[2] + '</p>' +
+      (jenis === 'tidakada' ? '' : '<ul style="text-align:left;font-size:13px;color:#334155;margin:0 0 16px;padding-left:20px;line-height:1.6"><li>Soal tanpa batas & bisa diganti sendiri</li><li>Main di Smart TV, IFP, HP, laptop</li><li>Link dikirim lewat WhatsApp setelah bayar</li></ul>') +
+      '<a href="' + (jenis === 'tidakada' ? detail : pesan) + '" target="_top" class="lokamain-btn lokamain-btn-green" style="width:100%;padding:13px;font-size:15px;margin-bottom:8px">' + (jenis === 'tidakada' ? '📄 Lihat Detail Game' : '🛒 Pesan Versi Lengkap') + '</a>' +
+      '<a href="' + waUrl + '" target="_blank" rel="noopener" class="lokamain-btn lokamain-btn-wa" style="margin-bottom:8px">💬 Tanya via WhatsApp</a>' +
+      (bisaTutup ? '<button type="button" id="lokamain-coba-tutup" class="lokamain-btn" style="width:100%;background:#e2e8f0;color:#0f172a">Lanjut mencoba</button>'
+        : '<a href="' + detail + '" target="_top" style="display:inline-block;margin-top:6px;font-size:13px;color:#64748b">← Kembali ke halaman game</a>') +
+      '</div>';
+    document.body.appendChild(m);
+    const tutup = document.getElementById('lokamain-coba-tutup');
+    if (tutup) tutup.addEventListener('click', () => m.remove());
+  }
+
+  function startTrial() {
+    const gate = document.getElementById('lokamain-gate-modal');
+    const infoP = cobaInfoGame();
+    const kunci = (alasan) => {
+      if (gate) gate.style.display = 'none';
+      infoP.then((info) => cobaModal(alasan, info, false));
+    };
+
+    const Q = window.QuizCore;
+    if (!Q || typeof Q.nextQuestion !== 'function') { kunci('tidakada'); return; }
+
+    const st = cobaBaca();
+    if (st.selesai) { kunci('terpakai'); return; }
+
+    // Pastikan admin tidak mematikan uji coba untuk game ini
+    infoP.then((info) => { if (info && info.game && info.game.trial === false) selesai('tidakada'); });
+
+    let berakhir = false;
+    function selesai(alasan) {
+      if (berakhir) return;
+      berakhir = true;
+      if (alasan !== 'tidakada') { st.selesai = true; cobaTulis(st); }
+      try { Q.muted = true; } catch (_) {}
+      infoP.then((info) => cobaModal(alasan || 'selesai', info, false));
+    }
+
+    // Blok keyboard & klik ke game setelah uji coba berakhir
+    window.addEventListener('keydown', (e) => { if (berakhir) { e.stopImmediatePropagation(); e.preventDefault(); } }, true);
+
+    // Hanya soal bawaan: soal milik pembeli di perangkat ini tidak dibaca dan tidak ditimpa.
+    // (pola nama bank soal: lokamain_<gameId>_soal_v1; gameId bisa saja baru diisi game setelah ini)
+    const isBankSoal = (k) => /^lokamain_[a-z0-9-]+_soal_v1$/.test(String(k));
+    const asliGet = Storage.prototype.getItem, asliSet2 = Storage.prototype.setItem;
+    Storage.prototype.getItem = function (k) { if (this === window.localStorage && isBankSoal(k)) return null; return asliGet.call(this, k); };
+    Storage.prototype.setItem = function (k, v) { if (this === window.localStorage && isBankSoal(k)) return; return asliSet2.call(this, k, v); };
+    try { if (typeof Q.reloadQuestions === 'function') Q.reloadQuestions(); } catch (_) {}
+
+    // Mode Guru terkunci
+    Q.openTeacher = function () { infoP.then((info) => cobaModal('guru', info, true)); return Promise.resolve(); };
+
+    // Hitung soal yang dimainkan (tersimpan, jadi muat ulang halaman tidak mengulang dari nol)
+    st.n = Number(st.n) || 0;
+    st.mulai = Number(st.mulai) || Date.now();
+    cobaTulis(st);
+    const asliNext = Q.nextQuestion;
+    Q.nextQuestion = function () {
+      if (berakhir) return null;
+      if (st.n >= COBA_SOAL) { selesai('selesai'); return null; }
+      st.n += 1; cobaTulis(st);
+      perbaruiLabel();
+      return asliNext.apply(this, arguments);
+    };
+
+    // Batas waktu (cadangan untuk game yang tidak memakai nextQuestion)
+    const sisaMs = st.mulai + COBA_MENIT * 60000 - Date.now();
+    if (sisaMs <= 0) { selesai('selesai'); } else { setTimeout(() => selesai('selesai'), sisaMs); }
+
+    if (gate) gate.style.display = 'none';
+    const badge = document.getElementById('lokamain-license-badge');
+    function perbaruiLabel() {
+      const txt = document.getElementById('lokamain-badge-text');
+      if (txt) txt.textContent = `MODE COBA · soal ${Math.min(st.n, COBA_SOAL)}/${COBA_SOAL}`;
+    }
+    if (badge) {
+      badge.style.background = '#fff7ed'; badge.style.borderColor = '#ea580c'; badge.style.color = '#9a3412';
+      badge.title = 'Uji coba gratis: ' + COBA_SOAL + ' soal bawaan, Mode Guru terkunci. Pesan versi lengkap untuk bermain tanpa batas.';
+      badge.style.cursor = 'pointer';
+      badge.addEventListener('click', () => infoP.then((info) => cobaModal('guru', info, true)));
+    }
+    perbaruiLabel();
+  }
+
   function grantAccess(key, name, cloudToken) {
     licenseKey = (key || '').toUpperCase().trim();
     buyerName = name || 'Pembeli Resmi';
@@ -630,6 +767,12 @@
     let cachedToken = null;
     try { cachedToken = sessionStorage.getItem(CACHE_KEY); } catch (_) {}
     const firstToken = rawToken || cachedToken;
+
+    // Mode Coba dari halaman detail game (?coba=1): game asli, dibatasi.
+    if (!rawToken && params.get('coba') === '1') {
+      startTrial();
+      return;
+    }
 
     if (firstToken) {
       const res = await verifyAnyToken(firstToken);
