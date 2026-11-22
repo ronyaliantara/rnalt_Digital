@@ -1085,47 +1085,6 @@ window.LOKAMAIN_LIVE_DATA = {
       "coverHd": ""
     }
   ],
-  "orders": [
-    {
-      "id": "ORD-104",
-      "date": "2026-11-05 19:40",
-      "buyerName": "Ibu Ratna (SDN 3 Sleman)",
-      "buyerPhone": "6281398765432",
-      "gameId": "LM-A",
-      "gameTitle": "Hitung Cepat Pasar",
-      "amount": 29000,
-      "status": "Menunggu Link"
-    },
-    {
-      "id": "ORD-103",
-      "date": "2026-11-05 18:15",
-      "buyerName": "Pak Hendra (Guru Kelas 5)",
-      "buyerPhone": "6285711223344",
-      "gameId": "LM-C",
-      "gameTitle": "Rantai Makanan Rimba",
-      "amount": 35000,
-      "status": "Link Terkirim"
-    },
-    {
-      "id": "ORD-102",
-      "date": "2026-11-05 15:20",
-      "buyerName": "Kak Dinda (Wali Murid)",
-      "buyerPhone": "6281233445566",
-      "gameId": "LM-B",
-      "gameTitle": "Susun Kata Nusantara",
-      "amount": 30000,
-      "status": "Link Terkirim"
-    },
-    {
-      "id": "ORD-101",
-      "date": "2026-11-05 11:05",
-      "buyerName": "Ibu Sari (SD Tunas Harapan)",
-      "buyerPhone": "6282199887766",
-      "gameId": "LM-E",
-      "gameTitle": "Peta Pulau Indonesia",
-      "amount": 32000,
-      "status": "Link Terkirim"
-    }
-  ],
+  "orders": [],
   "testimonials": []
 };

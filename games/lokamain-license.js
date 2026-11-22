@@ -164,7 +164,7 @@
     });
   }
 
-  // cloudToken = token format lama (dibuat ulang oleh mesin lisensi) karena cloud masih memeriksa format itu
+  // cloudToken = token link bertanda tangan ECDSA; cloud (Apps Script) memeriksa tanda tangan & nama game
   function mulai(licenseId, cloudToken) {
     token = String(cloudToken || '');
     lic = String(licenseId || '').toUpperCase().trim();
@@ -192,15 +192,13 @@
  * Link versi baru: token = base64url("KODE|Nama|nama-folder-game") + "." + tanda tangan ECDSA P-256.
  * - Tanda tangan dibuat dengan kunci PRIVAT yang hanya ada di laptop admin, jadi tidak bisa dipalsukan.
  * - Nama folder game ikut ditandatangani: link hanya membuka game yang dibeli.
- * Link versi lama (tanpa titik) masih diterima sampai LINK_LAMA_BERLAKU_SAMPAI.
+ * Link versi lama (tanpa titik) sudah TIDAK diterima lagi (kuncinya dulu tertulis di kode publik).
+ * Sinkron soal ke cloud memakai token baru yang sama; cloud memeriksa tanda tangannya sendiri.
  */
 (function initLokaMainLicenseEngine() {
   'use strict';
 
-  const SECRET = 'LOKAMAIN_SECURE_AUTH_KEY_2026_V1'; // hanya untuk link lama & sinkron cloud (format lama)
   const WA_NUMBER = '6287881258019';
-  // Link lama (dibuat sebelum sistem baru) masih bisa dipakai sampai tanggal ini (WIB). Setelahnya ditolak.
-  const LINK_LAMA_BERLAKU_SAMPAI = new Date('2027-01-01T00:00:00+07:00').getTime();
   const SCRIPT_SRC = (document.currentScript && document.currentScript.src) || '';
   const GAME_SLUG = (() => {
     const m = location.pathname.match(/\/games\/([^\/]+)\//) || location.pathname.match(/\/([^\/]+)\/(?:index\.html)?$/);
@@ -218,26 +216,6 @@
   }
 
   const LOKAMAIN_SECURITY = {
-    fromBase64Url(b64) {
-      try {
-        let str = b64.replace(/-/g, '+').replace(/_/g, '/');
-        while (str.length % 4) str += '=';
-        return decodeURIComponent(Array.prototype.map.call(atob(str), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-      } catch (e) {
-        let str = b64.replace(/-/g, '+').replace(/_/g, '/');
-        while (str.length % 4) str += '=';
-        return atob(str);
-      }
-    },
-
-    xorCipher(text, key) {
-      let res = '';
-      for (let i = 0; i < text.length; i++) {
-        res += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i % key.length));
-      }
-      return res;
-    },
-
     computeHash(text) {
       let h1 = 5381, h2 = 2166136261;
       for (let i = 0; i < text.length; i++) {
@@ -246,35 +224,6 @@
         h2 = (h2 ^ code) * 16777619;
       }
       return Math.abs(h1).toString(36) + Math.abs(h2).toString(36);
-    },
-
-    verifyAndDecodeToken(token) {
-      try {
-        if (!token || typeof token !== 'string') return null;
-        const decrypted = this.xorCipher(this.fromBase64Url(token.trim()), SECRET);
-        const parsed = JSON.parse(decrypted);
-        if (!parsed || !parsed.l || !parsed.s) return null;
-        const expectedSig = this.computeHash(`${parsed.l}|${parsed.n || ''}|${SECRET}`);
-        if (parsed.s !== expectedSig) return null;
-        return { licenseId: parsed.l, buyerName: parsed.n || 'Pembeli Resmi', timestamp: parsed.t };
-      } catch (e) {
-        return null;
-      }
-    },
-
-    toBase64Url(str) {
-      let bin;
-      try { bin = unescape(encodeURIComponent(str)); } catch (e) { bin = str; }
-      return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-    },
-
-    // Token format lama untuk sinkron soal di cloud (sama persis dengan buatan Aplikasi Admin versi lama)
-    makeLegacyToken(licenseId, buyerName) {
-      const lic = String(licenseId || '').trim().toUpperCase();
-      const name = String(buyerName || '').trim();
-      const sig = this.computeHash(`${lic}|${name}|${SECRET}`);
-      const payload = JSON.stringify({ l: lic, n: name, s: sig, t: Date.now() });
-      return this.toBase64Url(this.xorCipher(payload, SECRET));
     }
   };
 
@@ -333,17 +282,16 @@
 
     if (!GAME_SLUG || game !== GAME_SLUG) return { error: 'beda-game' };
     const buyerName = name || 'Pembeli Resmi';
-    return { licenseId, buyerName, cloudToken: LOKAMAIN_SECURITY.makeLegacyToken(licenseId, buyerName) };
+    // Token yang sama dipakai untuk cloud; cloud memeriksa tanda tangan ECDSA-nya sendiri.
+    return { licenseId, buyerName, cloudToken: String(token).trim() };
   }
 
   async function verifyAnyToken(token) {
     const t = String(token || '').trim();
     if (!t) return { error: 'invalid' };
     if (t.includes('.')) return verifyNewToken(t);
-    const old = LOKAMAIN_SECURITY.verifyAndDecodeToken(t);
-    if (!old) return { error: 'invalid' };
-    if (Date.now() >= LINK_LAMA_BERLAKU_SAMPAI) return { error: 'lama' };
-    return { licenseId: old.licenseId, buyerName: old.buyerName, cloudToken: t };
+    // Link versi lama (tanpa titik) tidak diterima lagi.
+    return { error: 'lama' };
   }
 
   const ERR_TEXT = {
@@ -509,7 +457,7 @@
 
   function claimActiveSession() {
     if (!licenseKey) return;
-    const cleanTopic = 'lokamain_' + LOKAMAIN_SECURITY.computeHash(licenseKey.toUpperCase().trim());
+    const cleanTopic = ntfyTopic();
     const payload = JSON.stringify({
       session: currentSessionId,
       device: detectDeviceType(),
@@ -575,8 +523,11 @@
   let lastEventAt = 0;
   let listenersBound = false;
 
+  // Nama topik diturunkan dari tanda tangan link (rahasia milik pembeli), bukan dari kode lisensi
+  // yang mudah ditebak, agar orang lain tidak bisa "menendang" sesi pembeli.
+  let topicSeed = '';
   function ntfyTopic() {
-    return 'lokamain_' + LOKAMAIN_SECURITY.computeHash(licenseKey.toUpperCase().trim());
+    return 'lokamain_' + LOKAMAIN_SECURITY.computeHash(topicSeed || licenseKey.toUpperCase().trim());
   }
 
   function connectSse() {
@@ -645,6 +596,7 @@
   function grantAccess(key, name, cloudToken) {
     licenseKey = (key || '').toUpperCase().trim();
     buyerName = name || 'Pembeli Resmi';
+    topicSeed = String(cloudToken || '').split('.')[1] || '';
 
     const gate = document.getElementById('lokamain-gate-modal');
     if (gate) gate.style.display = 'none';
