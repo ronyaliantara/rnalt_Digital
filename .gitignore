@@ -15,3 +15,6 @@ Thumbs.db
 *.log
 node_modules/
 
+# 4. Folder sementara saat upload file game dari Aplikasi Admin
+games/.*/
+
