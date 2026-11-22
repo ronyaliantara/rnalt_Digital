@@ -8,26 +8,6 @@
   };
   const isVideo = (s) => /\.(mp4|webm|mov|m4v)(\?.*)?$/i.test(s || '') || String(s || '').startsWith('data:video/');
 
-  // Soal contoh untuk game yang bank soalnya tidak berupa questions-default.js
-  const BANKS = {
-    'LM-UT': [
-      { q: 'Secara geografis, kepulauan Indonesia berada di antara dua benua, yaitu...', opts: ['Benua Asia dan Benua Australia', 'Benua Eropa dan Benua Afrika'], ans: 0 },
-      { q: 'Indonesia beriklim tropis karena dilalui garis khatulistiwa. Dua musim di Indonesia adalah musim...', opts: ['Panas dan Musim Dingin Berbatu', 'Kemarau dan Penghujan'], ans: 1 },
-      { q: 'Garis khayal yang memisahkan persebaran fauna Asiatis (barat) dengan fauna Peralihan (tengah) adalah...', opts: ['Garis Wallace', 'Garis Weber'], ans: 0 }
-    ],
-    'LM-EK': [
-      { q: 'Benua terbesar di dunia adalah...', opts: ['Asia', 'Afrika', 'Eropa'], ans: 0 },
-      { q: 'Samudra terluas di permukaan bumi adalah...', opts: ['Samudra Pasifik', 'Samudra Atlantik', 'Samudra Hindia'], ans: 0 },
-      { q: 'Selat yang memisahkan Pulau Jawa dan Pulau Sumatra adalah...', opts: ['Selat Sunda', 'Selat Malaka', 'Selat Bali'], ans: 0 }
-    ],
-    'LM-MTS': [
-      { q: 'Planet yang paling dekat dengan Matahari adalah...', opts: ['Merkurius', 'Venus', 'Bumi', 'Mars'], ans: 0 },
-      { q: 'Planet yang dijuluki "planet merah" adalah...', opts: ['Jupiter', 'Mars', 'Saturnus', 'Neptunus'], ans: 1 },
-      { q: 'Planet terbesar di tata surya adalah...', opts: ['Bumi', 'Saturnus', 'Jupiter', 'Uranus'], ans: 2 },
-      { q: 'Satelit alami yang mengelilingi Bumi adalah...', opts: ['Matahari', 'Bulan', 'Mars', 'Komet'], ans: 1 }
-    ]
-  };
-
   const store = loadStore();
   const settings = store.settings;
   const id = new URLSearchParams(location.search).get('id');
@@ -101,170 +81,79 @@
   $('play-order').addEventListener('click', () => {
     location.href = `index.html?pesan=${encodeURIComponent(game.id)}#katalog`;
   });
-  // Tombol "Coba Main Gratis": membuka GAME ASLI dalam Mode Coba (dibatasi oleh games/lokamain-license.js).
-  // Muncul otomatis untuk game di folder games/ yang memakai mesin kuis (quiz-core), kecuali dimatikan di Aplikasi Admin.
+  /* ================= Panel samping: UJI COBA GRATIS (game asli dalam Mode Coba) =================
+     Game di folder games/ yang memakai mesin kuis (quiz-core) dibuka dengan ?coba=1:
+     5 soal bawaan, Mode Guru terkunci, 1x per perangkat (diatur games/lokamain-license.js).
+     Dimatikan per game lewat Aplikasi Admin (centang "Coba Main Gratis"). */
   const COBA_TIDAK_DUKUNG = ['ular-tangga', 'ekspedisi-kapal', 'modul-tata-surya'];
-  const direct = $('play-launch-direct');
+  const panel = $('coba-panel');
   const gu = safe(game.gameUrl);
   const slugM = String(gu || '').match(/^(?:\.?\/)?games\/([a-z0-9-]+)\/?(?:index\.html)?$/i);
   const isModul = game.kind === 'modul' || /^modul ajar/i.test(String(game.category || ''));
-  if (slugM && game.trial !== false && !isModul && !COBA_TIDAK_DUKUNG.includes(slugM[1].toLowerCase())) {
-    direct.href = `games/${slugM[1].toLowerCase()}/?coba=1`;
-    direct.innerHTML = '🎮 Coba Main Gratis';
-    direct.className = 'btn btn-coba';
-    direct.title = 'Main game aslinya: 5 soal contoh, tanpa daftar';
-    direct.hidden = false;
-  } else {
-    direct.hidden = true;
-  }
+  const bisaCoba = !!slugM && game.trial !== false && !isModul && !COBA_TIDAK_DUKUNG.includes(slugM[1].toLowerCase());
+  const posterSrc = cover || (!isVideo(media) ? media : '');
+  const sudahDicoba = (() => {
+    if (!slugM) return false;
+    try { return !!(JSON.parse(localStorage.getItem('lokamain_coba_v1_' + slugM[1].toLowerCase())) || {}).selesai; } catch (_) { return false; }
+  })();
 
-  /* ================= Coba main dulu: ilustrasi mini + soal asli game ================= */
-  const N_MAX = 4;
-  const LETTERS = ['A', 'B', 'C', 'D'];
-  const shuffle = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
-  let EMO_ONLY = null;
-  try { EMO_ONLY = new RegExp('^[\\s\\p{Extended_Pictographic}\\u200d\\ufe0f\\u{1F3FB}-\\u{1F3FF}]+$', 'u'); } catch (_) { /* browser lama */ }
-  const isEmo = (s) => !!(EMO_ONLY && String(s || '').trim() && EMO_ONLY.test(String(s)));
-
-  // {question, optionA..D, correct, explanation} -> {q, opts, ans, exp}
-  function fromBank(q) {
-    if (!q || !q.question) return null;
-    const opts = LETTERS.map((k) => ({ k, t: q['option' + k] })).filter((o) => o.t != null && String(o.t).trim());
-    if (opts.length < 2) return null;
-    const ck = String(q.correct || 'A').trim().toUpperCase().charAt(0);
-    return { q: String(q.question), opts: opts.map((o) => String(o.t)), ans: Math.max(0, opts.findIndex((o) => o.k === ck)), exp: String(q.explanation || '') };
-  }
-  function mix(item) {
-    const order = shuffle(item.opts.map((_, i) => i));
-    return { q: item.q, exp: item.exp || '', opts: order.map((i) => item.opts[i]), ans: order.indexOf(item.ans) };
-  }
-  function sampleBank() {
-    return [{ q: game.sampleQuestion || `Pertanyaan contoh untuk ${game.title}`, opts: game.sampleOptions || ['Pilihan A', 'Pilihan B', 'Pilihan C'], ans: Number(game.sampleAnswer || 0), exp: '' }];
-  }
-  // Bank soal bawaan game (file publik games/<nama>/questions-default.js), dimuat tanpa membuka game-nya.
-  function loadBank() {
-    if (BANKS[game.id]) return Promise.resolve(BANKS[game.id]);
-    const m = String(game.gameUrl || '').match(/games\/([a-z0-9-]+)\//i);
-    if (!m) return Promise.resolve([]);
-    return new Promise((resolve) => {
-      const prev = window.DEFAULT_QUESTIONS; let done = false;
-      window.DEFAULT_QUESTIONS = undefined;
-      const fin = (list) => { if (done) return; done = true; window.DEFAULT_QUESTIONS = prev; resolve(Array.isArray(list) ? list.map(fromBank).filter(Boolean) : []); };
-      const s = document.createElement('script');
-      s.src = `games/${m[1]}/questions-default.js?v=20261120a`;
-      s.onload = () => fin(window.DEFAULT_QUESTIONS);
-      s.onerror = () => fin(null);
-      setTimeout(() => fin(null), 8000);
-      document.head.appendChild(s);
-    });
-  }
-
-  const panel = $('quiz-panel');
-  const Demo = window.GameDemo;
-  const info = Demo ? Demo.info(game.id) : { how: 'Jawab soal contoh untuk mencoba.', yay: 'Benar!', solo: true };
-  let pool = []; let stage = null; let list = []; let qi = 0; let score = 0; let answered = false;
-
-  function startDemo() {
-    list = shuffle(pool.length ? pool : sampleBank()).slice(0, N_MAX).map(mix);
-    qi = 0; score = 0; answered = false;
-    if (stage) { stage.destroy(); stage = null; }
+  if (bisaCoba) {
+    const url = `games/${slugM[1].toLowerCase()}/?coba=1`;
     panel.innerHTML = `
       <div class="demo-head">
-        <p class="quiz-kicker">🎮 Coba main dulu, versi mini</p>
-        <p class="demo-how">${esc(info.how)}</p>
+        <p class="quiz-kicker">🎮 Uji coba gratis · game asli</p>
+        <h2 class="coba-title">Coba main ${esc(game.title)} sekarang</h2>
       </div>
-      <div class="demo-stage"><canvas id="demo-cv" aria-hidden="true"></canvas></div>
-      <div class="demo-body" id="demo-body">
-        <div class="quiz-top-bar">
-          <span class="quiz-progress-text" id="quiz-progress"></span>
-          <span class="quiz-score-text" id="quiz-score">Benar: 0</span>
-        </div>
-        <h2 class="quiz-question-text" id="quiz-question"></h2>
-        <div id="quiz-options" class="quiz-options-wrap"></div>
-        <p class="demo-exp" id="demo-exp" hidden></p>
-        <div class="quiz-bottom-bar">
-          <span class="quiz-feedback-text" id="quiz-feedback" aria-live="polite"></span>
-          <button type="button" class="btn btn-primary btn-sm" id="quiz-next-btn" disabled>Berikutnya</button>
-        </div>
-      </div>`;
-    try { if (Demo) stage = Demo.create($('demo-cv'), game.id, list.length); } catch (e) { stage = null; }
-    if (!stage) { const st = panel.querySelector('.demo-stage'); if (st) st.hidden = true; }
-    $('quiz-next-btn').addEventListener('click', () => {
-      if (!answered) return;
-      if (qi >= list.length - 1) finish(); else { qi++; render(); }
+      <div class="coba-stage" id="coba-stage">
+        ${posterSrc ? `<img src="${esc(posterSrc)}" alt="" class="coba-poster" loading="lazy" decoding="async">` : '<div class="coba-poster coba-poster-empty" aria-hidden="true">🎮</div>'}
+        <button type="button" class="coba-play" id="coba-play" aria-label="Mulai uji coba gratis ${esc(game.title)}">
+          <span class="coba-play-ico" aria-hidden="true">▶</span>
+          <span>${sudahDicoba ? 'Uji coba sudah dipakai' : 'Coba Main Gratis'}</span>
+        </button>
+      </div>
+      <div class="coba-tools" id="coba-tools" hidden>
+        <button type="button" class="btn btn-sm btn-ghost-detail" id="coba-full">⛶ Layar penuh</button>
+        <a class="btn btn-sm btn-ghost-detail" id="coba-tab" href="${esc(url)}" target="_blank" rel="noopener">↗ Buka di tab baru</a>
+      </div>
+      <ul class="coba-facts">
+        <li>✅ Game yang <b>sama persis</b> dengan versi lengkap, langsung main tanpa daftar</li>
+        <li>📝 Uji coba berisi <b>5 soal contoh</b>, 1× per perangkat</li>
+        <li>🔐 Ganti soal sendiri (Mode Guru) tersedia di versi lengkap</li>
+      </ul>
+      <button type="button" class="btn btn-primary" id="coba-order">🛒 Pesan versi lengkap</button>`;
+
+    const stage = $('coba-stage');
+    const start = () => {
+      // HP / layar kecil: buka game penuh satu layar (lebih nyaman daripada bingkai kecil).
+      if (window.matchMedia('(max-width: 760px)').matches) { location.href = url; return; }
+      stage.innerHTML = `<iframe src="${esc(url)}" title="Uji coba ${esc(game.title)}" allow="fullscreen; autoplay" allowfullscreen loading="eager"></iframe>`;
+      stage.classList.add('is-playing');
+      $('coba-tools').hidden = false;
+      const fr = stage.querySelector('iframe');
+      fr.addEventListener('load', () => { try { fr.focus(); } catch (_) { /* abaikan */ } }, { once: true });
+    };
+    $('coba-play').addEventListener('click', start);
+    $('coba-full').addEventListener('click', () => {
+      const fr = stage.querySelector('iframe') || stage;
+      const req = fr.requestFullscreen || fr.webkitRequestFullscreen;
+      if (req) Promise.resolve(req.call(fr)).catch(() => { location.href = url; }); else location.href = url;
     });
-    render();
+    $('coba-order').addEventListener('click', () => $('play-order').click());
+  } else {
+    // Game tanpa Mode Coba: tampilkan cuplikan + ajakan bertanya.
+    const vid = isVideo(media) ? media : '';
+    panel.innerHTML = `
+      <div class="demo-head">
+        <p class="quiz-kicker">🎬 Cuplikan game</p>
+        <h2 class="coba-title">${esc(game.title)}</h2>
+      </div>
+      <div class="coba-stage">
+        ${vid ? `<video src="${esc(vid)}"${posterSrc ? ` poster="${esc(posterSrc)}"` : ''} autoplay loop muted playsinline controls></video>`
+          : posterSrc ? `<img src="${esc(posterSrc)}" alt="" class="coba-poster" loading="lazy" decoding="async">` : '<div class="coba-poster coba-poster-empty" aria-hidden="true">🎮</div>'}
+      </div>
+      <p class="coba-note">Uji coba gratis belum tersedia untuk ${isModul ? 'modul ajar' : 'game'} ini. Tanyakan contoh atau demo langsung ke Admin lewat WhatsApp.</p>
+      <a class="btn btn-wa" href="${esc(buildBuyerWhatsAppUrl(game, settings))}" target="_blank" rel="noopener">Tanya via WhatsApp</a>
+      <button type="button" class="btn btn-primary" id="coba-order">🛒 Pesan sekarang</button>`;
+    $('coba-order').addEventListener('click', () => $('play-order').click());
   }
-
-  function render() {
-    answered = false;
-    const item = list[qi];
-    $('quiz-progress').textContent = `Soal ${qi + 1} dari ${list.length}`;
-    $('quiz-score').textContent = `Benar: ${score}`;
-    $('quiz-question').textContent = item.q;
-    $('quiz-feedback').textContent = 'Pilih salah satu jawaban.';
-    $('demo-exp').hidden = true;
-    const next = $('quiz-next-btn');
-    next.disabled = true;
-    next.textContent = qi < list.length - 1 ? 'Berikutnya' : 'Lihat hasil';
-    const wrap = $('quiz-options');
-    const grid = item.opts.length > 2 && item.opts.every((o) => String(o).length <= 16);
-    wrap.className = 'quiz-options-wrap' + (grid ? ' is-grid' : '');
-    wrap.innerHTML = item.opts.map((o, i) => `<button type="button" class="quiz-opt-btn${isEmo(o) ? ' is-emo' : ''}" data-opt="${i}">${esc(o)}</button>`).join('');
-    wrap.querySelectorAll('[data-opt]').forEach((btn) => btn.addEventListener('click', () => pick(btn, item)));
-  }
-
-  async function pick(btn, item) {
-    if (answered) return;
-    answered = true;
-    const ok = Number(btn.dataset.opt) === item.ans;
-    $('quiz-options').querySelectorAll('[data-opt]').forEach((b) => {
-      b.disabled = true;
-      if (Number(b.dataset.opt) === item.ans) b.classList.add('is-correct');
-    });
-    if (ok) score++; else btn.classList.add('is-wrong');
-    $('quiz-score').textContent = `Benar: ${score}`;
-    $('quiz-feedback').textContent = ok ? `Benar! ${info.yay}` : 'Belum tepat. Jawaban benar ditandai hijau.';
-    if (item.exp) { const ex = $('demo-exp'); ex.textContent = `💡 ${item.exp}`; ex.hidden = false; }
-    const next = $('quiz-next-btn');
-    if (stage) { next.textContent = '…'; await stage.answer(ok); next.textContent = qi < list.length - 1 ? 'Berikutnya' : 'Lihat hasil'; }
-    next.disabled = false;
-  }
-
-  function finish() {
-    const res = stage ? stage.finish() : { solo: true, you: score, total: list.length, win: score >= Math.max(1, list.length - 1) };
-    let title; let big; let msg;
-    if (res.solo) {
-      title = res.win ? 'Hebat sekali! 🎉' : 'Ayo coba lagi! 💪';
-      big = `⭐ ${res.you} / ${res.total}`;
-      msg = `Benar ${res.you} dari ${res.total} soal.`;
-    } else if (res.tie) {
-      title = 'Seri! 🤝'; big = `${res.you} : ${res.foe}`;
-      msg = 'Skornya sama. Satu jawaban lagi bisa menentukan pemenangnya!';
-    } else if (res.win) {
-      title = 'Kamu menang! 🏆'; big = `${res.you} : ${res.foe}`;
-      msg = 'Bayangkan serunya kalau dimainkan bersama-sama!';
-    } else {
-      title = 'Lawan menang! 😅'; big = `${res.you} : ${res.foe}`;
-      msg = 'Coba lagi, soalnya diacak setiap main.';
-    }
-    const note = game.editableQuestions === false
-      ? 'Ini versi mini. Modul lengkapnya berisi materi interaktif, kuis 20 soal, game, dan LKPD.'
-      : 'Ini versi mini untuk mencoba. Game lengkapnya punya lebih banyak soal dan animasi, dan soalnya bisa Anda ganti sendiri.';
-    $('demo-body').innerHTML = `
-      <div class="quiz-done">
-        <h3>${title}</h3>
-        <p class="quiz-done-score">${big}</p>
-        <p>${msg}</p>
-        <p class="demo-note">${note}</p>
-        <div class="quiz-done-actions">
-          <button type="button" class="btn btn-ghost-detail" id="quiz-retry">Main lagi</button>
-          <button type="button" class="btn btn-primary" id="quiz-order">Pesan game ini</button>
-        </div>
-      </div>`;
-    $('quiz-retry').onclick = () => startDemo();
-    $('quiz-order').onclick = () => $('play-order').click();
-  }
-
-  loadBank().then((qs) => { pool = qs || []; startDemo(); }, () => { pool = []; startDemo(); });
 })();

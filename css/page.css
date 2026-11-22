@@ -1477,19 +1477,6 @@ a {
   gap: 12px;
 }
 
-/* Tombol "Coba Main Gratis" (Mode Coba game asli) — paling menonjol di halaman detail */
-.btn-coba {
-  order: -1;
-  flex: 1 1 100%;
-  min-height: 56px;
-  font-size: 17px;
-  color: #fff;
-  background: #2f5fe8;
-}
-
-.btn-coba:hover {
-  background: #2550cc;
-}
 
 .quiz-panel {
   position: sticky;
@@ -1517,9 +1504,21 @@ a {
   line-height: 1.4;
 }
 
-.demo-stage {
+/* ---------- Panel samping: uji coba gratis (game asli) ---------- */
+.coba-panel {
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.coba-title {
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.coba-stage {
   position: relative;
   width: 100%;
+  aspect-ratio: 16 / 10;
   border: 2px solid var(--ink);
   border-radius: 18px;
   overflow: hidden;
@@ -1527,35 +1526,99 @@ a {
   box-shadow: 0 4px 0 var(--ink);
 }
 
-.demo-stage canvas {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 640 / 300;
-  object-fit: contain;
+.coba-stage.is-playing {
+  aspect-ratio: 4 / 3;
 }
 
-.demo-body {
+.coba-stage > img,
+.coba-stage > video,
+.coba-stage > iframe,
+.coba-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+.coba-poster-empty {
+  display: grid;
+  place-items: center;
+  font-size: 56px;
+  background: linear-gradient(135deg, #2f5fe8, #16d9c0);
+}
+
+.coba-play {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+  background: linear-gradient(180deg, rgba(13, 27, 46, 0.15), rgba(13, 27, 46, 0.6));
+  transition: background-color 0.15s;
 }
 
-.demo-exp {
-  padding: 10px 14px;
-  background: #eff6ff;
-  border: 1.5px solid #bfdbfe;
-  border-radius: 12px;
+.coba-play-ico {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  padding-left: 6px;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  font-size: 30px;
+  color: var(--ink);
+  text-shadow: none;
+  background: var(--amber);
+  box-shadow: 0 5px 0 var(--ink);
+  transition: transform 0.15s var(--ease);
+}
+
+.coba-play:hover .coba-play-ico,
+.coba-play:focus-visible .coba-play-ico {
+  transform: scale(1.08);
+}
+
+.coba-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.coba-tools[hidden] {
+  display: none;
+}
+
+.coba-tools .btn {
+  flex: 1 1 auto;
+}
+
+.coba-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
   font-size: 13.5px;
-  color: #1e40af;
   line-height: 1.45;
+  color: var(--ink-soft);
 }
 
-.demo-note {
-  margin-top: 8px;
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.45;
+.coba-note {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
 }
 
 .quiz-options-wrap.is-grid {
