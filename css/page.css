@@ -2116,6 +2116,20 @@ a {
   border-radius: 12px;
 }
 
+.soal-video {
+  max-width: 920px;
+  margin: 0 auto 40px;
+}
+
+.soal-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  background: #0e0822;
+}
+
 .soal-shot figcaption {
   padding: 8px 4px 2px;
   color: #c9d6ee;
